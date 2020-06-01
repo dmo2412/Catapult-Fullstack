@@ -26,6 +26,10 @@
     "postinstall": "webpack",
     "webpack": "webpack --watch --mode=development"
   },
+  "engines": {
+    "node": "12.5.0",
+    "npm": "6.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dmo2412/Catapult-Fullstack.git"
