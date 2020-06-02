@@ -1,0 +1,63 @@
+body {
+    background-color:#f0f0f5;
+}
+
+// div {
+//     background-color:#f0f0f5;
+// }
+.login-form {
+    width: 400px;
+    // width: 30%;
+    align-content: center;
+    // display: flex;
+    border: 5px solid black;
+    position: relative;
+    left: 35%;
+    height: 600px;
+    top: 10%;
+    background-color: white;
+    padding-bottom: 10px;
+
+}
+
+.log-title {
+    text-align: left;
+    margin-left: 10%;
+}
+
+.redirect-to-signup {
+    position: absolute;
+    bottom: 10%;
+    left: 27%;
+}
+
+.enter-email {
+    left: 5%;
+    display: flex;
+    margin-left: 6.25%;
+    margin-right: 6.25%;
+    width: 350px;
+    height: 35px;
+}
+
+.enter-password {
+    left: 5%;
+    margin-top: 15px;
+    display: flex;
+    margin-left: 6.25%;
+    margin-right: 6.25%;
+    width: 350px;
+    height: 35px;
+}
+
+.login-button {
+    left: 5%;
+    margin-top: 30px;
+    margin-left: 6.25%;
+    // margin-right: 6.25%;
+    width: 359px;
+    height: 40px;
+    text-align: center;
+}
+
+

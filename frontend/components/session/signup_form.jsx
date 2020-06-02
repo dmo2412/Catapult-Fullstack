@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -37,31 +38,31 @@ class SignupForm extends React.Component {
             <div className='signup-form'>
                 <form onSubmit={this.handleSubmit} className='submit-signup'>
                     <h1>Sign up</h1>
-                    <label>Name
+                    <label>
                         <input type="text" value={this.state.name} placeholder='Name'
                         onChange={this.update('name')} />
                     </label>
-                    <label>Email 
+                    <label>
                         <input type="text" value={this.state.email} placeholder="Email"
                         onChange={this.update('email')} />
                     </label>
-                    <label>Re-enter Email 
-                        <input type="text" value={this.state.reEnterEmail} placeholder="Email"
-                        onChange={this.update('email')} className='reenter-email' />
+                    <label>
+                        <input type="text" value={this.state.reEnterEmail} placeholder="re-enter email"
+                        onChange={this.update('reEnterEmail')} className='reenter-email' />
                     </label>
-                    <label>Password 
+                    <label>
                         <input type="password" value={this.state.password} placeholder="Password"
                         onChange={this.update('password')} />
                     </label>
-                    <label>Re-enter Password 
-                        <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter email"
+                    <label>
+                        <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter password"
                         onChange={this.update('reEnterPassword')} className="reenter-password" />
                     </label>
                     <button onClick={this.handleSubmit}>Create Account</button>
-                    
-
-
                 </form>
+                <div className='redirect-to-login'>
+                   <p>Have an account? <Link to='/login'>Log in</Link></p>
+                </div>
             </div>
         )
     }
