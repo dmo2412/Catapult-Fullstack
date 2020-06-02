@@ -14,7 +14,7 @@ const logoutCurrentUser = () => ({
 
 export const signup = user => dispatch => (
     SessionUtil.signup(user)
-    .then(userser => dispatch(receiveCurrentUser(user)))
+    .then(user => dispatch(receiveCurrentUser(user)))
 )
 // Not sure if this takes in a user 
 

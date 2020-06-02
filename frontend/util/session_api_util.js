@@ -1,9 +1,9 @@
-export const signup = user => (
-    $.ajax({
-        url: '/api/users',
-
-    })
-)
+// export const signup = user => (
+//     $.ajax({
+//         url: '/api/users',
+//         method: 'POST'
+//     })
+// )
 
 export const login = user => (
     $.ajax({

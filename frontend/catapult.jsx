@@ -6,6 +6,6 @@ import configureStore from './store/store';
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById('root');
     // debugger
-    const store = configureStore(preloadedState);
+    const store = configureStore();
     ReactDom.render(<Root store={store} />, root);
 })

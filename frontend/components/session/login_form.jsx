@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -13,6 +14,10 @@ class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.login(this.state);
+    }
+
+    update(field) {
+        return e => this.setState({[field] : e.currentTarget.value})
     }
 
     
@@ -31,6 +36,9 @@ class LoginForm extends React.Component {
                     </label>
                     <button onClick={this.handleSubmit} >Log in</button>
                 </form>
+                <div className='redirect-to-signup'>
+                    <Link to='/signup'>New to Kickstarter? Sign up</Link>
+                </div>
 
             </div>
         )

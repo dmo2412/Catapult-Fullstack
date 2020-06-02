@@ -6,10 +6,11 @@ import SignUpContainer from './session/signup_form_container';
 const App = () => (
     <div>
         <h1>Test</h1>
-        <Switch>
+        {/* <Switch>
             <Route exact path ='/login' component={LoginContainer}/>
             <Route exact path ='/signup/new' component={SignUpContainer}/>
-        </Switch>
+        </Switch> */}
+        <LoginContainer/>
     </div>
 )
 export default App;
