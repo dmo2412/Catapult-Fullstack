@@ -15,17 +15,7 @@ class LoginForm extends React.Component {
         this.props.login(this.state);
     }
 
-    // update(field) {
-    //     return e => this.setState({[field] : e.currentTarget.value})
-    // }
-
-    // demoAccount() {
-    //     let credentials = {
-    //         email: 'user123@gmail.com',
-    //         password: 'password123'
-    //     }
-    // }
-
+    
     render() {
         return (
             <div className='login-form'>
@@ -39,7 +29,7 @@ class LoginForm extends React.Component {
                         <input type="password" value={this.state.password} placeholder='Password'
                         onChange={this.update('password')} className='enter-password'/>
                     </label>
-                    <button onClick={() => {this.setState({email: 'user123@gmail.com' , password: 'password123'})} } >Log in</button>
+                    <button onClick={this.handleSubmit} >Log in</button>
                 </form>
 
             </div>
