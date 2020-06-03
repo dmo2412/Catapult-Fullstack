@@ -9,9 +9,12 @@ class SignupForm extends React.Component {
             email: "",
             reEnterEmail: "",
             password: "",
-            reEnterPassword: ""
+            reEnterPassword: "",
+            clickedEmail: false,
+            clickedPassword: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.toggleEmail = this.toggleEmail.bind(this);
     }
 
     handleSubmit(e) {
@@ -32,37 +35,58 @@ class SignupForm extends React.Component {
         }
     }
 
-    render() {
+    
 
+    toggleEmailClass() {
+        this.setState({clickedEmail: true})
+    }
+
+    togglePasswordClass() {
+        this.setState({clickedPassword: true})
+    }
+
+    render() {
+        
         return (
             <div className='signup-form'>
                 <form onSubmit={this.handleSubmit} className='submit-signup'>
-                    <h1>Sign up</h1>
-                    <label>
-                        <input type="text" value={this.state.name} placeholder='Name'
-                        onChange={this.update('name')} />
-                    </label>
-                    <label>
-                        <input type="text" value={this.state.email} placeholder="Email"
-                        onChange={this.update('email')} />
-                    </label>
-                    <label>
-                        <input type="text" value={this.state.reEnterEmail} placeholder="re-enter email"
-                        onChange={this.update('reEnterEmail')} className='reenter-email' />
-                    </label>
-                    <label>
-                        <input type="password" value={this.state.password} placeholder="Password"
-                        onChange={this.update('password')} />
-                    </label>
-                    <label>
-                        <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter password"
-                        onChange={this.update('reEnterPassword')} className="reenter-password" />
-                    </label>
-                    <button onClick={this.signup} onSubmit={this.handleSubmit}>Create Account</button>
-                </form>
                 <div className='redirect-to-login'>
                    <p>Have an account? <Link to='/login'>Log in</Link></p>
                 </div>
+                    <h1 className='signup'>Sign up</h1>
+                    
+                        <input type="text" value={this.state.name} placeholder='Name'
+                        onChange={this.update('name')} className='signup-name'  />
+                    
+                        <input type="text" value={this.state.email} placeholder="Email"
+                        onChange={this.update('email')} onClick={() => this.toggleEmailClass()} className='signup-email'/>
+                        
+                        <input type="text" value={this.state.reEnterEmail} placeholder="Re-enter email"
+                        onChange={this.update('reEnterEmail')} className={this.state.clickedEmail ? 'reveal' : 'hide'} />
+                    
+                        <input type="password" value={this.state.password} placeholder="Password"
+                        onChange={this.update('password')} onClick={() => this.togglePasswordClass()} className='signup-password' />
+                    
+                        <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter password"
+                        onChange={this.update('reEnterPassword')} className={this.state.clickedPassword ? 'shown' : 'hidden'} />
+                    <input type="checkbox" className="weekly-email" />Send me a weekly mix of handpicked projects,
+                     plus occasional Catapult news
+                     <p> </p>
+                        {/* <p className='email-text'> Send me a weekly mix of handpicked projects, plus occasional Catapult news </p> */}
+                    <input type="checkbox" className="contact" />Contact me about participating in Catapult research
+                    {/* <p className='contact-text'>Contact me about participating in Catapult research</p> */}
+                    <br/>
+                    <button onClick={this.signup} onSubmit={this.handleSubmit} className='create-account'>Create Account</button>
+                    <div className='signup-footer'>
+                        <p>By signing up, you agree to our terms of use, privacy policy, and cookie policy</p>
+                        <p>Read more</p>
+                    </div>
+                    <button className='signup-facebook'>Continue with Facebook</button>
+                    <div className='facebook-footer'>
+                        <p>Get notified when your friends back and launch projetcs. We'll never post anything on Facebook without your permission</p>
+                        <p>Read more</p>
+                    </div>
+                </form>
             </div>
         )
     }
