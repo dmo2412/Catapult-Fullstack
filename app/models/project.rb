@@ -12,6 +12,8 @@
 #  pledged      :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  location     :string
+#  close_date   :date
 #
 class Project < ApplicationRecord
 

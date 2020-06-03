@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
-#  username        :string           not null
 #  name            :string           not null
 #  email           :string           not null
 #  password_digest :string           not null
@@ -12,7 +11,6 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-    validates :username, presence: true, uniqueness: true
     validates :name, :password_digest, :session_token, presence: true
     validates :email, presence: true, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
@@ -28,8 +26,8 @@ class User < ApplicationRecord
     foreign_key: :backer_id,
     class_name: :Backing
 
-    def self.find_by_credentials(username, password)
-        user = User.find_by(username: username)
+    def self.find_by_credentials(email, password)
+        user = User.find_by(email: email)
         return nil if user.nil?
         user.is_password?(password) ? user : nil
     end

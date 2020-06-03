@@ -1,18 +1,20 @@
 class Api::SessionsController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def create
         @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
         if @user
-            login(user)
-            render 'api/users/show'
+            login(@user)
+            render json: 'api/users/show'
+            # redirect_to user_url(@user)
         else
-            render json: ['invalid email or password']
+            render json: ['invalid email or password'], status: 401
         end
     end
 
     def destroy 
         logout
-        redirect_to new_session_url
+        render json: {}
     end
 
 

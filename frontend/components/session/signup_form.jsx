@@ -27,7 +27,7 @@ class SignupForm extends React.Component {
 
     update(field) {
         return e => {
-            let input = e.currentTarget.value;
+            let input = e.target.value;
             this.setState({[field] : input})
         }
     }
@@ -58,7 +58,7 @@ class SignupForm extends React.Component {
                         <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter password"
                         onChange={this.update('reEnterPassword')} className="reenter-password" />
                     </label>
-                    <button onClick={this.handleSubmit}>Create Account</button>
+                    <button onClick={this.signup} onSubmit={this.handleSubmit}>Create Account</button>
                 </form>
                 <div className='redirect-to-login'>
                    <p>Have an account? <Link to='/login'>Log in</Link></p>
