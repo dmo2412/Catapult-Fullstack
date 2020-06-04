@@ -9,6 +9,8 @@ class LoginForm extends React.Component {
             password: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoLogin = this.handleDemoLogin.bind(this);
+
     }
 
     handleSubmit(e) {
@@ -17,7 +19,7 @@ class LoginForm extends React.Component {
         this.props.login(user);
     }
 
-    handleTestLogin(e) {
+    handleDemoLogin(e) {
         this.props.login({name: 'Willis' , email: 'willis@gmail.com' , password: 'password'})
     }
 
@@ -30,11 +32,11 @@ class LoginForm extends React.Component {
         return (
             <div className='login-form'>
                 <form onSubmit={this.handleSubmit}>
-                    {/* <ul className='login-errors'>
-                        {this.props.receiveErrors.map((error, idx) => {
+                    <ul className='login-errors'>
+                        {this.props.errors.map((error, idx) => {
                             return <li key={idx}>{error}</li>
                         })}
-                    </ul> */}
+                    </ul>
                     <h1 className='log-title'>Log in</h1>
                     <label>
                         <input type="text" value={this.state.email} placeholder='Email'
@@ -47,7 +49,7 @@ class LoginForm extends React.Component {
                     <button type='submit' className='login-button' onClick={this.login} onSubmit={this.handleSubmit} >Log in</button>
                     <input type="checkbox" className="remember-me" />Remember me
                 </form>
-                <button className='facebook'>Continue with Facebook</button>
+                    <button type='submit' className='demo-login' onClick={this.handleDemoLogin} onSubmit={this.handleSubmit}>Demo Login</button>
                 <div className='redirect-to-signup'>
                     <p>New to Kickstarter? <Link to='/signup' className="sign-up-text-color">Sign up</Link></p>
                 </div>

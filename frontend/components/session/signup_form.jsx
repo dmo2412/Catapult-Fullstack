@@ -50,8 +50,13 @@ class SignupForm extends React.Component {
         return (
             <div className='signup-form'>
                 <form onSubmit={this.handleSubmit} className='submit-signup'>
+                    <ul className='login-errors'>
+                        {this.props.errors.map((error, idx) => {
+                            return <li key={idx}>{error}</li>
+                        })}
+                    </ul>
                 <div className='redirect-to-login'>
-                   <p>Have an account? <Link to='/login'>Log in</Link></p>
+                   <p>Have an account? <Link to='/login' className='login-redirect-button'>Log in</Link></p>
                 </div>
                     <h1 className='signup'>Sign up</h1>
                     
@@ -78,9 +83,12 @@ class SignupForm extends React.Component {
                     <br/>
                     <button onClick={this.signup} onSubmit={this.handleSubmit} className='create-account'>Create Account</button>
                     <div className='signup-footer'>
-                        <p>By signing up, you agree to our terms of use, privacy policy, and cookie policy</p>
-                        <p>Read more</p>
+                        <p className="by-signing-up">By signing up, you agree to our terms of use, privacy policy, and cookie policy</p>
+                        <p className='read-more'>Read more</p>
                     </div>
+                    <div className='left-line'></div>
+                    {/* <div className='text-strike'>or</div> */}
+                    <div className='right-line'></div>
                     <button className='signup-facebook'>Continue with Facebook</button>
                     <div className='facebook-footer'>
                         <p>Get notified when your friends back and launch projetcs. We'll never post anything on Facebook without your permission</p>

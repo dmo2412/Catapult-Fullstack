@@ -12,11 +12,13 @@ body {
     // display: flex;
     // border: 5px solid black;
     position: relative;
-    left: 35%;
+    left: 36%;
     height: 600px;
     top: 10px;
     background-color: white;
     padding-bottom: 10px;
+    border: 0.2px solid lightgray;
+    margin-bottom: 20px;
 
 }
 
@@ -24,19 +26,23 @@ body {
     text-align: left;
     margin-left: 6.25%;
     font-family: "Maison Neue Book", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: normal;
+    font-weight: thin;
+    padding-top: 10px;
+    margin-top: 10px;
 }
 
 .redirect-to-signup {
     position: relative;
     width: 100%;
-    height: 80px;
-    top: 80px;
+    height: 70px;
+    top: 70px;
+    // top: -80px;
     // left: 27%;
+    padding-top: 10px;
     text-align: center;
     // text-align
-    border-top: 0.2px solid grey;
-    border-bottom: 0.2px solid grey;
+    border-top: 0.2px solid lightgray;
+    border-bottom: 0.2px solid lightgray;
 }
 
 .enter-email {
@@ -71,9 +77,23 @@ body {
     // font-size: 15px;
 }
 
-.facebook {
+.demo-login {
+    // // left: 30.5%;
+    // bottom: 80px;
+    // // margin-top: -1000px;
+    // // bottom: 5000px;
+    // margin-left: 6.25%;
+    // // margin-right: 6.25%;
+    // width: 359px;
+    // height: 40px;
+    // text-align: center;
+    // background-color: grey;
+    // color: white;
+    // position: relative;
+    // // padding-top: -50px;
     left: 5%;
-    margin-top: 50px;
+    margin-top: 40px;
+    // padding-top: -30%;
     margin-left: 6.25%;
     width: 359px;
     height: 40px;
@@ -82,10 +102,13 @@ body {
     color: white;
 }
 
+
+
 .remember-me {
     left: 5%;
     margin-left: 6.25%;
     margin-top: 15px;
+    margin-bottom: -10px;
 }
 
 .sign-up-text-color {
@@ -95,11 +118,22 @@ body {
 .login-footer {
     position: relative;
     width: 93.5%;
-    bottom: 15%;
+    // bottom: 1%;
     font-size: 14px;
     left: 6.25%;
-    margin-top: 190px;
+    // margin-top: 190px;
     color: grey;
+    top: 90px;
 }
 
-
+// .demo-des {
+//     position: relative;
+//     width: 90%;
+//     bottom: 15%;
+//     font-size: 14px;
+//     left: 6.25%;
+//     // margin-top: 190px;
+//     color: grey;
+//     // margin-top: 200px;
+//     // padding-top: 110px;
+// }
