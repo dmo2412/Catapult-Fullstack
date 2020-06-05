@@ -584,6 +584,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDemoLogin",
     value: function handleDemoLogin(e) {
+      e.stopPropagation();
       this.props.login({
         name: 'Willis',
         email: 'willis@gmail.com',
@@ -637,8 +638,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }), "Remember me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "demo-login",
-        onClick: this.handleDemoLogin,
-        onSubmit: this.handleSubmit
+        onClick: this.handleDemoLogin
       }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "redirect-to-signup"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "New to Kickstarter? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -653,7 +653,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   return LoginForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (LoginForm);
+/* harmony default export */ __webpack_exports__["default"] = (LoginForm); // onSubmit = { this.handleSubmit }
 
 /***/ }),
 

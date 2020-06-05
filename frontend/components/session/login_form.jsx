@@ -21,6 +21,7 @@ class LoginForm extends React.Component {
     }
 
     handleDemoLogin(e) {
+        e.stopPropagation();
         this.props.login({name: 'Willis' , email: 'willis@gmail.com' , password: 'password'})
     }
 
@@ -50,7 +51,7 @@ class LoginForm extends React.Component {
                     <button type='submit' className='login-button' onClick={this.login} onSubmit={this.handleSubmit} >Log in</button>
                     <input type="checkbox" className="remember-me" />Remember me
                 </form>
-                    <button type='submit' className='demo-login' onClick={this.handleDemoLogin} onSubmit={this.handleSubmit}>Demo Login</button>
+                    <button type='submit' className='demo-login' onClick={this.handleDemoLogin} >Demo Login</button>
                 <div className='redirect-to-signup'>
                     <p>New to Kickstarter? <Link to='/signup' className="sign-up-text-color">Sign up</Link></p>
                 </div>
@@ -64,3 +65,4 @@ class LoginForm extends React.Component {
 }
 
 export default LoginForm;
+// onSubmit = { this.handleSubmit }
