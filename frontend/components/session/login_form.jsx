@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -17,6 +17,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({} , this.state)
         this.props.login(user);
+        // <Redirect push to='/signup'/>
     }
 
     handleDemoLogin(e) {

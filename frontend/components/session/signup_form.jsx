@@ -64,13 +64,13 @@ class SignupForm extends React.Component {
                         onChange={this.update('name')} className='signup-name'  />
                     
                         <input type="text" value={this.state.email} placeholder="Email"
-                        onChange={this.update('email')} onClick={() => this.toggleEmailClass()} className='signup-email'/>
+                        onChange={this.update('email')} onFocus={() => this.toggleEmailClass()} className='signup-email'/>
                         
                         <input type="text" value={this.state.reEnterEmail} placeholder="Re-enter email"
                         onChange={this.update('reEnterEmail')} className={this.state.clickedEmail ? 'reveal' : 'hide'} />
                     
                         <input type="password" value={this.state.password} placeholder="Password"
-                        onChange={this.update('password')} onClick={() => this.togglePasswordClass()} className='signup-password' />
+                        onChange={this.update('password')} onFocus={() => this.togglePasswordClass()} className='signup-password' />
                     
                         <input type="password" value={this.state.reEnterPassword} placeholder="Re-enter password"
                         onChange={this.update('reEnterPassword')} className={this.state.clickedPassword ? 'shown' : 'hidden'} />
