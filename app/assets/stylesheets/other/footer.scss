@@ -1,0 +1,47 @@
+.footer {
+    width: 100%;
+    // background-color: red;
+    height: 90px;
+    border-top: 2px solid grey;
+    background-color: white;
+}
+
+.footer-items {
+    align-content: center;
+    padding-top: 3%;
+}
+
+.github-link {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    padding-left: 2%;
+    // padding-right: 2%;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.linkedin-link {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    padding-left: 4%;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.appacademy-link {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    padding-left: 70%;
+    // padding-right: 2%;
+}
+
+.youtube-link {
+    text-decoration: none;
+    position: relative;
+    color: black;
+    padding-left: 2%;
+}
+
