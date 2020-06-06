@@ -22,7 +22,7 @@ class Navbar extends React.Component {
                     <section className='nav-items'>
                         {/* <section className="left-nav"> */}
                         <Link to="/categories" className='nav-explore'>Explore</Link>
-                        <Link to="/projects" className='nav-projects'>Start a project</Link>
+                        <Link to="/projects/new/" className='nav-projects'>Start a project</Link>
                         {/* </section> */}
                         {/* <section className='middle-nav'> */}
                         <Link to="/" className='nav-home'>CATAPULT</Link>

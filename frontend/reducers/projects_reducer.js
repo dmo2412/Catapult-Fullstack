@@ -1,4 +1,5 @@
 import {RECEIVE_ALL_PROJECTS, RECEIVE_PROJECT, REMOVE_PROJECT} from '../actions/project_actions'
+import {merge} from 'lodash';
 
 const ProjectsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -8,7 +9,7 @@ const ProjectsReducer = (state = {}, action) => {
         case RECEIVE_ALL_PROJECTS:
             return action.projects;
         case RECEIVE_PROJECT:
-            return Object.assign({}, {[action.project.id]: action.project});
+            return merge({}, {[action.project.id]: action.project});
         case REMOVE_PROJECT:
             delete nextState[action.projectId];
             return nextState;

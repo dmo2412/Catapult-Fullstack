@@ -3,8 +3,20 @@ import React from 'react';
 import CreateProjectForm from './create_project_form';
 import {createProject} from '../../actions/project_actions';
 
-const mapStateToProps = ({errors}) => ({
-    errors: errors
+const mapStateToProps = state => ({
+    currentUser: state.session.currentUser,
+    project: {
+        title: "",
+        category_id: "",
+        creator_name: "",
+        creator_id: "",
+        location: "",
+        funding_goal: "",
+        description: "",
+        close_date: "",
+        categoryName: "Select your category"
+    },
+    formType: 'Create new project'
 })
 
 const mapDispatchToProps = dispatch => ({

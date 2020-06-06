@@ -1,21 +1,10 @@
 import React from 'react';
+import { logoutCurrentUser } from '../../actions/session_actions';
 
 class CreateProjectForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: "",
-            category_id: null,
-            creator_name: "",
-            creator_id: null,
-            location: "",
-            funding_goal: 0,
-            close_date: null,
-            photo: null,
-            clickedDropdown: false,
-            categoryName: "Select your category",
-        }
-        
+        this.state = this.props.project;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCategoryDropdown = this.handleCategoryDropdown.bind(this);
     }
@@ -23,9 +12,13 @@ class CreateProjectForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const project = Object.assign({}, this.state)
-        this.props.createProject(project)
+        // this.props.createProject(project)
+        this.props.createProject(this.state)
+        // this.props.createProject({
+        //     category_id: e.target.value,
+        //     creator_id: currentUser.id
+        // })
     }
-
     
     
     handleCategoryDropdown(e) {
@@ -40,8 +33,19 @@ class CreateProjectForm extends React.Component {
     handleCatClick(field) {
         return e => {
             // let input = e.target.value;
-            this.setState({categoryName : e.target.value})
+            this.setState({category_id : e.target.value, creator_id: currentUser.id})
         }
+    }
+
+    // handleClick(e) {
+    //     e.currentTarget.dataset.id;
+    // }
+
+    componentDidMount() {
+        this.setState({
+            creator_name: logoutCurrentUser.name,
+            creator_id: logoutCurrentUser.id
+        })
     }
 
     // redirect() {
@@ -57,19 +61,32 @@ class CreateProjectForm extends React.Component {
                 <form className='select-category'>
                     <h2 className="title1">First let's get you set up.</h2>
                     <p className='subtitle1'>Pick a project category to connect with a specific community. You can always update this later.</p>
-                    <div className={this.state.clickedDropdown ? 'cat-button-clicked' : 'cat-button-unclicked'} onClick={this.handleCategoryDropdown}>{this.state.categoryName}</div>
-                    <ul type='hidden' className={this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide'}></ul>
-                        <li value="Art" onClick={this.handleCatClick}>Art</li>
-                        <li value="Sports" onClick={this.handleCatClick}>Sports</li>
-                        {/* <li>Sports</li> */}
+                    {/* <div className={this.state.clickedDropdown ? 'cat-button-clicked' : 'cat-button-unclicked'} onClick={this.handleCategoryDropdown}>{this.state.categoryName}</div> */}
+                    <select className={this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide'} placeholder="Select your category">
+                        <option>Select your category</option>
+                        <option onClick={this.handleCatClick} value="1">Arts</option>
+                        <option onClick={this.handleCatClick} value="2">Comics and Illustration</option>
+                        <option onClick={this.handleCatClick} value="3">Design and Tech</option>
+                        <option onClick={this.handleCatClick} value="4">Film</option>
+                        <option onClick={this.handleCatClick} value="5">Food and Craft</option>
+                        <option onClick={this.handleCatClick} value="6">Games</option>
+                        <option onClick={this.handleCatClick} value="7">Music</option>
+                        <option onClick={this.handleCatClick} value="8">Publishing</option>
+                    </select>
+                    <button onSubmit={this.handleSubmit}>Next: Project idea</button>
                 </form>
 
 
             </div>
         )
     }
-
-
+    
+    
 }
 
 export default CreateProjectForm;
+{/* <ul type='hidden' className={this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide'}>
+    <li onClick={this.handleClick} data-id='1'><span>Art</span></li>
+    <li onClick={this.handleClick} data-id='2'>Sports</li>
+    {/* <li>Sports</li> */}
+{/* </ul> */} 
