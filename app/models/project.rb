@@ -17,6 +17,10 @@
 #
 class Project < ApplicationRecord
 
+    validates :title, :category_id, :creator_name, :creator_id, :funding_goal, presence: true
+    # validates :ensure_photo
+    # has_one_attached :photo
+
     belongs_to :user,
     foreign_key: :creator_id,
     class_name: :User 
@@ -28,5 +32,11 @@ class Project < ApplicationRecord
     has_one :category,
     foreign_key: :category_id,
     class_name: :Category 
+
+    def ensure_photo
+        unless self.photo.attached?
+            errors[:photo] << 'photo must be included'
+        end
+    end
 
 end

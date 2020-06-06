@@ -6,7 +6,7 @@
 #  name :string           not null
 #
 class Category < ApplicationRecord
-
+    validates :name, presence: true
 
     has_many :projects,
     foreign_key: :category_id,
