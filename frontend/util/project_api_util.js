@@ -10,15 +10,17 @@ export const fetchProject = id => (
     })
 )
 
-export const createProject = project => (
-    $.ajax({
+export const createProject = project => {
+    let requests = {
         url: '/api/projects',
         method: 'Post',
-        data: {project},
-        contentType: false,
-        processData: false
-    })
-)
+        data: { project: project },
+        }
+        
+    return $.ajax(
+        requests
+    )
+}
 
 export const updateProject = project => (
     $.ajax({

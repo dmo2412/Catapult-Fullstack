@@ -1,5 +1,7 @@
 class Api::ProjectsController < ApplicationController
 
+    skip_before_action :verify_authenticity_token
+
     def index 
         @projects = Project.all
         render :index
@@ -36,7 +38,8 @@ class Api::ProjectsController < ApplicationController
 
     private
     def project_params
-        params.require(:project).permit(:title, :category_id, :creator_name, :creator_id, :location, :funding_goal, :description, :close_date, :photo)
+        # debugger
+        params.require(:project).permit(:title, :category_id, :creator_name, :creator_id, :location, :funding_goal, :description, :pledged)
     end
 
 end

@@ -90,7 +90,7 @@
 /*!*********************************************!*\
   !*** ./frontend/actions/project_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_ALL_PROJECTS, RECEIVE_PROJECT, REMOVE_PROJECT, RECEIVE_PROJECT_ERRORS, fetchProjects, fetchProject, createProject, updateProject, deleteProject */
+/*! exports provided: RECEIVE_ALL_PROJECTS, RECEIVE_PROJECT, REMOVE_PROJECT, RECEIVE_PROJECT_ERRORS, receiveProjects, receiveProject, removeProject, receiveProjectErrors, fetchProjects, fetchProject, createProject, updateProject, deleteProject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,6 +99,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PROJECT", function() { return RECEIVE_PROJECT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_PROJECT", function() { return REMOVE_PROJECT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PROJECT_ERRORS", function() { return RECEIVE_PROJECT_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveProjects", function() { return receiveProjects; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveProject", function() { return receiveProject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProject", function() { return removeProject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveProjectErrors", function() { return receiveProjectErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProjects", function() { return fetchProjects; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProject", function() { return fetchProject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createProject", function() { return createProject; });
@@ -112,35 +116,30 @@ var RECEIVE_ALL_PROJECTS = 'RECEIVE_ALL_PROJECTS';
 var RECEIVE_PROJECT = 'RECEIVE_PROJECT';
 var REMOVE_PROJECT = 'REMOVE_PROJECT';
 var RECEIVE_PROJECT_ERRORS = 'RECEIVE_PROJECT_ERRORS';
-
 var receiveProjects = function receiveProjects(projects) {
   return {
     type: RECEIVE_ALL_PROJECTS,
     projects: projects
   };
 };
-
 var receiveProject = function receiveProject(project) {
   return {
     type: RECEIVE_PROJECT,
     project: project
   };
 };
-
 var removeProject = function removeProject(projectId) {
   return {
     type: REMOVE_PROJECT,
     projectId: projectId
   };
 };
-
 var receiveProjectErrors = function receiveProjectErrors(errors) {
   return {
     type: _session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SESSION_ERRORS"],
     errors: errors
   };
 };
-
 var fetchProjects = function fetchProjects() {
   return function (dispatch) {
     return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProjects"]().then(function (projects) {
@@ -322,10 +321,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var root = document.getElementById('root');
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  window.store = store; // window.title = this.state.projects.title;
+  var root = document.getElementById('root'); // let store;
 
+  var preloadedState = {};
+
+  if (window.currentUser) {
+    preloadedState = {
+      session: {
+        id: window.currentUser.id
+      }
+    };
+  }
+
+  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
+  window.store = store;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
   }), root);
@@ -375,7 +384,7 @@ var App = function App() {
     exact: true,
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_8__["ProtectedRoute"], {
     exact: true,
     path: "/projects/new/",
     component: _projects_create_project_container__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -667,12 +676,16 @@ var mapStateToProps = function mapStateToProps(state) {
       creator_name: "",
       creator_id: "",
       location: "",
-      funding_goal: "",
-      description: "",
-      close_date: "",
-      categoryName: "Select your category"
+      funding_goal: 0,
+      description: "none",
+      pledged: 0
     },
-    formType: 'Create new project'
+    pathName: '/projects/new' // close_date: "",
+    // categoryName: "Film",
+    // clickedDropdown: false 
+    // },
+    // formType: 'Create new project'
+
   };
 };
 
@@ -699,8 +712,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -725,6 +740,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CreateProjectForm, _React$Component);
 
@@ -736,9 +752,21 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CreateProjectForm);
 
     _this = _super.call(this, props);
-    _this.state = _this.props.project;
+    _this.state = {
+      title: "please fucking work",
+      category_id: "",
+      creator_name: "Willis",
+      creator_id: 3,
+      location: 'New jersey',
+      funding_goal: 10010,
+      description: "noneyo",
+      pledged: 0
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCategoryDropdown = _this.handleCategoryDropdown.bind(_assertThisInitialized(_this));
+    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this)); // this.handleDescriptionClick = this.handleDescriptionClick.bind(this);
+    // this.handleClickedCategory = this.handleClickedCategory.bind(this);
+
     return _this;
   }
 
@@ -746,60 +774,81 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var project = Object.assign({}, this.state); // this.props.createProject(project)
-
-      this.props.createProject(this.state); // this.props.createProject({
+      var project = Object.assign({}, this.state);
+      this.props.createProject(project); // project.append(this.state)
+      // this.props.createProject({
       //     category_id: e.target.value,
       //     creator_id: currentUser.id
       // })
+      // const formData = new FormData;
+      // formData.append('project[title]', this.state.title)
+      // formData.append('project[category_id]', this.state.category_id)
+      // formData.append('project[creator_name]', this.state.creator_name)
+      // formData.append('project[creator_id]', this.state.creator_id)
+      // formData.append('project[location]', this.state.location)
+      // formData.append('project[funding_goal]', this.state.funding_goal)
+      // formData.append('project[description]', this.state.description)
+      // formData.append('project[pledged]', this.state.pledged)
+      // this.props.createProject(formData)
     }
   }, {
     key: "handleCategoryDropdown",
     value: function handleCategoryDropdown(e) {
       e.preventDefault();
 
-      if (this.state.clickedDropdown) {
-        this.setState({
-          clickedDropdown: false
-        });
+      if (clickedDropdown) {
+        clickedDropdown = false;
       } else {
-        this.setState({
-          clickedDropdown: true
-        });
+        clickedDropdown = true;
       }
     }
   }, {
+    key: "handleClickedCategory",
+    value: function handleClickedCategory(e) {
+      e.preventDefault(); // debugger
+      // if (clickedCategory) {
+      //     // debugger
+      //     clickedCategory = false;
+      //     // debugger
+      // } else {
+      //     clickedCategory = true;
+      // }
+      // this.setState({clickedCategory: false})
+    }
+  }, {
     key: "handleCatClick",
-    value: function handleCatClick(field) {
+    value: function handleCatClick(num) {
       var _this2 = this;
 
       return function (e) {
         // let input = e.target.value;
         _this2.setState({
-          category_id: e.target.value,
+          category_id: num,
           creator_id: currentUser.id
         });
       };
-    } // handleClick(e) {
-    //     e.currentTarget.dataset.id;
+    } // handleDescriptionClick(e) {
+    //     e.preventDefault();
+    //     this.setState({clickedDescription: true})
     // }
 
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        creator_name: _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logoutCurrentUser"].name,
-        creator_id: _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logoutCurrentUser"].id
-      });
-    } // redirect() {
-    //     let count = 0;
-    //     if (count === 0)
-    // }
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
 
+      return function (e) {
+        _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
   }, {
     key: "render",
     value: function render() {
       // const {categoryName} = this.props;
+      var clickedDropdown = false; // let clickedCategory = true;
+      // debugger
+      // let clickedDescription = false;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-project"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -810,32 +859,28 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "subtitle1"
       }, "Pick a project category to connect with a specific community. You can always update this later."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide',
-        placeholder: "Select your category"
+        placeholder: "Select your category",
+        onChange: this.update('category_id'),
+        value: this.state.category_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "1"
+        onClick: this.handleCatClick(1)
       }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "2"
+        onClick: this.handleCatClick(2)
       }, "Comics and Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "3"
+        onClick: this.handleCatClick(3)
       }, "Design and Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "4"
+        onClick: this.handleCatClick(4)
       }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "5"
+        onClick: this.handleCatClick(5)
       }, "Food and Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "6"
+        onClick: this.handleCatClick(6)
       }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "7"
+        onClick: this.handleCatClick(7)
       }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick,
-        value: "8"
+        onClick: this.handleCatClick(8)
       }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.handleSubmit,
         onSubmit: this.handleSubmit
       }, "Next: Project idea")));
     }
@@ -1639,15 +1684,14 @@ var fetchProject = function fetchProject(id) {
   });
 };
 var createProject = function createProject(project) {
-  return $.ajax({
+  var requests = {
     url: '/api/projects',
     method: 'Post',
     data: {
       project: project
-    },
-    contentType: false,
-    processData: false
-  });
+    }
+  };
+  return $.ajax(requests);
 };
 var updateProject = function updateProject(project) {
   return $.ajax({

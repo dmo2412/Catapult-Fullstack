@@ -6,22 +6,22 @@ export const RECEIVE_PROJECT = 'RECEIVE_PROJECT';
 export const REMOVE_PROJECT = 'REMOVE_PROJECT';
 export const RECEIVE_PROJECT_ERRORS = 'RECEIVE_PROJECT_ERRORS';
 
-const receiveProjects = projects => ({
+export const receiveProjects = projects => ({
     type: RECEIVE_ALL_PROJECTS,
     projects
 })
 
-const receiveProject = project => ({
+export const receiveProject = project => ({
     type: RECEIVE_PROJECT,
     project
 })
 
-const removeProject = projectId => ({
+export const removeProject = projectId => ({
     type: REMOVE_PROJECT,
     projectId 
 })
 
-const receiveProjectErrors = errors => ({
+export const receiveProjectErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
 })
