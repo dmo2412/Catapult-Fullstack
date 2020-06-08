@@ -11,10 +11,13 @@ export const receiveProjects = projects => ({
     projects
 })
 
-export const receiveProject = project => ({
-    type: RECEIVE_PROJECT,
-    project
-})
+export const receiveProject = project => {
+    debugger
+    return {
+        type: RECEIVE_PROJECT,
+        project
+    }
+}
 
 export const removeProject = projectId => ({
     type: REMOVE_PROJECT,

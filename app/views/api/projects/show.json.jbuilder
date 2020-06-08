@@ -9,8 +9,8 @@
 # json.location @project.location
 # json.close_date @project.close_date
 
-json.project do 
+# json.project do 
     json.extract! @project, :id, :title, :creator_id, :funding_goal, :description, :pledged, :location, :close_date
-end
+# end
 
 

@@ -8,6 +8,14 @@
     width: 100%;
 }
 
+.create-location {
+    margin-top: 0px;
+    background-color: white;
+    height: 660px;
+    // border-top: 1px solid grey;
+    width: 100%;
+}
+
 .create-project-border {
     width: 80%;
     border-top: 1px solid grey;
@@ -24,6 +32,21 @@
     background-image: linear-gradient(bottom);
     border: 1px solid rgba(211, 211, 211, 0.404);
     margin-top: 10px;
+}
+
+.back-to-category {
+    background-color: white;
+    border: none;
+    color: grey;
+    margin-left: 180px;
+}
+.back-to-description {
+    background-color: white;
+    border: none;
+    color: grey;
+    margin-left: -580px;
+    margin-top: 10px;
+    position: absolute;
 }
 
 .location-dropdown {
@@ -166,7 +189,7 @@
     left: 66%;
     height: 40px;
     width: 150px;
-    background-color: #b4040485;
+    background-color: grey;
     color: white;
     font-size: 15px;
     font-weight: 10;
@@ -179,10 +202,38 @@
 //     vertical-align: auto;
 // }
 
-.submit-button{
-    margin-top: 100px;
-    // padding-top: 300px;
 
+
+.submit-button {
+    // margin-top: 100px;
+    margin-top: 10px;
+    margin-left: 748px;
+    width: 150px;
+    height: 40px;
+    background-color: #282828;
+    color:green;
+    font-size: 15px;
+
+}
+
+.sub-text3 {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 28%;
+    width: 570px;
+    font-size: 14px;
+    color: rgba(155, 158, 158, 0.952);
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.line4 {
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.164);
+    border-width: thin;
+    width: 580px;
+    margin-left: 28%;
+    padding-top: 170px;
+    // padding-bottom:400px;
 }
 
 .checkboxes {

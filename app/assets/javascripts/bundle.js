@@ -123,6 +123,7 @@ var receiveProjects = function receiveProjects(projects) {
   };
 };
 var receiveProject = function receiveProject(project) {
+  debugger;
   return {
     type: RECEIVE_PROJECT,
     project: project
@@ -704,7 +705,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -877,7 +877,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CreateProjectForm, _React$Component);
 
@@ -913,27 +912,28 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   _createClass(CreateProjectForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault(); // this.setState({creator_id: currentUser.id })
 
       var project = Object.assign({}, this.state);
-      this.props.createProject(project).then(this.handleRedirect(project)); // this.handleRedirect(project)
-      // .then((project) => this.props.history.push(`/projects/${project.id}`));
+      debugger;
+      this.props.createProject(project).then(function (project) {
+        return _this2.props.history.push("/projects/".concat(project.id));
+      }); // .then(this.handleRedirect(project))
+      // this.handleRedirect(project)
       // console.log(this.state)
     }
   }, {
     key: "handleRedirect",
     value: function handleRedirect(project) {
-      var _this2 = this;
-
       var ele = project; // let person = this.props.currentUser;
 
       console.log('why'); // console.log(this.state)
       // console.log(person.projects[-1].id)
       // let projId = this.state.id[0];
-
-      this.props.history.push(function (project) {
-        return "/projects/".concat(_this2.props.project.id);
-      }); // debugger
+      // this.props.history.push(project => `/projects/${this.props.project.id}`)
+      // debugger
     }
   }, {
     key: "handleCategoryDropdown",
@@ -987,14 +987,38 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
-    key: "handleTextClick",
-    value: function handleTextClick(field) {
+    key: "minusOne",
+    value: function minusOne(val) {
       var _this6 = this;
 
       return function (e) {
-        _this6.setState(_defineProperty({}, field, e.currentTarget.value));
-
         _this6.setState({
+          val: val - 1
+        });
+      };
+    }
+  }, {
+    key: "handleTextClick",
+    value: function handleTextClick(field) {
+      var _this7 = this;
+
+      return function (e) {
+        _this7.setState(_defineProperty({}, field, e.currentTarget.value));
+
+        _this7.setState({
+          textStatus: true
+        });
+      };
+    }
+  }, {
+    key: "handleTitleClick",
+    value: function handleTitleClick(field) {
+      var _this8 = this;
+
+      return function (e) {
+        _this8.setState(_defineProperty({}, field, e.currentTarget.value));
+
+        _this8.setState({
           titleStatus: true
         });
       };
@@ -1016,10 +1040,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this7 = this;
+      var _this9 = this;
 
       return function (e) {
-        _this7.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this9.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -1028,7 +1052,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       var clickedDropdown = false;
       var num = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-project"
+        className: this.state.val < 3 ? 'create-project' : 'create-location'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-project-border"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -1097,23 +1121,26 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         type: "textarea",
         className: "textarea-enter",
         placeholder: "A short description of your project",
-        onChange: this.handleTextClick('description')
+        onChange: this.handleTitleClick('description')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "line2"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: this.state.textStatus && this.state.titleStatus ? 'next-location' : 'next-location-unready',
         onClick: this.plusOne(this.state.val)
-      }, "Next: Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "Next: Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "back-to-category",
+        onClick: this.minusOne(this.state.val)
+      }, "Back to category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "sub-text2"
       }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: this.state.val > 2 ? 'enter-location' : 'enter-location-hide',
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "location-header"
-      }, " Finally, let's confirm your location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+      }, " Finally, let's confirm your location."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "location-sub"
-      }, "Tell us where you're based"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      }, "Tell us where you're based."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: "location-dropdown",
         onChange: this.update('location'),
         value: this.state.location
@@ -1146,11 +1173,18 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       }), "Is this almost over"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         className: "fourth-checkbox"
-      }), "This website is phenomenal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), "This website is phenomenal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "line4"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "submit-button",
         type: "submit",
         onClick: this.plusOne(this.state.val)
-      }, "Next")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Create Project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "back-to-description",
+        onClick: this.minusOne(this.state.val)
+      }, "Back to description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "sub-text3"
+      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "test-button",
         onClick: this.handleRedirect
       }, "Test redirect")));
@@ -1733,6 +1767,7 @@ var ProjectsReducer = function ProjectsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var nextState = Object.assign({}, state);
+  debugger;
 
   switch (action.type) {
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROJECTS"]:

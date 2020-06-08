@@ -174,7 +174,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { Route, Redirect, NavLink } from 'react-router-dom';
-import receiveProject from '../../actions/project_actions'
+
 
 class CreateProjectForm extends React.Component {
     constructor(props) {
@@ -205,10 +205,11 @@ class CreateProjectForm extends React.Component {
         e.preventDefault();
         // this.setState({creator_id: currentUser.id })
         const project = Object.assign({}, this.state)
-        
-        this.props.createProject(project).then(this.handleRedirect(project))
+        debugger
+        this.props.createProject(project)
+        .then((project) => this.props.history.push(`/projects/${project.id}`));
+        // .then(this.handleRedirect(project))
         // this.handleRedirect(project)
-        // .then((project) => this.props.history.push(`/projects/${project.id}`));
         // console.log(this.state)
 
     }
@@ -219,7 +220,7 @@ class CreateProjectForm extends React.Component {
         // console.log(this.state)
         // console.log(person.projects[-1].id)
         // let projId = this.state.id[0];
-        this.props.history.push(project => `/projects/${this.props.project.id}`)
+        // this.props.history.push(project => `/projects/${this.props.project.id}`)
         // debugger
         
         
@@ -258,13 +259,29 @@ class CreateProjectForm extends React.Component {
         }
     }
 
+    minusOne(val) {
+        return e => {
+            this.setState({ val: val - 1 })
+        }
+    }
+
     handleTextClick(field) {
+        return e => {
+
+            this.setState({ [field]: e.currentTarget.value })
+            this.setState({ textStatus: true })
+        }
+    }
+
+    handleTitleClick(field) {
         return e => {
 
             this.setState({ [field]: e.currentTarget.value })
             this.setState({ titleStatus: true })
         }
     }
+    
+    
     handleTextArea() {
         this.setState({textStatus: true})
     }
@@ -288,7 +305,7 @@ class CreateProjectForm extends React.Component {
 
 
         return (
-            <div className='create-project'>
+            <div className={this.state.val < 3 ? 'create-project' : 'create-location'}>
             <div className='create-project-border'>
                 <form className={this.state.val === 1 ? 'select-category' : 'select-category-hide'} >
                     <h2 className="title1">First let's get you set up.</h2>
@@ -314,14 +331,15 @@ class CreateProjectForm extends React.Component {
                     <h2 className='description-header'>Describe what you'll be creating and enter a title.</h2>
                     <h4 className='description-sub'>And don't worry, you can edit this later, too.</h4>
                     <input type="textarea" className='textarea-title' placeholder='Enter your title' onChange={this.handleTextClick('title')} />
-                    <textarea type="textarea" className= 'textarea-enter' placeholder='A short description of your project' onChange={this.handleTextClick('description')} />
+                    <textarea type="textarea" className= 'textarea-enter' placeholder='A short description of your project' onChange={this.handleTitleClick('description')} />
                     <p className='line2'></p>
                     <button type='submit' className={this.state.textStatus && this.state.titleStatus ? 'next-location' : 'next-location-unready'} onClick={this.plusOne(this.state.val)}>Next: Location</button>
+                    <button className='back-to-category' onClick={this.minusOne(this.state.val)}>Back to category</button>
                         <p className='sub-text2'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
                 </form>
                 <form className={this.state.val > 2 ? 'enter-location' : 'enter-location-hide'} onSubmit={this.handleSubmit}>
-                    <h2 className='location-header'> Finally, let's confirm your location</h2>
-                    <h4 className='location-sub'>Tell us where you're based</h4>
+                    <h2 className='location-header'> Finally, let's confirm your location.</h2>
+                    <h4 className='location-sub'>Tell us where you're based.</h4>
                     <select className='location-dropdown' onChange={this.update('location')} value={this.state.location}>
                         <option>Select your Location</option>
                         <option onClick={this.handleLocationClick} value='United States'>United States</option>
@@ -336,7 +354,10 @@ class CreateProjectForm extends React.Component {
                             <li><input type="checkbox" className='third-checkbox' />Is this almost over</li>
                             <li><input type="checkbox" className='fourth-checkbox' />This website is phenomenal</li>
                     </ul>
-                    <button className='submit-button' type='submit' onClick={this.plusOne(this.state.val)}>Next</button>
+                    <p className='line4'></p>
+                    <button className='submit-button' type='submit' onClick={this.plusOne(this.state.val)}>Create Project</button>
+                        <button className='back-to-description' onClick={this.minusOne(this.state.val)}>Back to description</button>
+                        <p className='sub-text3'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
                 </form>
                     <button className='test-button' onClick={this.handleRedirect}>Test redirect</button>
 
