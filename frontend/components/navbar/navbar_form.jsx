@@ -28,7 +28,6 @@ class Navbar extends React.Component {
                         <Link to="/" className='nav-home'>CATAPULT</Link>
                         {/* </section> */}
                         {/* <section className='right-nav'> */}
-                        <Link to="/" className='search'>Search</Link>
                         <Link to="/login" className='nav-login'>Log in</Link>
                         {/* </section> */}
                     </section>
@@ -47,7 +46,7 @@ class Navbar extends React.Component {
                         <Link to="/" className='nav-home'>CATAPULT</Link>
                     {/* </section> */}
                     {/* <section className='right-nav'> */}
-                        <Link to="/" className='search'>Search</Link>
+                        {/* <Link to="/" className='search'>Search</Link> */}
                         <Link to="/login" onClick={this.handleSubmit} className='nav-login'>Log out</Link>
                     {/* </section> */}
                 </section>

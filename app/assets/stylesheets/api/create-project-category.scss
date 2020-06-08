@@ -154,6 +154,7 @@
     height: 40px;
     width: 150px;
     background-color: #282828;
+    // background-color: green;
     color: white;
     font-size: 15px;
     font-weight: 10;
@@ -165,16 +166,43 @@
     left: 66%;
     height: 40px;
     width: 150px;
-    background-color: #28282865;
+    background-color: #b4040485;
     color: white;
     font-size: 15px;
     font-weight: 10;
     border: none;
 }
 
+// .checkboxes {
+//     left: 20%;
+//     // position: relative;
+//     vertical-align: auto;
+// }
+
+.submit-button{
+    margin-top: 100px;
+    // padding-top: 300px;
+
+}
+
 .checkboxes {
-    left: 20%;
-    position: relative;
+    position: absolute;
+    right: 710px;
+    list-style-type: none;
+}
+
+.first-checkbox {
+    // position: absolute;
+    margin-top: 10px;
+}
+.second-checkbox {
+    margin-top: 10px;
+}
+.third-checkbox {
+    margin-top: 10px;
+}
+.fourth-checkbox {
+    margin-top: 10px;
 }
 
 
@@ -184,7 +212,10 @@
     display: none;
 }
 
-
+.test-button {
+    padding-left: 20px;
+    margin-left: 20px;
+}
 
 
 .select-category-hide {

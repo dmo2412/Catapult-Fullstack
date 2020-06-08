@@ -15,7 +15,7 @@ const App = () => (
             <Route exact path = '/' component={SplashContainer}/>
             <AuthRoute exact path ='/login' component={LoginContainer}/>
             <AuthRoute exact path ='/signup' component={SignUpContainer}/>
-            <Route exact path ='/projects/new/' component={CreateProjectContainer}/>
+            <ProtectedRoute exact path ='/projects/new/' component={CreateProjectContainer}/>
             {/* <Route exact path ='/projects/:projectId' component={CreateProjectContainer}/> */}
             {/* <ProtectedRoute exact path ='/projects/new' component={CreateProjectContainer}/> */}
         </Switch>

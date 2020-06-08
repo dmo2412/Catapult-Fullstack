@@ -1,3 +1,5 @@
+   
+
 .signup-form {
     width: 400px;
     align-content: center;
@@ -36,6 +38,11 @@
     border: 0.5px solid lightgray;
 }
 
+.signup-name:focus {
+    outline: none !important;
+    border-color: green;
+}
+
 .signup-email {
     left: 5%;
     display: flex;
@@ -45,6 +52,11 @@
     height: 35px;
     margin-top: 15px;
     border: 0.5px solid lightgray;
+}
+
+.signup-email:focus {
+    outline: none !important;
+    border-color: green;
 }
 
 .hide {
@@ -62,6 +74,11 @@
     border: 0.5px solid lightgray;
 }
 
+.reveal:focus {
+    outline: none !important;
+    border-color: green;
+}
+
 .signup-password {
     left: 5%;
     display: flex;
@@ -72,6 +89,10 @@
     margin-top: 15px;
     border: 0.5px solid lightgray;
     margin-bottom: 15px;
+}
+.signup-password:focus {
+    outline: none !important;
+    border-color: green;
 }
 
 .hidden {
@@ -88,6 +109,11 @@
     margin-top: 15px;
     margin-bottom: 10px;
     border: 0.5px solid lightgray;
+}
+
+.shown:focus {
+    outline: none !important;
+    border-color: green;
 }
 
 .weekly-email {

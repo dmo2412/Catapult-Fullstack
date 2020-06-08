@@ -6,12 +6,18 @@ import configureStore from './store/store';
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById('root');
     // let store;
-    let preloadedState = {}
+    let preloadedState;
+    // debugger
     if (window.currentUser) {
         preloadedState = {
             session: { id: window.currentUser.id },
-        }
-       
+            entities: {users: {
+                [window.currentUser.id]: window.currentUser,  
+            }}
+        };
+       delete window.currentUser;
+    } else {
+        preloadedState = {};
     }
     const store = configureStore(preloadedState)
     window.store = store;

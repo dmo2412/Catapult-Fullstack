@@ -49,7 +49,7 @@ class LoginForm extends React.Component {
                         onChange={this.update('password')} className='enter-password'/>
                     </label>
                     <button type='submit' className='login-button' onClick={this.login} onSubmit={this.handleSubmit} >Log in</button>
-                    <input type="checkbox" className="remember-me" />Remember me
+                    {/* <input type="checkbox" className="remember-me" />Remember me */}
                 </form>
                     <button type='submit' className='demo-login' onClick={this.handleDemoLogin} >Demo Login</button>
                 <div className='redirect-to-signup'>

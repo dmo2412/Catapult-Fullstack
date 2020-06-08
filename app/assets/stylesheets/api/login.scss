@@ -53,6 +53,14 @@ body {
     margin-right: 6.25%;
     width: 350px;
     height: 35px;
+    border: 1px solid grey;
+    // border-radius: 5px;
+}
+
+.enter-email:focus {
+    // background-color: red;
+    border-color: green;
+    outline: none !important;
 }
 
 .enter-password {
@@ -63,6 +71,13 @@ body {
     margin-right: 6.25%;
     width: 350px;
     height: 35px;
+    border: 1px solid grey;
+    // border-radius: 5px;
+}
+
+.enter-password:focus {
+    border-color: green;
+    outline: 0;
 }
 
 .login-button {
@@ -93,7 +108,7 @@ body {
     // position: relative;
     // // padding-top: -50px;
     left: 5%;
-    margin-top: 40px;
+    margin-top: 60px;
     // padding-top: -30%;
     margin-left: 6.25%;
     width: 359px;
@@ -105,12 +120,12 @@ body {
 
 
 
-.remember-me {
-    left: 5%;
-    margin-left: 6.25%;
-    margin-top: 15px;
-    margin-bottom: -10px;
-}
+// .remember-me {
+//     left: 5%;
+//     margin-left: 6.25%;
+//     margin-top: 15px;
+//     margin-bottom: -10px;
+// }
 
 .sign-up-text-color {
     color: blue;

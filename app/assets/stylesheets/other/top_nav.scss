@@ -3,7 +3,7 @@
     width: 100%;
     min-width: 700px;
     // left: 100px;
-    height: 50px;
+    height: 60px;
     padding-top: -110px;
     position: relative;
     display: block;
@@ -32,6 +32,11 @@
     // margin-top: 100px;
     padding-bottom: 15px;
 }
+.nav-explore:hover {
+    // background-color: red;
+    color: blue;
+}
+
 .nav-projects {
     position: relative;
     padding-left: 2%;
@@ -40,14 +45,20 @@
     color: black;
 }
 
+.nav-projects:hover {
+    color: blue;
+}
+
 .nav-home {
     text-decoration: none;
     color: #32CD32;
-    padding-left: 33%;
+    padding-left: 31%;
     position: relative;
     font-family: "Comic Sans MS", fantasy;
     font-weight: bold;
     margin: 0 auto;
+    // height: 30px;
+    font-size: 25px;
     // top: 12px;
 }
 
@@ -59,20 +70,24 @@
 //     // display: flex;
 // }
 
-.search {
-    text-decoration: none;
-    // margin-top: -10px;
-    padding-left: 38%;
-    padding-bottom: 15px;
-    color: black;
-    position: relative;
-}
+// .search {
+//     text-decoration: none;
+//     // margin-top: -10px;
+//     padding-left: 38%;
+//     padding-bottom: 15px;
+//     color: black;
+//     position: relative;
+// }
 
 .nav-login {
     text-decoration: none;
     // top: -120px;
-    padding-left: 1%;
+    padding-left: 40%;
     color: black;
     position: relative;
     margin: 0 auto;
+}
+
+.nav-login:hover {
+    color: blue;
 }
