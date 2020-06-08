@@ -9,7 +9,7 @@ class Api::ProjectsController < ApplicationController
 
     def show
         @project = Project.find(params[:id])
-        render :show
+        render '/api/projects/show'
     end
 
     def create 
@@ -39,7 +39,7 @@ class Api::ProjectsController < ApplicationController
     private
     def project_params
         # debugger
-        params.require(:project).permit(:title, :category_id, :creator_name, :creator_id, :location, :funding_goal, :description, :pledged)
+        params.require(:project).permit(:title, :category_id, :creator_id, :location, :funding_goal, :description, :pledged)
     end
 
 end

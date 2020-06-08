@@ -384,7 +384,7 @@ var App = function App() {
     exact: true,
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_8__["ProtectedRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/projects/new/",
     component: _projects_create_project_container__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -624,7 +624,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           to: "/categories",
           className: "nav-explore"
         }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/projects",
+          to: "/projects/new",
           className: "nav-projects"
         }, "Start a project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/",
@@ -667,23 +667,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(_ref) {
+  var session = _ref.session,
+      users = _ref.entities.users;
   return {
-    currentUser: state.session.currentUser,
-    project: {
-      title: "",
-      category_id: "",
-      creator_name: "",
-      creator_id: "",
-      location: "",
-      funding_goal: 0,
-      description: "none",
-      pledged: 0
-    },
-    pathName: '/projects/new' // close_date: "",
-    // categoryName: "Film",
-    // clickedDropdown: false 
-    // },
+    currentUser: users[session.id],
+    pathName: '/projects/new' // },
     // formType: 'Create new project'
 
   };
@@ -737,6 +726,129 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// import React from 'react';
+// import {withRouter} from 'react-router-dom'
+// import { Link } from 'react-router-dom';
+// import {Route, Redirect, NavLink} from 'react-router-dom';
+// class CreateProjectForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             title: "",
+//             category_id: "",
+//             creator_id: this.props.currentUser.id,
+//             location: 'New jersey',
+//             funding_goal: 10010,
+//             description: "",
+//             pledged: 0,
+//             num: 1,
+//             val: 1
+//         }
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//         this.handleCategoryDropdown = this.handleCategoryDropdown.bind(this);
+//         this.handleCatClick = this.handleCatClick.bind(this);
+//         this.handleRedirect = this.handleRedirect.bind(this);
+//     }
+//     handleSubmit(e) {
+//         e.preventDefault();
+//         // this.setState({creator_id: currentUser.id })
+//         const project = Object.assign({}, this.state)
+//         debugger
+//         this.props.createProject(project)
+//             // .then((project) => this.props.history.push(`/projects/${project.category_id}`));
+//     }
+//     handleRedirect(project) {
+//         // let projId = this.state.id;
+//         // debugger
+//         // this.props.history.push(`/projects/${project.category_id}`)
+//     }
+//     handleCategoryDropdown(e) {
+//         e.preventDefault();
+//         if (clickedDropdown) {
+//             clickedDropdown = false;
+//         } else {
+//             clickedDropdown = true;
+//         }
+//     }
+//     handleClickedCategory(e) {
+//         e.preventDefault();
+//     }
+//     handleCatClick(num) {
+//         return e => {
+//             this.setState({category_id : num})
+//         }
+//     }
+//     handleLocationClick(val) {
+//         return e => {
+//             this.setState({location: val})
+//         }
+//     }
+//     plusOne(val) {
+//         // debugger
+//         return e => {
+//             this.setState({val: val + 1})
+//             // debugger
+//         }
+//     }
+//     handleTextClick(field) {
+//         return e => {
+//             this.setState({[field]: e.currentTarget.value})
+//         }
+//     }
+//     update(field) {
+//         return e=> {
+//             this.setState({[field]: e.currentTarget.value })
+//         }
+//     }
+//     render() {
+//         let clickedDropdown = false;
+//         let num = 1;
+//         return (
+//             <div className='create-project'>
+//                 <form className={this.state.val === 1 ? 'select-category' : 'select-category-hide'} >
+//                     <h2 className="title1">First let's get you set up.</h2>
+//                     <p className='subtitle1'>Pick a project category to connect with a specific community. You can always update this later.</p>
+//                     <select className={num === 1 ? 'cat-dropdown' : 'cat-dropdown-hide'} placeholder="Select your category" 
+//                     onChange={this.update('category_id')} value={this.state.category_id}
+//                     >
+//                         <option>Select your category</option>
+//                         <option onClick={this.handleCatClick} value='1' id='1' >Arts</option>
+//                         <option onClick={this.handleCatClick} value='2' id='2' >Comics and Illustration</option>
+//                         <option onClick={this.handleCatClick} value='3' id='3' >Design and Tech</option>
+//                         <option onClick={this.handleCatClick} value='4' id='4'>Film</option>
+//                         <option onClick={this.handleCatClick} value='5' id='5'>Food and Craft</option>
+//                         <option onClick={this.handleCatClick} value='6' id='6'>Games</option>
+//                         <option onClick={this.handleCatClick} value='7' id='7'>Music</option>
+//                         <option onClick={this.handleCatClick} value='8' id='8'>Publishing</option>
+//                     </select>
+//                     <button type='submit' onClick={this.plusOne(this.state.val)} >Next: Project idea</button>
+//                 </form>
+//                 <form className={this.state.val === 2 ? 'enter-description' : 'enter-description-hide'}>
+//                     <h2 className='description-header'>Describe what you'll be creating.</h2>
+//                     <h4 className='description-sub'>And don't worry, you can edit this later, too.</h4>
+//                     <input type="textarea" className='textarea-enter' placeholder='A short description of your project' onChange={this.handleTextClick('description')}/>
+//                     <input type="textarea" className='textarea-title' placeholder='Enter your title' onChange={this.handleTextClick('title')}/>
+//                     <button type='submit' onClick={this.plusOne(this.state.val)}>Next: Location</button>
+//                 </form>
+//                 <form className={this.state.val === 3 ? 'enter-location' : 'enter-location-hide'} onSubmit={this.handleSubmit}>
+//                     <h2 className='location-header'> Finally, let's confirm your location</h2>
+//                     <h4 className='location-sub'>Tell us where you're based</h4>
+//                     <select className='location-dropdown' onChange={this.update('location')} value={this.state.location}>
+//                         <option>Select your Location</option>
+//                         <option onClick={this.handleLocationClick} value='United States'>United States</option>
+//                         <option onClick={this.handleLocationClick} value="Europe">Europe</option>
+//                         <option onClick={this.handleLocationClick} value="Asia">Asia</option>
+//                         <option onClick={this.handleLocationClick} value="South America">South America</option>
+//                         <option onClick={this.handleLocationClick} value="Australia">Australia</option>
+//                     </select>
+//                     <button className='submit-button' type='submit' onClick={this.plusOne(this.state.val)}>Next</button>
+//                 </form>
+//             </div>
+//         )
+//     }
+// }
+// export default (CreateProjectForm);
+
 
 
 
@@ -753,43 +865,39 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      title: "please fucking work",
+      title: "",
       category_id: "",
-      creator_name: "Willis",
-      creator_id: 3,
+      creator_id: 1,
       location: 'New jersey',
       funding_goal: 10010,
-      description: "noneyo",
-      pledged: 0
+      description: "",
+      pledged: 0,
+      num: 1,
+      val: 1,
+      textStatus: false,
+      titleStatus: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCategoryDropdown = _this.handleCategoryDropdown.bind(_assertThisInitialized(_this));
-    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this)); // this.handleDescriptionClick = this.handleDescriptionClick.bind(this);
-    // this.handleClickedCategory = this.handleClickedCategory.bind(this);
-
+    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this));
+    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CreateProjectForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
+      e.preventDefault(); // this.setState({creator_id: currentUser.id })
+
       var project = Object.assign({}, this.state);
-      this.props.createProject(project); // project.append(this.state)
-      // this.props.createProject({
-      //     category_id: e.target.value,
-      //     creator_id: currentUser.id
-      // })
-      // const formData = new FormData;
-      // formData.append('project[title]', this.state.title)
-      // formData.append('project[category_id]', this.state.category_id)
-      // formData.append('project[creator_name]', this.state.creator_name)
-      // formData.append('project[creator_id]', this.state.creator_id)
-      // formData.append('project[location]', this.state.location)
-      // formData.append('project[funding_goal]', this.state.funding_goal)
-      // formData.append('project[description]', this.state.description)
-      // formData.append('project[pledged]', this.state.pledged)
-      // this.props.createProject(formData)
+      debugger;
+      this.props.createProject(project); // .then((project) => this.props.history.push(`/projects/${project.category_id}`));
+    }
+  }, {
+    key: "handleRedirect",
+    value: function handleRedirect(project) {// let projId = this.state.id;
+      // debugger
+      // this.props.history.push(`/projects/${project.category_id}`)
     }
   }, {
     key: "handleCategoryDropdown",
@@ -805,15 +913,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClickedCategory",
     value: function handleClickedCategory(e) {
-      e.preventDefault(); // debugger
-      // if (clickedCategory) {
-      //     // debugger
-      //     clickedCategory = false;
-      //     // debugger
-      // } else {
-      //     clickedCategory = true;
-      // }
-      // this.setState({clickedCategory: false})
+      e.preventDefault();
     }
   }, {
     key: "handleCatClick",
@@ -821,68 +921,198 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        // let input = e.target.value;
         _this2.setState({
-          category_id: num,
-          creator_id: currentUser.id
+          category_id: num
         });
       };
-    } // handleDescriptionClick(e) {
-    //     e.preventDefault();
-    //     this.setState({clickedDescription: true})
-    // }
-
+    }
   }, {
-    key: "update",
-    value: function update(field) {
+    key: "handleLocationClick",
+    value: function handleLocationClick(val) {
       var _this3 = this;
 
       return function (e) {
-        _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this3.setState({
+          location: val
+        });
+      };
+    }
+  }, {
+    key: "plusOne",
+    value: function plusOne(val) {
+      var _this4 = this;
+
+      // debugger
+      return function (e) {
+        _this4.setState({
+          val: val + 1
+        }); // debugger
+
+      };
+    }
+  }, {
+    key: "handleTextClick",
+    value: function handleTextClick(field) {
+      var _this5 = this;
+
+      return function (e) {
+        var _this5$setState;
+
+        _this5.setState((_this5$setState = {}, _defineProperty(_this5$setState, field, e.currentTarget.value), _defineProperty(_this5$setState, "textStatus", true), _this5$setState));
+      };
+    }
+  }, {
+    key: "handleTextArea",
+    value: function handleTextArea() {
+      this.setState({
+        textStatus: true
+      });
+    }
+  }, {
+    key: "handleTextTitle",
+    value: function handleTextTitle() {
+      this.setState({
+        titleStatus: true
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this6 = this;
+
+      return function (e) {
+        _this6.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
     key: "render",
     value: function render() {
-      // const {categoryName} = this.props;
-      var clickedDropdown = false; // let clickedCategory = true;
-      // debugger
-      // let clickedDescription = false;
-
+      var clickedDropdown = false;
+      var num = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-project"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-project-border"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "select-category"
+        className: this.state.val === 1 ? 'select-category' : 'select-category-hide'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "title1"
       }, "First let's get you set up."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "subtitle1"
       }, "Pick a project category to connect with a specific community. You can always update this later."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        className: this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide',
+        className: num === 1 ? 'cat-dropdown' : 'cat-dropdown-hide',
         placeholder: "Select your category",
         onChange: this.update('category_id'),
         value: this.state.category_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(1)
+        onClick: this.handleCatClick,
+        value: "1",
+        id: "1"
       }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(2)
+        onClick: this.handleCatClick,
+        value: "2",
+        id: "2"
       }, "Comics and Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(3)
+        onClick: this.handleCatClick,
+        value: "3",
+        id: "3"
       }, "Design and Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(4)
+        onClick: this.handleCatClick,
+        value: "4",
+        id: "4"
       }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(5)
+        onClick: this.handleCatClick,
+        value: "5",
+        id: "5"
       }, "Food and Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(6)
+        onClick: this.handleCatClick,
+        value: "6",
+        id: "6"
       }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(7)
+        onClick: this.handleCatClick,
+        value: "7",
+        id: "7"
       }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        onClick: this.handleCatClick(8)
-      }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleCatClick,
+        value: "8",
+        id: "8"
+      }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "line"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "next-project-idea",
         type: "submit",
-        onClick: this.handleSubmit,
+        onClick: this.plusOne(this.state.val)
+      }, "Next: Project idea"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "sub-text"
+      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: this.state.val === 2 ? 'enter-description' : 'enter-description-hide'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "description-header"
+      }, "Describe what you'll be creating and enter a title."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "description-sub"
+      }, "And don't worry, you can edit this later, too."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "textarea",
+        className: "textarea-title",
+        placeholder: "Enter your title",
+        onChange: this.handleTextClick('title')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        type: "textarea",
+        className: "textarea-enter",
+        placeholder: "A short description of your project",
+        onChange: this.handleTextClick('description')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "line2"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: this.state.textStatus ? 'next-location' : 'next-location-unready',
+        onClick: this.plusOne(this.state.val)
+      }, "Next: Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "sub-text2"
+      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: this.state.val === 3 ? 'enter-location' : 'enter-location-hide',
         onSubmit: this.handleSubmit
-      }, "Next: Project idea")));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "location-header"
+      }, " Finally, let's confirm your location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+        className: "location-sub"
+      }, "Tell us where you're based"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "location-dropdown",
+        onChange: this.update('location'),
+        value: this.state.location
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        onClick: this.handleLocationClick,
+        value: "United States"
+      }, "United States"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        onClick: this.handleLocationClick,
+        value: "Europe"
+      }, "Europe"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        onClick: this.handleLocationClick,
+        value: "Asia"
+      }, "Asia"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        onClick: this.handleLocationClick,
+        value: "South America"
+      }, "South America"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        onClick: this.handleLocationClick,
+        value: "Australia"
+      }, "Australia")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "checkboxes"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        className: "first-checkbox"
+      }), "I Would like to receive notifications", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        className: "second-checkbox"
+      }), "I'm enjoying this project", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        className: "third-checkbox"
+      }), "Is this almost over", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        className: "fourth-checkbox"
+      }), "This website is phenomenal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "submit-button",
+        type: "submit",
+        onClick: this.plusOne(this.state.val)
+      }, "Next"))));
     }
   }]);
 
@@ -890,15 +1120,6 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (CreateProjectForm);
-{
-  /* <ul type='hidden' className={this.state.clickedDropdown ? 'cat-dropdown' : 'cat-dropdown-hide'}>
-     <li onClick={this.handleClick} data-id='1'><span>Art</span></li>
-     <li onClick={this.handleClick} data-id='2'>Sports</li>
-     {/* <li>Sports</li> */
-}
-{
-  /* </ul> */
-}
 
 /***/ }),
 
@@ -1685,7 +1906,7 @@ var fetchProject = function fetchProject(id) {
 };
 var createProject = function createProject(project) {
   var requests = {
-    url: '/api/projects',
+    url: '/api/projects/',
     method: 'Post',
     data: {
       project: project

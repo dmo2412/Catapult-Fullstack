@@ -12,7 +12,7 @@ export const fetchProject = id => (
 
 export const createProject = project => {
     let requests = {
-        url: '/api/projects',
+        url: '/api/projects/',
         method: 'Post',
         data: { project: project },
         }

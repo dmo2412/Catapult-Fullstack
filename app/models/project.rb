@@ -5,7 +5,6 @@
 #  id           :bigint           not null, primary key
 #  title        :string           not null
 #  category_id  :integer          not null
-#  creator_name :string           not null
 #  creator_id   :integer          not null
 #  funding_goal :integer
 #  description  :string
@@ -17,7 +16,7 @@
 #
 class Project < ApplicationRecord
 
-    validates :title, :category_id, :creator_name, :creator_id, :funding_goal, presence: true
+    validates :title, :category_id, :creator_id, :funding_goal, presence: true
     # validates :ensure_photo
     # has_one_attached :photo
 
