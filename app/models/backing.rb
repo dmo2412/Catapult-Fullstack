@@ -11,6 +11,8 @@
 #
 class Backing < ApplicationRecord
 
+    validates :backer_id, :amount_pledged, :project_id, null: false
+
     belongs_to :user,
     foreign_key: :backer_id,
     class_name: :User 

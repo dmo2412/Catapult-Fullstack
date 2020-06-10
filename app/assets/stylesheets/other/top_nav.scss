@@ -8,7 +8,7 @@
     position: relative;
     display: block;
     overflow: hidden;
-    // margin: 0 auto;
+    margin-top: -15px;
 }
 
 .nav-items {
@@ -90,4 +90,14 @@
 
 .nav-login:hover {
     color: blue;
+}
+
+.nav-logout {
+    text-decoration: none;
+    // top: -120px;
+    padding-left: 40%;
+    color: black;
+    position: relative;
+    margin: 0 auto;
+    // font-size: 40px;
 }

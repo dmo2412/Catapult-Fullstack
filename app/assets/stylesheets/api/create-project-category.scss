@@ -278,6 +278,13 @@
     float: left;
 }
 
+.back-to-funding {
+    background-color: white;
+    border: none;
+    color: grey;
+    margin-left: 200px;
+    height:30px;
+}
 
 
 .end-date {
@@ -340,14 +347,30 @@
 .preview {
     height:200px;
     width: 200px;
+    margin-left: 200px;
 }
 
 .add-photo {
     position: static;
+    display: flex;
 }
 
 .create-project-button {
-    position: fixed;
+    // position: fixed;
+    display: flex;
+    position: relative;
+    // top: 160px;
+    left: 66%;
+    height: 40px;
+    width: 150px;
+    background-color: #282828;
+    // background-color: green;
+    color: white;
+    font-size: 15px;
+    font-weight: 10;
+    margin-top: -40px;
+    padding-left: 23px;
+    padding-top: 10px;
 }
 
 .photo-header {

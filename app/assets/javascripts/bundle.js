@@ -789,15 +789,8 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      e.preventDefault(); // const project = Object.assign({}, this.state)
-      // // // debugger
-      // this.props.createProject(project)
-      // .then((project) => {
-      //     this.props.history.push(`/projects/finish/${project.project.id}`)});
-      // // formData.append('project[photo_url]' , this.state.photo_url)
-
-      var formData = new FormData(); // debugger
-
+      e.preventDefault();
+      var formData = new FormData();
       formData.append('project[title]', this.state.title);
       formData.append('project[category_id]', this.state.category_id);
       formData.append('project[creator_id]', this.state.creator_id);
@@ -808,37 +801,32 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       formData.append('project[close_date]', this.state.close_date);
 
       if (this.state.photo_url) {
-        formData.append('project[photo]', this.state.photoFile); // debugger
-      } // this.props.fetchProjects()
-      // debugger
-      // const project = formData;
-      // debugger
-      // $.ajax({
-      //     url: '/api/projects/',
-      //     method: 'Post',
-      //     data: formData,
-      //     processData: false,
-      //     contentType: false
-      // })
-      // this.props.createProject(formData)
-      // debugger 
-      // this.props.history.push(`/projects/${formData.id}`)
-
+        formData.append('project[photo]', this.state.photoFile);
+      }
 
       this.props.createProject(formData).then(function (project) {
         return _this2.props.history.push("/projects/".concat(project.project.id));
       });
-    } // handleRedirect(project) {
-    //     const ele = project;
-    //     // let person = this.props.currentUser;
-    //     console.log('why')
-    //     // console.log(this.state)
-    //     // console.log(person.projects[-1].id)
-    //     // let projId = this.state.id[0];
-    //     // this.props.history.push(project => `/projects/${this.props.project.id}`)
-    //     // debugger
-    // }
+    }
+  }, {
+    key: "handleImage",
+    value: function handleImage(e) {
+      var _this3 = this;
 
+      var pic = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this3.setState({
+          photoFile: pic,
+          photo_url: fileReader.result
+        });
+      };
+
+      if (pic) {
+        fileReader.readAsDataURL(pic);
+      }
+    }
   }, {
     key: "handleCategoryDropdown",
     value: function handleCategoryDropdown(e) {
@@ -853,10 +841,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleCatClick",
     value: function handleCatClick(num) {
-      var _this3 = this;
+      var _this4 = this;
 
       return function (e) {
-        _this3.setState({
+        _this4.setState({
           category_id: num
         });
       };
@@ -864,10 +852,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleLocationClick",
     value: function handleLocationClick(val) {
-      var _this4 = this;
+      var _this5 = this;
 
       return function (e) {
-        _this4.setState({
+        _this5.setState({
           location: val
         });
       };
@@ -875,22 +863,22 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleFundingAndClose",
     value: function handleFundingAndClose(field1, field2) {
-      var _this5 = this;
+      var _this6 = this;
 
       return function (e) {
-        _this5.setState(_defineProperty({}, field1, e.currentTarget.value));
+        _this6.setState(_defineProperty({}, field1, e.currentTarget.value));
 
-        _this5.setState(_defineProperty({}, field2, e.currentTarget.value));
+        _this6.setState(_defineProperty({}, field2, e.currentTarget.value));
       };
     }
   }, {
     key: "plusOne",
     value: function plusOne(val) {
-      var _this6 = this;
+      var _this7 = this;
 
       // debugger
       return function (e) {
-        _this6.setState({
+        _this7.setState({
           val: val + 1
         }); // debugger
 
@@ -899,10 +887,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "minusOne",
     value: function minusOne(val) {
-      var _this7 = this;
+      var _this8 = this;
 
       return function (e) {
-        _this7.setState({
+        _this8.setState({
           val: val - 1
         });
       };
@@ -910,12 +898,12 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTextClick",
     value: function handleTextClick(field) {
-      var _this8 = this;
+      var _this9 = this;
 
       return function (e) {
-        _this8.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this9.setState(_defineProperty({}, field, e.currentTarget.value));
 
-        _this8.setState({
+        _this9.setState({
           textStatus: true
         });
       };
@@ -923,12 +911,12 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTitleClick",
     value: function handleTitleClick(field) {
-      var _this9 = this;
+      var _this10 = this;
 
       return function (e) {
-        _this9.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this10.setState(_defineProperty({}, field, e.currentTarget.value));
 
-        _this9.setState({
+        _this10.setState({
           titleStatus: true
         });
       };
@@ -950,30 +938,11 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this10 = this;
-
-      return function (e) {
-        _this10.setState(_defineProperty({}, field, e.currentTarget.value));
-      };
-    }
-  }, {
-    key: "handleImage",
-    value: function handleImage(e) {
       var _this11 = this;
 
-      var pic = e.currentTarget.files[0];
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this11.setState({
-          photoFile: pic,
-          photo_url: fileReader.result
-        });
+      return function (e) {
+        _this11.setState(_defineProperty({}, field, e.currentTarget.value));
       };
-
-      if (pic) {
-        fileReader.readAsDataURL(pic);
-      }
     } // handleFile(e) {
     //     this.setState({
     //         photo_url: e.currentTarget.files[0]
@@ -1918,6 +1887,86 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/splash/first_project_index_item.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/splash/first_project_index_item.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var FirstProjectIndexItem = function FirstProjectIndexItem(_ref) {
+  var project = _ref.project,
+      user = _ref.user;
+  // const handleName = () => {
+  //     let creator = project.creator_id
+  //     return creator
+  // }
+  var creator = project.creator_id;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "first-proj-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects/".concat(project.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-image1",
+    src: project.photo_url
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "title-first",
+    to: "/projects/".concat(project.id)
+  }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "des1"
+  }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "location1"
+  }, "\uD83D\uDCCC", project.location));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FirstProjectIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/splash/rest-project-index-item.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/splash/rest-project-index-item.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var RestProjectIndexItem = function RestProjectIndexItem(_ref) {
+  var project = _ref.project;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects/".concat(project.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-image-rest",
+    src: project.photo_url
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "title-rest",
+    to: "/projects/".concat(project.id)
+  }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "des-rest"
+  }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "location3"
+  }, "\uD83D\uDCCC", project.location));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RestProjectIndexItem);
+
+/***/ }),
+
 /***/ "./frontend/components/splash/splash_container.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/splash/splash_container.jsx ***!
@@ -1933,7 +1982,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(undefined, undefined)(_splash_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    projects: Object.values(state.entities.projects)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProjects"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_splash_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1949,6 +2013,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _first_project_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./first_project_index_item */ "./frontend/components/splash/first_project_index_item.jsx");
+/* harmony import */ var _three_index_items__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./three_index_items */ "./frontend/components/splash/three_index_items.jsx");
+/* harmony import */ var _rest_project_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rest-project-index-item */ "./frontend/components/splash/rest-project-index-item.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1974,21 +2041,159 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+
 var SplashForm = /*#__PURE__*/function (_React$Component) {
   _inherits(SplashForm, _React$Component);
 
   var _super = _createSuper(SplashForm);
 
-  function SplashForm() {
+  function SplashForm(props) {
+    var _this;
+
     _classCallCheck(this, SplashForm);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.state = {
+      page: 1
+    };
+    return _this;
   }
 
   _createClass(SplashForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProjects(); // debugger
+    }
+  }, {
+    key: "plusOne",
+    value: function plusOne(page) {
+      var _this2 = this;
+
+      if (this.state.page < 1) {
+        return function (e) {
+          _this2.setState({
+            page: 2
+          });
+        };
+      } else if (this.state.page >= 3) {
+        return function (e) {
+          _this2.setState({
+            page: 3
+          });
+        };
+      } else {
+        return function (e) {
+          _this2.setState({
+            page: page + 1
+          });
+        };
+      }
+    }
+  }, {
+    key: "minusOne",
+    value: function minusOne(page) {
+      var _this3 = this;
+
+      if (this.state.page > 3) {
+        return function (e) {
+          _this3.setState({
+            page: 2
+          });
+        };
+      } else {
+        return function (e) {
+          _this3.setState({
+            page: page - 1
+          });
+        };
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Homepage catapult");
+      var projects = this.props.projects;
+      var arr = projects.reverse();
+      var first_four = arr.slice(4, 8);
+      var second_four = arr.reverse().slice(8, 12);
+      var third_four = arr.reverse().slice(12, 16); // debugger
+      // const project = projects[0]
+      // const projects = this.props.projects.map(project => {
+      //      project={project} key={project.id} />
+      // });
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "spacing"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "home-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recent-project"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "break"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "most-recent-caption"
+      }, "MOST RECENT PROJECT"), projects.slice(0, 1).map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_first_project_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          project: project,
+          key: project.id
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "side3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "recommended-projs"
+      }, "RECOMMENDED PROJECTS"), projects.slice(1, 4).map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_three_index_items__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          project: project,
+          key: project.id
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "bottom-line"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "spacing-below"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "subscribe"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "subscribe-header"
+      }, "Discover the best and brightest projects on Catapult"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "subscribe-sub"
+      }, "Sign up to receive our weekly Projects We Love newsletter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "subscribe-button"
+      }, "Subscribe")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "slide-projects"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "backwards-arrow",
+        onClick: this.minusOne(this.state.page)
+      }, " \uFFE9 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "forward-arrow",
+        onClick: this.plusOne(this.state.page)
+      }, " \uFFEB "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "fresh-favorites"
+      }, "Fresh Favorites"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sliding-pics"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: this.state.page <= 1 ? 'first-four' : 'first-four-hide'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", first_four.map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rest_project_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          project: project,
+          key: project.id
+        });
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: this.state.page === 2 ? 'second-four' : 'second-four-hide'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", second_four.map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rest_project_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          project: project,
+          key: project.id
+        });
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: this.state.page >= 3 ? 'third-four' : 'third-four-hide'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", third_four.map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rest_project_index_item__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          project: project,
+          key: project.id
+        });
+      }))))));
     }
   }]);
 
@@ -1996,6 +2201,48 @@ var SplashForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SplashForm);
+
+/***/ }),
+
+/***/ "./frontend/components/splash/three_index_items.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/splash/three_index_items.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var ThreeIndexItems = function ThreeIndexItems(_ref) {
+  var project = _ref.project;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "right-projects"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects/".concat(project.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "splash-image2",
+    src: project.photo_url
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "title2",
+    to: "/projects/".concat(project.id)
+  }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "location2"
+  }, "\uD83D\uDCCC", project.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "symbols"
+  }, "\uD83D\uDD16 \uD83D\uDC4D \uD83D\uDC4E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "break"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "bottom-line-side"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ThreeIndexItems);
 
 /***/ }),
 

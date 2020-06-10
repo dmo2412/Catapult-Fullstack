@@ -37,17 +37,11 @@ class CreateProjectForm extends React.Component {
     // componentDidMount() {
     //     // this.props.fetchProjects()
     // }
-
+    
     handleSubmit(e) {
         e.preventDefault();
-        // const project = Object.assign({}, this.state)
-        // // // debugger
-        // this.props.createProject(project)
-        // .then((project) => {
-        //     this.props.history.push(`/projects/finish/${project.project.id}`)});
-            // // formData.append('project[photo_url]' , this.state.photo_url)
+        
         const formData = new FormData();
-        // debugger
         formData.append('project[title]' , this.state.title)
         formData.append('project[category_id]' , this.state.category_id)
         formData.append('project[creator_id]' , this.state.creator_id)
@@ -56,47 +50,27 @@ class CreateProjectForm extends React.Component {
         formData.append('project[description]' , this.state.description)
         formData.append('project[pledged]' , this.state.pledged)
         formData.append('project[close_date]' , this.state.close_date)
-
+        
         if (this.state.photo_url) {
             formData.append('project[photo]', this.state.photoFile)
             
-            // debugger
         }
-        // this.props.fetchProjects()
-        // debugger
-        // const project = formData;
-        // debugger
-        // $.ajax({
-        //     url: '/api/projects/',
-        //     method: 'Post',
-        //     data: formData,
-        //     processData: false,
-        //     contentType: false
-        // })
-        // this.props.createProject(formData)
-        // debugger 
-        // this.props.history.push(`/projects/${formData.id}`)
-
         this.props.createProject(formData)
         .then(project => this.props.history.push(`/projects/${project.project.id}`))
     }
-
-
     
-    // handleRedirect(project) {
-    //     const ele = project;
-    //     // let person = this.props.currentUser;
-    //     console.log('why')
-    //     // console.log(this.state)
-    //     // console.log(person.projects[-1].id)
-    //     // let projId = this.state.id[0];
-    //     // this.props.history.push(project => `/projects/${this.props.project.id}`)
-    //     // debugger
-        
-        
-    // }
+    handleImage(e) {
+        const pic = e.currentTarget.files[0];
+        const fileReader = new FileReader();
 
-
+        fileReader.onloadend = () => {
+            this.setState({photoFile: pic, photo_url: fileReader.result})
+        };
+        if (pic) {
+            fileReader.readAsDataURL(pic);
+        }
+    }
+    
     handleCategoryDropdown(e) {
         e.preventDefault();
         if (clickedDropdown) {
@@ -170,17 +144,6 @@ class CreateProjectForm extends React.Component {
         }
     }
 
-    handleImage(e) {
-        const pic = e.currentTarget.files[0];
-        const fileReader = new FileReader();
-
-        fileReader.onloadend = () => {
-            this.setState({photoFile: pic, photo_url: fileReader.result})
-        };
-        if (pic) {
-            fileReader.readAsDataURL(pic);
-        }
-    }
 
     // handleFile(e) {
     //     this.setState({
