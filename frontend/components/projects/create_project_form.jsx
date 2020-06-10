@@ -12,7 +12,7 @@ class CreateProjectForm extends React.Component {
             title: "",
             category_id: "",
             creator_id: this.props.currentUser.id,
-            location: 'New jersey',
+            location: "",
             funding_goal: 0,
             description: "",
             pledged: 0,
@@ -189,7 +189,7 @@ class CreateProjectForm extends React.Component {
     // }
 
     render() {
-        const preview = this.state.photo_url ? <img src={this.state.photo_url} /> : null;
+        const preview = this.state.photo_url ? <img className='preview' src={this.state.photo_url} /> : null;
         // console.log(this.state)
         let clickedDropdown = false;
 
@@ -252,16 +252,21 @@ class CreateProjectForm extends React.Component {
                         <p className='sub-text3'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
                 </form>
                 <form className={this.state.val === 4 ? 'enter-funding-goal' : 'enter-funding-goal-hide'} >
-                    <h2>Enter your funding goal and close date</h2>
+                    <h2 className='funding-header'>Enter your funding goal and close date</h2>
                     <input type="number" className='funding-input' placeholder='Enter your funding goal' onChange={this.update('funding_goal')}/>
                     <input type="date" className='end-date' onChange={this.update('close_date')}/>
-                        <button type='submit' className='continue-to-image' onClick={this.plusOne(this.state.val)}>Create Project</button>
+                    <p className='line5'></p>
+                        <button type='submit' className='continue-to-image' onClick={this.plusOne(this.state.val)}>Proceed to add an image</button>
+                        <button className='back-to-location' onClick={this.minusOne(this.state.val)}>Back to location</button>
+                        <p className='sub-text4'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
                 </form>
                 <form className={this.state.val === 5 ? 'add-image' : 'add-image-hide'} onSubmit={this.handleSubmit}>
+                    <h1 className='photo-header'>upload a photo for your project</h1>
                     <input type="file" className='add-photo' onChange={this.handleImage}/>
                     <img className='pic' onChange={this.handleFile}></img>
                     {preview}
-                    <button type='submit'>Create Project</button>
+                    <button className='back-to-funding' onClick={this.minusOne(this.state.val)}>Back to funding</button>
+                    <button type='submit' className='create-project-button'>Create Project</button>
                 </form>
                 
 

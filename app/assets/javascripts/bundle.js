@@ -760,7 +760,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       title: "",
       category_id: "",
       creator_id: _this.props.currentUser.id,
-      location: 'New jersey',
+      location: "",
       funding_goal: 0,
       description: "",
       pledged: 0,
@@ -984,6 +984,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var preview = this.state.photo_url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "preview",
         src: this.state.photo_url
       }) : null; // console.log(this.state)
 
@@ -1123,7 +1124,9 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "sub-text3"
       }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: this.state.val === 4 ? 'enter-funding-goal' : 'enter-funding-goal-hide'
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Enter your funding goal and close date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "funding-header"
+      }, "Enter your funding goal and close date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         className: "funding-input",
         placeholder: "Enter your funding goal",
@@ -1132,14 +1135,23 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         type: "date",
         className: "end-date",
         onChange: this.update('close_date')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "line5"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         className: "continue-to-image",
         onClick: this.plusOne(this.state.val)
-      }, "Create Project")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Proceed to add an image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "back-to-location",
+        onClick: this.minusOne(this.state.val)
+      }, "Back to location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "sub-text4"
+      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: this.state.val === 5 ? 'add-image' : 'add-image-hide',
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "photo-header"
+      }, "upload a photo for your project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         className: "add-photo",
         onChange: this.handleImage
@@ -1147,7 +1159,11 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "pic",
         onChange: this.handleFile
       }), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
+        className: "back-to-funding",
+        onClick: this.minusOne(this.state.val)
+      }, "Back to funding"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "create-project-button"
       }, "Create Project"))));
     }
   }]);
@@ -1413,7 +1429,9 @@ var UpdateProjectForm = /*#__PURE__*/function (_React$Component) {
         src: this.props.project.photo_url
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-location"
-      }, this.props.project.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\uD83D\uDCCC", this.props.project.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "love-project"
+      }, "\u2764\uFE0F Project We Love"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "show-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "show-line"
@@ -1911,6 +1929,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _splash_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./splash_form */ "./frontend/components/splash/splash_form.jsx");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(undefined, undefined)(_splash_form__WEBPACK_IMPORTED_MODULE_1__["default"]));

@@ -37,7 +37,8 @@ class UpdateProjectForm extends React.Component {
                 <h1 className='show-title'>{this.props.project.title}</h1>
                 <h2 className='show-description'>{this.props.project.description}</h2>
                 <img className='show-photo' src={this.props.project.photo_url}/>
-                <p className='show-location'>{this.props.project.location}</p>
+                <p className='show-location'>📌{this.props.project.location}</p>
+                <p className='love-project'>❤️ Project We Love</p>
                 <div className='show-container'>
                     <p className='show-line'></p>
                     <p className='show-pledged'>Amount Pledged: ${this.props.project.pledged}</p>

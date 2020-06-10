@@ -211,7 +211,7 @@
     width: 150px;
     height: 40px;
     background-color: #282828;
-    color:green;
+    color:white;
     font-size: 15px;
 
 }
@@ -256,6 +256,106 @@
     margin-top: 10px;
 }
 
+
+.funding-header {
+    padding-top: 75px;
+    padding-left: 33%;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.funding-input {
+    // margin-top: 20px;
+    width: 25%;
+    height: 35px;
+    background-color:white;
+    // z-index: 2;
+    margin-left: 27%;
+    font-size: 20px;
+    background-image: linear-gradient(bottom);
+    border: 1px solid rgba(211, 211, 211, 0.404);
+    margin-top: 10px;
+    float: left;
+}
+
+
+
+.end-date {
+    width: 25%;
+    height: 37px;
+    background-color:white;
+    // z-index: 2;
+    // margin-left: 27%;
+    font-size: 20px;
+    background-image: linear-gradient(bottom);
+    border: 1px solid rgba(211, 211, 211, 0.404);
+    margin-top: 10px;
+    margin-right: 250px;
+    float: right;
+}
+
+.line5 {
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.164);
+    border-width: thin;
+    width: 580px;
+    margin-left: 28%;
+    padding-top: 170px;
+    // padding-bottom:400px;
+}
+
+.continue-to-image {
+   position: relative;
+    // top: 160px;
+    left: 66%;
+    height: 40px;
+    width: 150px;
+    background-color: #282828;
+    // background-color: green;
+    color: white;
+    font-size: 15px;
+    font-weight: 10;
+    // border: none;
+}
+
+.back-to-location {
+    background-color: white;
+    border: none;
+    color: grey;
+    margin-left: 180px;
+    margin-top: 10px;
+    position: absolute;
+}
+
+.sub-text4 {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 28%;
+    width: 570px;
+    font-size: 14px;
+    color: rgba(155, 158, 158, 0.952);
+    text-align: center;
+    margin-bottom: -20px;
+}
+
+.preview {
+    height:200px;
+    width: 200px;
+}
+
+.add-photo {
+    position: static;
+}
+
+.create-project-button {
+    position: fixed;
+}
+
+.photo-header {
+    padding-top: 55px;
+    padding-left: 35%;
+    font-size: 30px;
+    font-weight: 400;
+}
 
 
 
