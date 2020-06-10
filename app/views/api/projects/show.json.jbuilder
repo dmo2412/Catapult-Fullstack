@@ -10,7 +10,9 @@
 # json.close_date @project.close_date
 
 # json.project do 
-    json.extract! @project, :id, :title, :creator_id, :funding_goal, :description, :pledged, :location, :close_date
+json.extract! @project, :id, :title, :description, :funding_goal, :pledged, :location, :close_date, :created_at, :updated_at
+# , :creator_id, :funding_goal, :description, :pledged, :location, :close_date, :photo, :created_at, :updated_at
+json.photo_url url_for(@project.photo)
 # end
 
 

@@ -14,6 +14,7 @@ class SignupForm extends React.Component {
             clickedPassword: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemoLogin = this.handleDemoLogin.bind(this);
         // this.toggleEmail = this.toggleEmail.bind(this);
     }
 
@@ -43,6 +44,11 @@ class SignupForm extends React.Component {
 
     togglePasswordClass() {
         this.setState({clickedPassword: true})
+    }
+
+    handleDemoLogin(e) {
+        e.stopPropagation();
+        this.props.login({ name: 'Willis', email: 'willis@gmail.com', password: 'password' })
     }
 
     render() {
@@ -91,7 +97,7 @@ class SignupForm extends React.Component {
                         <div className='left-line'></div>
                         {/* <div className='text-strike'>or</div> */}
                         <div className='right-line'></div>
-                        <button className='signup-facebook'>Continue with Facebook</button>
+                        <button className='signup-facebook' onClick={this.handleDemoLogin}>Demo login</button>
                         <div className='facebook-footer'>
                             <p>Get notified when your friends back and launch projetcs. We'll never post anything on Facebook without your permission</p>
                             <p>Read more</p>

@@ -123,7 +123,6 @@ var receiveProjects = function receiveProjects(projects) {
   };
 };
 var receiveProject = function receiveProject(project) {
-  debugger;
   return {
     type: RECEIVE_PROJECT,
     project: project
@@ -137,7 +136,7 @@ var removeProject = function removeProject(projectId) {
 };
 var receiveProjectErrors = function receiveProjectErrors(errors) {
   return {
-    type: _session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SESSION_ERRORS"],
+    type: RECEIVE_PROJECT_ERRORS,
     errors: errors
   };
 };
@@ -145,42 +144,44 @@ var fetchProjects = function fetchProjects() {
   return function (dispatch) {
     return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProjects"]().then(function (projects) {
       return dispatch(receiveProjects(projects));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveProjectErrors(err.responseJSON));
-    };
+    });
   };
 };
 var fetchProject = function fetchProject(id) {
-  return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProject"](id).then(function (project) {
-    return dispatch(receiveProject(project));
-  }), function (err) {
-    return dispatch(receiveProjectErrors(err.responseJSON));
+  return function (dispatch) {
+    return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchProject"](id).then(function (project) {
+      dispatch(receiveProject(project));
+    }, function (err) {
+      return dispatch(receiveProjectErrors(err.responseJSON));
+    });
   };
 };
 var createProject = function createProject(project) {
   return function (dispatch) {
     return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["createProject"](project).then(function (project) {
       return dispatch(receiveProject(project));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveProjectErrors(err.responseJSON));
-    };
+    });
   };
 };
 var updateProject = function updateProject(project) {
   return function (dispatch) {
     return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["updateProject"](project).then(function (project) {
       return dispatch(receiveProject(project));
-    }), function (err) {
+    }, function (err) {
       return dispatch(receiveProjectErrors(err.responseJSON));
-    };
+    });
   };
 };
 var deleteProject = function deleteProject(projectId) {
   return _util_project_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteProject"](projectId).then(function () {
     return dispatch(removeProject(projectId));
-  }), function (err) {
+  }, function (err) {
     return dispatch(receiveProjectErrors(err.responseJSON));
-  };
+  });
 };
 
 /***/ }),
@@ -369,7 +370,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footer_footer_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./footer/footer_container */ "./frontend/components/footer/footer_container.jsx");
 /* harmony import */ var _splash_splash_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./splash/splash_container */ "./frontend/components/splash/splash_container.jsx");
 /* harmony import */ var _projects_create_project_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./projects/create_project_container */ "./frontend/components/projects/create_project_container.jsx");
-/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _projects_project_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./projects/project_show_container */ "./frontend/components/projects/project_show_container.jsx");
+/* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
+/* harmony import */ var _projects_update_project_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./projects/update_project_container */ "./frontend/components/projects/update_project_container.jsx");
 
 
 
@@ -379,24 +382,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ // import CategoryContainer from './categories/category_container'
 
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/",
     component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_8__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["AuthRoute"], {
     exact: true,
     path: "/login",
     component: _session_login_form_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_8__["AuthRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["AuthRoute"], {
     exact: true,
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_8__["ProtectedRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_9__["ProtectedRoute"], {
     exact: true,
     path: "/projects/new/",
     component: _projects_create_project_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/projects/:projectId",
+    component: _projects_update_project_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer_container__WEBPACK_IMPORTED_MODULE_5__["default"], null));
 };
 
@@ -685,7 +694,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createProject: function createProject(project) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_3__["createProject"])(project));
-    }
+    } // fetchProjects: () => dispatch(fetchProjects())
+
   };
 };
 
@@ -729,149 +739,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// import React from 'react';
-// import {withRouter} from 'react-router-dom'
-// import { Link } from 'react-router-dom';
-// import {Route, Redirect, NavLink} from 'react-router-dom';
-// class CreateProjectForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             title: "",
-//             category_id: "",
-//             creator_id: this.props.currentUser.id,
-//             location: '',
-//             funding_goal: 10010,
-//             description: "",
-//             pledged: 0,
-//             num: 1,
-//             val: 1,
-//             textStatus: false,
-//             titleStatus: false
-//         }
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//         this.handleCategoryDropdown = this.handleCategoryDropdown.bind(this);
-//         this.handleCatClick = this.handleCatClick.bind(this);
-//         this.handleRedirect = this.handleRedirect.bind(this);
-//     }
-//     handleSubmit(e) {
-//         e.preventDefault();
-//         // this.setState({creator_id: currentUser.id })
-//         const project = Object.assign({}, this.state)
-//         // debugger
-//         this.props.createProject(project)
-//             // .then((project) => this.props.history.push(`/projects/${project.category_id}`));
-//     }
-//     handleRedirect() {
-//         let project = this.state;
-//         // debugger
-//         this.props.history.push(`/projects/${project.id}`)
-//     }
-//     handleCategoryDropdown(e) {
-//         e.preventDefault();
-//         if (clickedDropdown) {
-//             clickedDropdown = false;
-//         } else {
-//             clickedDropdown = true;
-//         }
-//     }
-//     handleClickedCategory(e) {
-//         e.preventDefault();
-//     }
-//     handleCatClick(num) {
-//         return e => {
-//             this.setState({category_id : num})
-//         }
-//     }
-//     handleLocationClick(val) {
-//         return e => {
-//             this.setState({location: val})
-//         }
-//     }
-//     handleTextArea() {
-//         this.setState({ textStatus: true })
-//     }
-//     handleTextTitle() {
-//         this.setState({ titleStatus: true })
-//     }
-//     plusOne(val) {
-//         // debugger
-//         return e => {
-//             this.setState({val: val + 1})
-//             // debugger
-//         }
-//     }
-//     handleTextClick(field) {
-//         return e => {
-//             this.setState({[field]: e.currentTarget.value})
-//         }
-//     }
-//     update(field) {
-//         return e=> {
-//             this.setState({[field]: e.currentTarget.value })
-//         }
-//     }
-//     render() {
-//         let clickedDropdown = false;
-//         let num = 1;
-//         return (
-//             <div className='create-project'>
-//                 <div className='create-project-border'>
-//                     <form className={this.state.val === 1 ? 'select-category' : 'select-category-hide'} >
-//                         <h2 className="title1">First let's get you set up.</h2>
-//                         <p className='subtitle1'>Pick a project category to connect with a specific community. You can always update this later.</p>
-//                         <select className={num === 1 ? 'cat-dropdown' : 'cat-dropdown-hide'} placeholder="Select your category"
-//                             onChange={this.update('category_id')} value={this.state.category_id}
-//                         >
-//                             <option>Select your category</option>
-//                             <option onClick={this.handleCatClick} value='1' id='1' >Arts</option>
-//                             <option onClick={this.handleCatClick} value='2' id='2' >Comics and Illustration</option>
-//                             <option onClick={this.handleCatClick} value='3' id='3' >Design and Tech</option>
-//                             <option onClick={this.handleCatClick} value='4' id='4'>Film</option>
-//                             <option onClick={this.handleCatClick} value='5' id='5'>Food and Craft</option>
-//                             <option onClick={this.handleCatClick} value='6' id='6'>Games</option>
-//                             <option onClick={this.handleCatClick} value='7' id='7'>Music</option>
-//                             <option onClick={this.handleCatClick} value='8' id='8'>Publishing</option>
-//                         </select>
-//                         <p className='line'></p>
-//                         <button className='next-project-idea' type='submit' onClick={this.plusOne(this.state.val)} >Next: Project idea</button>
-//                         <p className='sub-text'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
-//                     </form>
-//                     <form className={this.state.val === 2 ? 'enter-description' : 'enter-description-hide'}>
-//                         <h2 className='description-header'>Describe what you'll be creating and enter a title.</h2>
-//                         <h4 className='description-sub'>And don't worry, you can edit this later, too.</h4>
-//                         <input type="textarea" className='textarea-title' placeholder='Enter your title' onChange={this.handleTextClick('title')} />
-//                         <textarea type="textarea" className='textarea-enter' placeholder='A short description of your project' onChange={this.handleTextClick('description')} />
-//                         <p className='line2'></p>
-//                         <button type='submit' className={this.state.textStatus ? 'next-location' : 'next-location-unready'} onClick={this.plusOne(this.state.val)}>Next: Location</button>
-//                         <p className='sub-text2'>To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and — if your project is successful — to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.</p>
-//                     </form>
-//                     <form className={this.state.val > 2 ? 'enter-location' : 'enter-location-hide'} onSubmit={this.handleSubmit}>
-//                         <h2 className='location-header'> Finally, let's confirm your location</h2>
-//                         <h4 className='location-sub'>Tell us where you're based</h4>
-//                         <select className='location-dropdown' onChange={this.update('location')} value={this.state.location}>
-//                             <option>Select your Location</option>
-//                             <option onClick={this.handleLocationClick} value='United States'>United States</option>
-//                             <option onClick={this.handleLocationClick} value="Europe">Europe</option>
-//                             <option onClick={this.handleLocationClick} value="Asia">Asia</option>
-//                             <option onClick={this.handleLocationClick} value="South America">South America</option>
-//                             <option onClick={this.handleLocationClick} value="Australia">Australia</option>
-//                         </select>
-//                         {/* <span className='checkboxes'> */}
-//                         <input type="checkbox" className='first-checkbox' />I Would like to receive notifications
-//                         <input type="checkbox" className='second-checkbox' />I'm enjoying this project
-//                         <input type="checkbox" className='third-checkbox' />Is this almost over
-//                         <input type="checkbox" className='fourth-checkbox' />This website is phenomenal
-//                     {/* </span> */}
-//                         <button className='submit-button' type='submit' onClick={this.plusOne(this.state.val)}>Next</button>
-//                     </form>
-//                         <button className='test-button' onClick={this.handleRedirect}>Test redirect</button>
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
-// export default (CreateProjectForm);
 
 
 
@@ -894,47 +761,84 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       category_id: "",
       creator_id: _this.props.currentUser.id,
       location: 'New jersey',
-      funding_goal: 10010,
+      funding_goal: 0,
       description: "",
       pledged: 0,
+      close_date: "",
+      photoFile: null,
+      photo_url: null,
       num: 1,
       val: 1,
       textStatus: false,
       titleStatus: false
-    };
+    }; // debugger 
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCategoryDropdown = _this.handleCategoryDropdown.bind(_assertThisInitialized(_this));
-    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this));
-    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
+    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this)); // this.handleRedirect = this.handleRedirect.bind(this);
+
+    _this.handleImage = _this.handleImage.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     // this.props.fetchProjects()
+  // }
+
 
   _createClass(CreateProjectForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
 
-      e.preventDefault(); // this.setState({creator_id: currentUser.id })
+      e.preventDefault(); // const project = Object.assign({}, this.state)
+      // // // debugger
+      // this.props.createProject(project)
+      // .then((project) => {
+      //     this.props.history.push(`/projects/finish/${project.project.id}`)});
+      // // formData.append('project[photo_url]' , this.state.photo_url)
 
-      var project = Object.assign({}, this.state);
-      debugger;
-      this.props.createProject(project).then(function (project) {
-        return _this2.props.history.push("/projects/".concat(project.id));
-      }); // .then(this.handleRedirect(project))
-      // this.handleRedirect(project)
-      // console.log(this.state)
-    }
-  }, {
-    key: "handleRedirect",
-    value: function handleRedirect(project) {
-      var ele = project; // let person = this.props.currentUser;
+      var formData = new FormData(); // debugger
 
-      console.log('why'); // console.log(this.state)
-      // console.log(person.projects[-1].id)
-      // let projId = this.state.id[0];
-      // this.props.history.push(project => `/projects/${this.props.project.id}`)
+      formData.append('project[title]', this.state.title);
+      formData.append('project[category_id]', this.state.category_id);
+      formData.append('project[creator_id]', this.state.creator_id);
+      formData.append('project[location]', this.state.location);
+      formData.append('project[funding_goal]', this.state.funding_goal);
+      formData.append('project[description]', this.state.description);
+      formData.append('project[pledged]', this.state.pledged);
+      formData.append('project[close_date]', this.state.close_date);
+
+      if (this.state.photo_url) {
+        formData.append('project[photo]', this.state.photoFile); // debugger
+      } // this.props.fetchProjects()
       // debugger
-    }
+      // const project = formData;
+      // debugger
+      // $.ajax({
+      //     url: '/api/projects/',
+      //     method: 'Post',
+      //     data: formData,
+      //     processData: false,
+      //     contentType: false
+      // })
+      // this.props.createProject(formData)
+      // debugger 
+      // this.props.history.push(`/projects/${formData.id}`)
+
+
+      this.props.createProject(formData).then(function (project) {
+        return _this2.props.history.push("/projects/".concat(project.project.id));
+      });
+    } // handleRedirect(project) {
+    //     const ele = project;
+    //     // let person = this.props.currentUser;
+    //     console.log('why')
+    //     // console.log(this.state)
+    //     // console.log(person.projects[-1].id)
+    //     // let projId = this.state.id[0];
+    //     // this.props.history.push(project => `/projects/${this.props.project.id}`)
+    //     // debugger
+    // }
+
   }, {
     key: "handleCategoryDropdown",
     value: function handleCategoryDropdown(e) {
@@ -945,11 +849,6 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       } else {
         clickedDropdown = true;
       }
-    }
-  }, {
-    key: "handleClickedCategory",
-    value: function handleClickedCategory(e) {
-      e.preventDefault();
     }
   }, {
     key: "handleCatClick",
@@ -974,13 +873,24 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleFundingAndClose",
+    value: function handleFundingAndClose(field1, field2) {
+      var _this5 = this;
+
+      return function (e) {
+        _this5.setState(_defineProperty({}, field1, e.currentTarget.value));
+
+        _this5.setState(_defineProperty({}, field2, e.currentTarget.value));
+      };
+    }
+  }, {
     key: "plusOne",
     value: function plusOne(val) {
-      var _this5 = this;
+      var _this6 = this;
 
       // debugger
       return function (e) {
-        _this5.setState({
+        _this6.setState({
           val: val + 1
         }); // debugger
 
@@ -989,10 +899,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "minusOne",
     value: function minusOne(val) {
-      var _this6 = this;
+      var _this7 = this;
 
       return function (e) {
-        _this6.setState({
+        _this7.setState({
           val: val - 1
         });
       };
@@ -1000,12 +910,12 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTextClick",
     value: function handleTextClick(field) {
-      var _this7 = this;
+      var _this8 = this;
 
       return function (e) {
-        _this7.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this8.setState(_defineProperty({}, field, e.currentTarget.value));
 
-        _this7.setState({
+        _this8.setState({
           textStatus: true
         });
       };
@@ -1013,12 +923,12 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleTitleClick",
     value: function handleTitleClick(field) {
-      var _this8 = this;
+      var _this9 = this;
 
       return function (e) {
-        _this8.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this9.setState(_defineProperty({}, field, e.currentTarget.value));
 
-        _this8.setState({
+        _this9.setState({
           titleStatus: true
         });
       };
@@ -1040,15 +950,43 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this9 = this;
+      var _this10 = this;
 
       return function (e) {
-        _this9.setState(_defineProperty({}, field, e.currentTarget.value));
+        _this10.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
+    key: "handleImage",
+    value: function handleImage(e) {
+      var _this11 = this;
+
+      var pic = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this11.setState({
+          photoFile: pic,
+          photo_url: fileReader.result
+        });
+      };
+
+      if (pic) {
+        fileReader.readAsDataURL(pic);
+      }
+    } // handleFile(e) {
+    //     this.setState({
+    //         photo_url: e.currentTarget.files[0]
+    //     })
+    // }
+
+  }, {
     key: "render",
     value: function render() {
+      var preview = this.state.photo_url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.photo_url
+      }) : null; // console.log(this.state)
+
       var clickedDropdown = false;
       var num = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1134,8 +1072,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       }, "Back to category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "sub-text2"
       }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: this.state.val > 2 ? 'enter-location' : 'enter-location-hide',
-        onSubmit: this.handleSubmit
+        className: this.state.val === 3 ? 'enter-location' : 'enter-location-hide'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "location-header"
       }, " Finally, let's confirm your location."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -1179,22 +1116,327 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "submit-button",
         type: "submit",
         onClick: this.plusOne(this.state.val)
-      }, "Create Project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Add funding goal and close date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "back-to-description",
         onClick: this.minusOne(this.state.val)
       }, "Back to description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "sub-text3"
-      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "test-button",
-        onClick: this.handleRedirect
-      }, "Test redirect")));
+      }, "To create a project, you're required to provide your location, age, national ID, banking and tax information, email, and mailing address. This information is necessary to prevent fraud, comply with the law, and \u2014 if your project is successful \u2014 to deliver funds. Please note: after launch, your ability to edit, hide, or delete a project is limited.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: this.state.val === 4 ? 'enter-funding-goal' : 'enter-funding-goal-hide'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Enter your funding goal and close date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        className: "funding-input",
+        placeholder: "Enter your funding goal",
+        onChange: this.update('funding_goal')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        className: "end-date",
+        onChange: this.update('close_date')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "continue-to-image",
+        onClick: this.plusOne(this.state.val)
+      }, "Create Project")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: this.state.val === 5 ? 'add-image' : 'add-image-hide',
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        className: "add-photo",
+        onChange: this.handleImage
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "pic",
+        onChange: this.handleFile
+      }), preview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "Create Project"))));
     }
   }]);
 
   return CreateProjectForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CreateProjectForm);
+/* harmony default export */ __webpack_exports__["default"] = (CreateProjectForm); // onClick={this.plusOne(this.state.val)}
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_show_container.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/projects/project_show_container.jsx ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _project_show_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project_show_form */ "./frontend/components/projects/project_show_form.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    project: state.entities.projects[ownProps.match.params.projectId],
+    currentUser: state.entities.users[state.session.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchProject: function fetchProject(id) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(id));
+    },
+    updateProject: function updateProject(project) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(project));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_project_show_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_show_form.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/projects/project_show_form.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var FinishProjectForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(FinishProjectForm, _React$Component);
+
+  var _super = _createSuper(FinishProjectForm);
+
+  function FinishProjectForm(props) {
+    var _this;
+
+    _classCallCheck(this, FinishProjectForm);
+
+    _this = _super.call(this, props); // debugger
+
+    _this.state = props.project; // debugger
+
+    return _this;
+  }
+
+  _createClass(FinishProjectForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProject(this.props.match.params.projectId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // debugger
+      if (!this.props.project) {
+        return null;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "uls"
+      });
+    }
+  }]);
+
+  return FinishProjectForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (FinishProjectForm);
+
+/***/ }),
+
+/***/ "./frontend/components/projects/update_project_container.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/projects/update_project_container.jsx ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _update_project_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./update_project_form */ "./frontend/components/projects/update_project_form.jsx");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    project: state.entities.projects[ownProps.match.params.projectId],
+    // project_id: state.entities.projects[ownProps.match.params.projectId.id],
+    currentUser: state.entities.users[state.session.id],
+    pathName: '/projects/:projectId'
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchProject: function fetchProject(id) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(id));
+    },
+    updateProject: function updateProject(project) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(project));
+    } // fetchUser: 
+
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_update_project_form__WEBPACK_IMPORTED_MODULE_1__["default"])); // Come back for users name, category, pledged
+
+/***/ }),
+
+/***/ "./frontend/components/projects/update_project_form.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/projects/update_project_form.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var UpdateProjectForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(UpdateProjectForm, _React$Component);
+
+  var _super = _createSuper(UpdateProjectForm);
+
+  function UpdateProjectForm(props) {
+    var _this;
+
+    _classCallCheck(this, UpdateProjectForm);
+
+    _this = _super.call(this, props); // debugger
+
+    _this.state = props.project;
+    _this.handleTimeLeft = _this.handleTimeLeft.bind(_assertThisInitialized(_this)); // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleImage = this.handleImage.bind(this);
+    // this.handleFile = this.handleFile.bind(this);
+
+    return _this;
+  }
+
+  _createClass(UpdateProjectForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProject(this.props.match.params.projectId);
+    }
+  }, {
+    key: "handleTimeLeft",
+    value: function handleTimeLeft() {
+      var today = new Date();
+      var endDate = new Date(this.props.project.close_date);
+      var days = endDate - today;
+      return Math.floor(days / 1000 / 60 / 60 / 24);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // const project = this.props.project;
+      // let days_remaining = handleTimeLeft(this.props.project.close_date)
+      if (!this.props.project) {
+        return null;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-show"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "show-title"
+      }, this.props.project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "show-description"
+      }, this.props.project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "show-photo",
+        src: this.props.project.photo_url
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-location"
+      }, this.props.project.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "show-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-line"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-pledged"
+      }, "Amount Pledged: $", this.props.project.pledged), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "show-funding-goal"
+      }, "pledged of $", this.props.project.funding_goal, " goal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "num-backers"
+      }, "851"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "backers-text"
+      }, "backers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "show-back-project"
+      }, "Back this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "days-left"
+      }, "All or nothing. This project will only be funded if it reaches its goal by ", this.props.project.close_date)));
+    }
+  }]);
+
+  return UpdateProjectForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (UpdateProjectForm);
 
 /***/ }),
 
@@ -1466,7 +1708,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       clickedEmail: false,
       clickedPassword: false
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.toggleEmail = this.toggleEmail.bind(this);
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDemoLogin = _this.handleDemoLogin.bind(_assertThisInitialized(_this)); // this.toggleEmail = this.toggleEmail.bind(this);
 
     return _this;
   }
@@ -1507,6 +1750,16 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function togglePasswordClass() {
       this.setState({
         clickedPassword: true
+      });
+    }
+  }, {
+    key: "handleDemoLogin",
+    value: function handleDemoLogin(e) {
+      e.stopPropagation();
+      this.props.login({
+        name: 'Willis',
+        email: 'willis@gmail.com',
+        password: 'password'
       });
     }
   }, {
@@ -1591,8 +1844,9 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-line"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "signup-facebook"
-      }, "Continue with Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "signup-facebook",
+        onClick: this.handleDemoLogin
+      }, "Demo login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "facebook-footer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Get notified when your friends back and launch projetcs. We'll never post anything on Facebook without your permission"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Read more")))));
     }
@@ -1635,6 +1889,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     signup: function signup(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["signup"])(user));
+    },
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
     }
   };
 };
@@ -1766,8 +2023,7 @@ var ProjectsReducer = function ProjectsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state);
-  debugger;
+  var nextState = Object.assign({}, state); // debugger
 
   switch (action.type) {
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROJECTS"]:
@@ -1980,14 +2236,13 @@ var fetchProject = function fetchProject(id) {
   });
 };
 var createProject = function createProject(project) {
-  var requests = {
+  return $.ajax({
     url: '/api/projects/',
     method: 'Post',
-    data: {
-      project: project
-    }
-  };
-  return $.ajax(requests);
+    data: project,
+    processData: false,
+    contentType: false
+  });
 };
 var updateProject = function updateProject(project) {
   return $.ajax({
@@ -1995,7 +2250,9 @@ var updateProject = function updateProject(project) {
     method: 'Patch',
     data: {
       project: project
-    }
+    },
+    processData: false,
+    contentType: false
   });
 };
 var deleteProject = function deleteProject(id) {

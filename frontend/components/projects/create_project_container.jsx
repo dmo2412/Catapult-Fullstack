@@ -12,7 +12,8 @@ const mapStateToProps = ({ session, entities: { users } }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    createProject: (project) => dispatch(createProject(project)),
+    createProject: (project) => dispatch(createProject(project))
+    // fetchProjects: () => dispatch(fetchProjects())
     
 })
 

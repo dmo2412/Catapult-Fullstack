@@ -11,22 +11,23 @@ export const fetchProject = id => (
 )
 
 export const createProject = project => {
-    let requests = {
+    
+    return $.ajax({
         url: '/api/projects/',
         method: 'Post',
-        data: { project: project },
-        }
-        
-    return $.ajax(
-        requests
-    )
+        data: project,
+        processData: false,
+        contentType: false,
+    })
 }
 
 export const updateProject = project => (
     $.ajax({
         url: `/api/projects/${project.id}`,
         method: 'Patch',
-        data: {project}
+        data: {project},
+        processData: false,
+        contentType: false,
     })
 )
 

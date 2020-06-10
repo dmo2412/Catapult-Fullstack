@@ -39,7 +39,7 @@ class Api::ProjectsController < ApplicationController
     private
     def project_params
         # debugger
-        params.require(:project).permit(:title, :category_id, :creator_id, :location, :funding_goal, :description, :pledged)
+        params.require(:project).permit(:title, :category_id, :creator_id, :location, :funding_goal, :description, :pledged, :photo, :close_date)
     end
 
 end

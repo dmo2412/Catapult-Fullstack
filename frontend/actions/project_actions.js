@@ -12,7 +12,6 @@ export const receiveProjects = projects => ({
 })
 
 export const receiveProject = project => {
-    debugger
     return {
         type: RECEIVE_PROJECT,
         project
@@ -25,36 +24,37 @@ export const removeProject = projectId => ({
 })
 
 export const receiveProjectErrors = errors => ({
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_PROJECT_ERRORS,
     errors
 })
 
 export const fetchProjects = () => dispatch => {
     return ProjectAPIUtil.fetchProjects()
-    .then(projects => dispatch(receiveProjects(projects))),
-    err => dispatch(receiveProjectErrors(err.responseJSON))
+    .then(projects => dispatch(receiveProjects(projects)),
+    err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
 
-export const fetchProject = id => {
+export const fetchProject = id => dispatch => {
     return ProjectAPIUtil.fetchProject(id)
-    .then(project => dispatch(receiveProject(project))),
-    err => dispatch(receiveProjectErrors(err.responseJSON))
+    .then(project => {
+        dispatch(receiveProject(project))},
+    err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
 
 export const createProject = project => dispatch => {
     return ProjectAPIUtil.createProject(project)
-    .then(project => dispatch(receiveProject(project))),
-    err => dispatch(receiveProjectErrors(err.responseJSON))
+    .then(project => dispatch(receiveProject(project)),
+    err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
 
 export const updateProject = project => dispatch => {
     return ProjectAPIUtil.updateProject(project)
-    .then(project => dispatch(receiveProject(project))),
-    err => dispatch(receiveProjectErrors(err.responseJSON))
+    .then(project => dispatch(receiveProject(project)),
+    err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
 
 export const deleteProject = projectId => {
     return ProjectAPIUtil.deleteProject(projectId)
-    .then(() => dispatch(removeProject(projectId))),
-    err => dispatch(receiveProjectErrors(err.responseJSON))
+    .then(() => dispatch(removeProject(projectId)),
+    err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
