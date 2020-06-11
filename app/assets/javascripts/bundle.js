@@ -2044,7 +2044,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var SplashForm = /*#__PURE__*/function (_React$Component) {
   _inherits(SplashForm, _React$Component);
 
@@ -2112,17 +2111,22 @@ var SplashForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "reversing",
+    value: function reversing() {
+      var projects = this.props.projects;
+      var first_four = arr.slice(4, 8); // let second_four = arr.reverse().slice(8,12)
+      // let third_four = arr.reverse().slice(12,16)
+      // let restArr = projects.reverse();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var projects = this.props.projects;
-      var arr = projects.reverse();
+      var projects = this.props.projects; // const arr = projects.reverse()
+
+      var arr = projects.slice();
       var first_four = arr.slice(4, 8);
       var second_four = arr.reverse().slice(8, 12);
-      var third_four = arr.reverse().slice(12, 16); // debugger
-      // const project = projects[0]
-      // const projects = this.props.projects.map(project => {
-      //      project={project} key={project.id} />
-      // });
+      var third_four = arr.reverse().slice(12, 16); // let restArr = projects.reverse();
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "spacing"
@@ -2134,7 +2138,7 @@ var SplashForm = /*#__PURE__*/function (_React$Component) {
         className: "break"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "most-recent-caption"
-      }, "MOST RECENT PROJECT"), projects.slice(0, 1).map(function (project) {
+      }, "MOST RECENT PROJECT"), projects.reverse().slice(0, 1).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_first_project_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           project: project,
           key: project.id

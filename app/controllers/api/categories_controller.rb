@@ -7,7 +7,7 @@ class Api::CategoriesController < ApplicationController
 
     def show
         @category = Category.find_by(id: params[:id])
-        @projects = category.projects 
+        @projects = @category.projects 
         render '/api/projects/index.json.jbuilder'
     end
 

@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import FirstProjectIndexItem from './first_project_index_item';
 import ThreeIndexItems from './three_index_items';
-import RestProjectIndexItems from './rest-project-index-item';
 import RestProjectIndexItem from './rest-project-index-item';
 
 class SplashForm extends React.Component {
@@ -50,27 +49,34 @@ class SplashForm extends React.Component {
         }
     }
 
+    reversing() {
+        const {projects} = this.props;
+        let first_four = arr.slice(4,8)
+        // let second_four = arr.reverse().slice(8,12)
+        // let third_four = arr.reverse().slice(12,16)
+        // let restArr = projects.reverse();
+
+    }
+    
 
 
     render() {
         const {projects} = this.props;
-        let arr = projects.reverse()
+        // const arr = projects.reverse()
+        const arr = projects.slice()
         let first_four = arr.slice(4,8)
         let second_four = arr.reverse().slice(8,12)
         let third_four = arr.reverse().slice(12,16)
-        // debugger
-        // const project = projects[0]
-        // const projects = this.props.projects.map(project => {
-        //      project={project} key={project.id} />
-        // });
+        // let restArr = projects.reverse();
 
+        
         return (
             <div className='spacing'>
                 <div className='home-body'>
                     <div className='recent-project'>
                     <p className='break'></p>
                     <h2 className='most-recent-caption'>MOST RECENT PROJECT</h2>
-                        {projects.slice(0,1).map((project) => (
+                        {projects.reverse().slice(0,1).map((project) => (
                             <FirstProjectIndexItem project={project} key={project.id}/>
                             ))}
                     </div>

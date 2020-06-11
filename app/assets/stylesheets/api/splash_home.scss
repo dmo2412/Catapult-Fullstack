@@ -107,6 +107,7 @@
     margin-left: 170px;
     text-decoration: none;
     color: black;
+    font-size: 18px;
 }
 
 .location2 {
@@ -195,6 +196,16 @@
 
 .slide-projects {
     // display: inline-block;
+}
+
+.title-rest {
+    text-decoration: none;
+    color: black;
+}
+
+.title-rest:hover {
+    color: #009E74;
+    text-decoration: underline;
 }
 
 // .sliding-pics {
