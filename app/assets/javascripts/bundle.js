@@ -1609,7 +1609,7 @@ var UpdateProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "show-back-project"
       }, "Back this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "days-left"
-      }, "All or nothing. This project will only be funded if it reaches its goal by ", this.props.project.close_date)));
+      }, "All or nothing. This project will only be funded if it reaches its goal by: ", this.props.project.close_date)));
     }
   }]);
 

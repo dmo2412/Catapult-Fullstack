@@ -40,7 +40,7 @@ class UpdateProjectForm extends React.Component {
                     <p className='num-backers'>851</p>
                     <p className='backers-text'>backers</p>
                     <button className='show-back-project'>Back this project</button> 
-                    <span className='days-left'>All or nothing. This project will only be funded if it reaches its goal by {this.props.project.close_date}</span>
+                    <span className='days-left'>All or nothing. This project will only be funded if it reaches its goal by: {this.props.project.close_date}</span>
                 </div>
                     
 
