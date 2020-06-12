@@ -9,7 +9,6 @@ Catapult is a clone of the website Kickstarter. March 16, 2020 App Academy Cohor
 * Splash/Home page that shows a list of various projects with the ability to click to navigate different projects
 * Create a new project with an image using AWS
     * All one page with CSS used to appear as 4 pages
-<<<<<<< HEAD
     * Code changing the values in order to enable class name change for CSS purposes
     <button className='next-project-idea' type='submit' onClick={this.plusOne(this.state.val)} >Next: Project idea</button>
 <form className={this.state.val === 2 ? 'enter-description' : 'enter-description-hide'}>
@@ -21,9 +20,6 @@ Catapult is a clone of the website Kickstarter. March 16, 2020 App Academy Cohor
         <button type='submit' className={this.state.textStatus && this.state.titleStatus ? 'next-location' : 'next-location-unready'} onClick={this.plusOne(this.state.val)}>Next: Location</button>
         <button className='back-to-category' onClick={this.minusOne(this.state.val)}>Back to category</button>
 </form>
-=======
-   http://www.giphy.com/gifs/joqrAsPQ1CqNcbOAIY
->>>>>>> 3f79fcd3c5fa360d01a69b5623be91a5fff483c6
 * Category page that will show all different projects of that category
 
 # Technologies Used
