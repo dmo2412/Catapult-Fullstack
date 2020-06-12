@@ -1,5 +1,5 @@
 .splash-image1 {
-    height: 300px;
+    height: 500px;
     width: 80%;
     margin-left: 50px;
     margin-bottom: 10px;
@@ -25,6 +25,9 @@
     width: 80%;
     margin-left: 50px;
     
+}
+.des-rest {
+   width: 300px;
 }
 
 .home-body {
@@ -52,8 +55,12 @@
     position: relative;
     padding-bottom: 50px;
     margin-top: -70px;
-    height: 700px;
+    height: 500px;
 }
+
+// .right-projects {
+//     margin-top: 100px;
+// }
 
 .first-proj-container {
     // border-right: 1px solid grey;
@@ -82,7 +89,7 @@
 
 .side3 {
     margin-left:55%;
-    margin-top: -760px;
+    margin-top: -550px;
     width: 35%;
     margin-bottom: 150px;
     border-left: 1px solid rgba(128, 128, 128, 0.283);

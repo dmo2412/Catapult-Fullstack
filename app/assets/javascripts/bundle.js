@@ -527,6 +527,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _category_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category_container */ "./frontend/components/categories/category_container.jsx");
+/* harmony import */ var _category_navbar_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./category_navbar_container */ "./frontend/components/categories/category_navbar_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -554,19 +555,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CategoryForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CategoryForm, _React$Component);
 
   var _super = _createSuper(CategoryForm);
 
   function CategoryForm(props) {
-    var _this;
-
     _classCallCheck(this, CategoryForm);
 
-    _this = _super.call(this, props);
-    _this.state = _this.props.state;
-    return _this;
+    return _super.call(this, props); // this.state = {
+    //     num: 1
+    // }
   }
 
   _createClass(CategoryForm, [{
@@ -575,7 +575,10 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
       this.props.fetchProjects();
       this.props.fetchCategories();
       this.props.fetchCategory(this.props.match.params.id);
-    } // handleProjectCategory(num) {
+    }
+  }, {
+    key: "handleNum",
+    value: function handleNum(num) {} // handleProjectCategory(num) {
     //     return e => {
     //         this.setState({category_id: num})
     //     }
@@ -589,17 +592,47 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      // let num = 0;
       var _this$props = this.props,
           categories = _this$props.categories,
-          projects = _this$props.projects; // debugger
+          projects = _this$props.projects; // let first = categories.slice(0,1)
+      // if (num === 2) {
+      //     // let first = categories.slice(0,1);
+      //     Object.freeze(first)
+      // }
+      // num += 1;
+      // debugger
+
+      var cats = Object.assign([], categories);
+      var projs = Object.assign([], projects); // debugger
+      // debugger
       // let projs = projects.filter(project => {
       //     return project.category_id === categories.id 
       // })
       // debugger
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
-        className: "category-title"
-      }, categories.title);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "entire-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "projs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
+        className: "cat-rec-proj"
+      }, "RECENT PROJECTS"), categories.map(function (project, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+          to: "/projects/".concat(project.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          className: "cat-photo",
+          src: project.photo_url
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "cat-title"
+        }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "cat-description"
+        }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "cat-funding"
+        }, "Funding Goal: ", project.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "cat-location"
+        }, "\uD83D\uDCCC", project.location));
+      })));
     }
   }]);
 

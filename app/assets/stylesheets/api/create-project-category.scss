@@ -4,7 +4,6 @@
     margin-top: 0px;
     background-color: white;
     height: 580px;
-    // border-top: 1px solid grey;
     width: 100%;
 }
 
@@ -12,7 +11,6 @@
     margin-top: 0px;
     background-color: white;
     height: 660px;
-    // border-top: 1px solid grey;
     width: 100%;
 }
 
@@ -26,7 +24,6 @@
     width: 50%;
     height: 60px;
     background-color:white;
-    // z-index: 2;
     margin-left: 25%;
     font-size: 20px;
     background-image: linear-gradient(bottom);
@@ -53,7 +50,6 @@
     width: 50%;
     height: 60px;
     background-color:white;
-    // z-index: 2;
     margin-left: 27%;
     font-size: 20px;
     background-image: linear-gradient(bottom);
@@ -79,7 +75,6 @@
 
 .next-project-idea {
     position: relative;
-    // top: 160px;
     left: 59.5%;
     height: 40px;
     width: 180px;
@@ -172,12 +167,10 @@
 
 .next-location {
     position: relative;
-    // top: 160px;
     left: 66%;
     height: 40px;
     width: 150px;
     background-color: #282828;
-    // background-color: green;
     color: white;
     font-size: 15px;
     font-weight: 10;
@@ -185,7 +178,6 @@
 }
 .next-location-unready {
     position: relative;
-    // top: 160px;
     left: 66%;
     height: 40px;
     width: 150px;
@@ -196,16 +188,7 @@
     border: none;
 }
 
-// .checkboxes {
-//     left: 20%;
-//     // position: relative;
-//     vertical-align: auto;
-// }
-
-
-
 .submit-button {
-    // margin-top: 100px;
     margin-top: 10px;
     margin-left: 748px;
     width: 150px;
@@ -233,7 +216,6 @@
     width: 580px;
     margin-left: 28%;
     padding-top: 170px;
-    // padding-bottom:400px;
 }
 
 .checkboxes {
@@ -243,7 +225,6 @@
 }
 
 .first-checkbox {
-    // position: absolute;
     margin-top: 10px;
 }
 .second-checkbox {
@@ -265,11 +246,9 @@
 }
 
 .funding-input {
-    // margin-top: 20px;
     width: 25%;
     height: 35px;
     background-color:white;
-    // z-index: 2;
     margin-left: 27%;
     font-size: 20px;
     background-image: linear-gradient(bottom);
@@ -291,8 +270,6 @@
     width: 25%;
     height: 37px;
     background-color:white;
-    // z-index: 2;
-    // margin-left: 27%;
     font-size: 20px;
     background-image: linear-gradient(bottom);
     border: 1px solid rgba(211, 211, 211, 0.404);
@@ -307,21 +284,17 @@
     width: 580px;
     margin-left: 28%;
     padding-top: 170px;
-    // padding-bottom:400px;
 }
 
 .continue-to-image {
    position: relative;
-    // top: 160px;
     left: 66%;
     height: 40px;
     width: 150px;
     background-color: #282828;
-    // background-color: green;
     color: white;
     font-size: 15px;
     font-weight: 10;
-    // border: none;
 }
 
 .back-to-location {
@@ -356,15 +329,12 @@
 }
 
 .create-project-button {
-    // position: fixed;
     display: flex;
     position: relative;
-    // top: 160px;
     left: 66%;
     height: 40px;
     width: 150px;
     background-color: #282828;
-    // background-color: green;
     color: white;
     font-size: 15px;
     font-weight: 10;
