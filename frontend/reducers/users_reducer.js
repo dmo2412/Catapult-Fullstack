@@ -1,4 +1,3 @@
-// receive_user, receive_current_user, receive_users
 import {RECEIVE_USERS, RECEIVE_USER} from '../actions/user_actions';
 import {RECEIVE_CURRENT_USER} from '../actions/session_actions'; 
 

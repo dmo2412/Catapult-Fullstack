@@ -12,8 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     login: user => dispatch(login(user)),
     logout: () => dispatch(logout())
-    //coming back later to do explore functionality because leads to category page
-    //coming back later to do start a project functionality because leads to project page
+    
     
 })
 

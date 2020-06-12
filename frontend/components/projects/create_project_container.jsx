@@ -7,13 +7,10 @@ const mapStateToProps = ({ session, entities: { users } }) => ({
     currentUser: users[session.id],
     pathName: '/projects/new'
         
-    // },
-    // formType: 'Create new project'
 })
 
 const mapDispatchToProps = dispatch => ({
     createProject: (project) => dispatch(createProject(project))
-    // fetchProjects: () => dispatch(fetchProjects())
     
 })
 

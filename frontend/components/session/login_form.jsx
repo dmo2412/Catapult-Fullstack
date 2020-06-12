@@ -17,7 +17,6 @@ class LoginForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({} , this.state)
         this.props.login(user);
-        // <Redirect push to='/signup'/>
     }
 
     handleDemoLogin(e) {
@@ -65,4 +64,3 @@ class LoginForm extends React.Component {
 }
 
 export default LoginForm;
-// onSubmit = { this.handleSubmit }

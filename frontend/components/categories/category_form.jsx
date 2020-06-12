@@ -1,4 +1,3 @@
-// import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import React from 'react';
 import category_container from './category_container';
@@ -7,9 +6,7 @@ import CategoryFormIndexItem from './category_navbar_container';
 class CategoryForm extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     num: 1
-        // }
+       
     }
 
     componentDidMount() {
@@ -22,36 +19,11 @@ class CategoryForm extends React.Component {
 
     }
 
-    // handleProjectCategory(num) {
-    //     return e => {
-    //         this.setState({category_id: num})
-    //     }
-    // }
-
-    // handleNum(e) {
-    //     return e => {
-    //         this.setState({num: e.currentTarget.value})
-    //     }
-    // }
 
     render() {
-        // let num = 0;
         const {categories, projects} = this.props;
-        // let first = categories.slice(0,1)
-        // if (num === 2) {
-        //     // let first = categories.slice(0,1);
-        //     Object.freeze(first)
-        // }
-        // num += 1;
-        // debugger
         let cats = Object.assign([], categories);
         let projs = Object.assign([], projects);
-        // debugger
-        // debugger
-        // let projs = projects.filter(project => {
-        //     return project.category_id === categories.id 
-        // })
-        // debugger
         return (
             <div className='entire-form'>
             <div className='projs'>
@@ -75,6 +47,3 @@ class CategoryForm extends React.Component {
     }
     
     export default CategoryForm;
-    // <div className='category-page'>
-
-    //* </div> */

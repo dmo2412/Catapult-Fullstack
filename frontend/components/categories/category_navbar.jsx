@@ -5,8 +5,6 @@ import CategoryIndexItems from './category_index_items';
 class CategoryNav extends React.Component {
     constructor(props) {
         super(props)
-        // this.state = this.state.props;
-        // debugger
     }
 
     componentDidMount() {
@@ -18,10 +16,7 @@ class CategoryNav extends React.Component {
     }
 
     render() {
-
-
         const { categories } = this.props;
-        // debugger
         return (
             <nav className='category-nav-names'>
                 

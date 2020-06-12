@@ -3,10 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 const FirstProjectIndexItem = ({project, user}) => {
 
-    // const handleName = () => {
-    //     let creator = project.creator_id
-    //     return creator
-    // }
     let creator = project.creator_id
     return (
         <ul className='first-proj-container'>
@@ -17,8 +13,6 @@ const FirstProjectIndexItem = ({project, user}) => {
             <p className='des1'>{project.description}</p>
             <br/>
             <p className='location1'>📌{project.location}</p>
-            {/* <p>{user.creator_id}</p> */}
-            {/* <Link to={`/projects/${project.id}`}>{project.photo_url}</Link> */}
         </ul>
     )
 }

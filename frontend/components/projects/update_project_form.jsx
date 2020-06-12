@@ -4,12 +4,8 @@ import React from 'react';
 class UpdateProjectForm extends React.Component {
     constructor(props) {
         super(props);
-        // debugger
         this.state = props.project; 
         this.handleTimeLeft = this.handleTimeLeft.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleImage = this.handleImage.bind(this);
-        // this.handleFile = this.handleFile.bind(this);
     }
 
     componentDidMount() {
@@ -27,8 +23,6 @@ class UpdateProjectForm extends React.Component {
 
 
     render() {
-        // const project = this.props.project;
-        // let days_remaining = handleTimeLeft(this.props.project.close_date)
         if (!this.props.project) {
             return null
         }

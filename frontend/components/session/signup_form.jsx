@@ -15,7 +15,6 @@ class SignupForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemoLogin = this.handleDemoLogin.bind(this);
-        // this.toggleEmail = this.toggleEmail.bind(this);
     }
 
     handleSubmit(e) {
@@ -85,9 +84,7 @@ class SignupForm extends React.Component {
                         <input type="checkbox" className="weekly-email" />Send me a weekly mix of handpicked projects,
                         plus occasional Catapult news
                         <p> </p>
-                            {/* <p className='email-text'> Send me a weekly mix of handpicked projects, plus occasional Catapult news </p> */}
                         <input type="checkbox" className="contact" />Contact me about participating in Catapult research
-                        {/* <p className='contact-text'>Contact me about participating in Catapult research</p> */}
                         <br/>
                         <button onClick={this.signup} onSubmit={this.handleSubmit} className='create-account'>Create Account</button>
                         <div className='signup-footer'>
@@ -95,7 +92,6 @@ class SignupForm extends React.Component {
                             <p className='read-more'>Read more</p>
                         </div>
                         <div className='left-line'></div>
-                        {/* <div className='text-strike'>or</div> */}
                         <div className='right-line'></div>
                         <button className='signup-facebook' onClick={this.handleDemoLogin}>Demo login</button>
                         <div className='facebook-footer'>

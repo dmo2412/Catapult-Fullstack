@@ -7,7 +7,6 @@ import { Route, Redirect, NavLink } from 'react-router-dom';
 class CreateProjectForm extends React.Component {
     constructor(props) {
         super(props);
-        // debugger
         this.state = {
             title: "",
             category_id: "",
@@ -24,18 +23,13 @@ class CreateProjectForm extends React.Component {
             textStatus: false,
             titleStatus: false
         }
-        // debugger 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCategoryDropdown = this.handleCategoryDropdown.bind(this);
         this.handleCatClick = this.handleCatClick.bind(this);
-        // this.handleRedirect = this.handleRedirect.bind(this);
         this.handleImage = this.handleImage.bind(this);
 
     }
 
-    // componentDidMount() {
-    //     // this.props.fetchProjects()
-    // }
     
     handleSubmit(e) {
         e.preventDefault();
@@ -100,10 +94,8 @@ class CreateProjectForm extends React.Component {
     }
 
     plusOne(val) {
-        // debugger
         return e => {
             this.setState({ val: val + 1 })
-            // debugger
         }
     }
 
@@ -144,15 +136,8 @@ class CreateProjectForm extends React.Component {
     }
 
 
-    // handleFile(e) {
-    //     this.setState({
-    //         photo_url: e.currentTarget.files[0]
-    //     })
-    // }
-
     render() {
         const preview = this.state.photo_url ? <img className='preview' src={this.state.photo_url} /> : null;
-        // console.log(this.state)
         let clickedDropdown = false;
 
         let num = 1;
@@ -167,16 +152,15 @@ class CreateProjectForm extends React.Component {
                     <select className={num === 1 ? 'cat-dropdown' : 'cat-dropdown-hide'} placeholder="Select your category"
                         onChange={this.update('category_id')} value={this.state.category_id}
                     >
-                        {/* Make sure to change values back to 1-8 when pushing to heroku */}
                         <option>Select your category</option>
-                        <option onClick={this.handleCatClick} value='47' id='47' >Arts</option>
-                        <option onClick={this.handleCatClick} value='48' id='48' >Comics and Illustration</option>
-                        <option onClick={this.handleCatClick} value='49' id='49' >Design and Tech</option>
-                        <option onClick={this.handleCatClick} value='50' id='50'>Film</option>
-                        <option onClick={this.handleCatClick} value='51' id='51'>Food and Craft</option>
-                        <option onClick={this.handleCatClick} value='52' id='52'>Games</option>
-                        <option onClick={this.handleCatClick} value='53' id='53'>Music</option>
-                        <option onClick={this.handleCatClick} value='54' id='54'>Publishing</option>
+                        <option onClick={this.handleCatClick} value='1' id='1' >Arts</option>
+                        <option onClick={this.handleCatClick} value='2' id='2' >Comics and Illustration</option>
+                        <option onClick={this.handleCatClick} value='3' id='3' >Design and Tech</option>
+                        <option onClick={this.handleCatClick} value='4' id='4'>Film</option>
+                        <option onClick={this.handleCatClick} value='5' id='5'>Food and Craft</option>
+                        <option onClick={this.handleCatClick} value='6' id='6'>Games</option>
+                        <option onClick={this.handleCatClick} value='7' id='7'>Music</option>
+                        <option onClick={this.handleCatClick} value='8' id='8'>Publishing</option>
                     </select>
                     <p className='line'></p>
                     <button className='next-project-idea' type='submit' onClick={this.plusOne(this.state.val)} >Next: Project idea</button>
@@ -245,4 +229,3 @@ class CreateProjectForm extends React.Component {
 
 
 export default (CreateProjectForm);
-// onClick={this.plusOne(this.state.val)}

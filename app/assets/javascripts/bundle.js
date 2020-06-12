@@ -373,9 +373,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  var root = document.getElementById('root'); // let store;
-
-  var preloadedState; // debugger
+  var root = document.getElementById('root');
+  var preloadedState;
 
   if (window.currentUser) {
     preloadedState = {
@@ -430,11 +429,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import ProjectShowContainer from './projects/project_show_container'
 
 
 
- // import CategoryNav from './navbar/category_nav';
+
 
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_categories_category_navbar_container__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -487,13 +485,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  //     category: 
-  // debugger
   return {
     category: state.entities.categories[ownProps.match.params.id],
     categories: Object.values(state.entities.categories)
-  }; // category: state.entities.categories[ownProps.match.params.categoryId]
-  //     // projects: state.entities.projects
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -550,7 +545,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// import { connect } from 'react-redux';
 
 
 
@@ -564,9 +558,7 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
   function CategoryForm(props) {
     _classCallCheck(this, CategoryForm);
 
-    return _super.call(this, props); // this.state = {
-    //     num: 1
-    // }
+    return _super.call(this, props);
   }
 
   _createClass(CategoryForm, [{
@@ -578,39 +570,15 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleNum",
-    value: function handleNum(num) {} // handleProjectCategory(num) {
-    //     return e => {
-    //         this.setState({category_id: num})
-    //     }
-    // }
-    // handleNum(e) {
-    //     return e => {
-    //         this.setState({num: e.currentTarget.value})
-    //     }
-    // }
-
+    value: function handleNum(num) {}
   }, {
     key: "render",
     value: function render() {
-      // let num = 0;
       var _this$props = this.props,
           categories = _this$props.categories,
-          projects = _this$props.projects; // let first = categories.slice(0,1)
-      // if (num === 2) {
-      //     // let first = categories.slice(0,1);
-      //     Object.freeze(first)
-      // }
-      // num += 1;
-      // debugger
-
+          projects = _this$props.projects;
       var cats = Object.assign([], categories);
-      var projs = Object.assign([], projects); // debugger
-      // debugger
-      // let projs = projects.filter(project => {
-      //     return project.category_id === categories.id 
-      // })
-      // debugger
-
+      var projs = Object.assign([], projects);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "entire-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -639,8 +607,7 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
   return CategoryForm;
 }(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CategoryForm); // <div className='category-page'>
-//* </div> */
+/* harmony default export */ __webpack_exports__["default"] = (CategoryForm);
 
 /***/ }),
 
@@ -720,8 +687,7 @@ var CategoryNav = /*#__PURE__*/function (_React$Component) {
   function CategoryNav(props) {
     _classCallCheck(this, CategoryNav);
 
-    return _super.call(this, props); // this.state = this.state.props;
-    // debugger
+    return _super.call(this, props);
   }
 
   _createClass(CategoryNav, [{
@@ -737,8 +703,7 @@ var CategoryNav = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var categories = this.props.categories; // debugger
-
+      var categories = this.props.categories;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "category-nav-names"
       }, categories.map(function (category) {
@@ -918,9 +883,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
-    } //coming back later to do explore functionality because leads to category page
-    //coming back later to do start a project functionality because leads to project page
-
+    }
   };
 };
 
@@ -1062,9 +1025,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
       users = _ref.entities.users;
   return {
     currentUser: users[session.id],
-    pathName: '/projects/new' // },
-    // formType: 'Create new project'
-
+    pathName: '/projects/new'
   };
 };
 
@@ -1072,8 +1033,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createProject: function createProject(project) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_3__["createProject"])(project));
-    } // fetchProjects: () => dispatch(fetchProjects())
-
+    }
   };
 };
 
@@ -1132,8 +1092,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, CreateProjectForm);
 
-    _this = _super.call(this, props); // debugger
-
+    _this = _super.call(this, props);
     _this.state = {
       title: "",
       category_id: "",
@@ -1149,18 +1108,13 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       val: 1,
       textStatus: false,
       titleStatus: false
-    }; // debugger 
-
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleCategoryDropdown = _this.handleCategoryDropdown.bind(_assertThisInitialized(_this));
-    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this)); // this.handleRedirect = this.handleRedirect.bind(this);
-
+    _this.handleCatClick = _this.handleCatClick.bind(_assertThisInitialized(_this));
     _this.handleImage = _this.handleImage.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     // this.props.fetchProjects()
-  // }
-
+  }
 
   _createClass(CreateProjectForm, [{
     key: "handleSubmit",
@@ -1254,12 +1208,10 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
     value: function plusOne(val) {
       var _this7 = this;
 
-      // debugger
       return function (e) {
         _this7.setState({
           val: val + 1
-        }); // debugger
-
+        });
       };
     }
   }, {
@@ -1321,20 +1273,14 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         _this11.setState(_defineProperty({}, field, e.currentTarget.value));
       };
-    } // handleFile(e) {
-    //     this.setState({
-    //         photo_url: e.currentTarget.files[0]
-    //     })
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var preview = this.state.photo_url ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "preview",
         src: this.state.photo_url
-      }) : null; // console.log(this.state)
-
+      }) : null;
       var clickedDropdown = false;
       var num = 1;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1354,36 +1300,36 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.category_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "47",
-        id: "47"
+        value: "1",
+        id: "1"
       }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "48",
-        id: "48"
+        value: "2",
+        id: "2"
       }, "Comics and Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "49",
-        id: "49"
+        value: "3",
+        id: "3"
       }, "Design and Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "50",
-        id: "50"
+        value: "4",
+        id: "4"
       }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "51",
-        id: "51"
+        value: "5",
+        id: "5"
       }, "Food and Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "52",
-        id: "52"
+        value: "6",
+        id: "6"
       }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "53",
-        id: "53"
+        value: "7",
+        id: "7"
       }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "54",
-        id: "54"
+        value: "8",
+        id: "8"
       }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "line"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1518,7 +1464,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
   return CreateProjectForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CreateProjectForm); // onClick={this.plusOne(this.state.val)}
+/* harmony default export */ __webpack_exports__["default"] = (CreateProjectForm);
 
 /***/ }),
 
@@ -1543,7 +1489,6 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     project: state.entities.projects[ownProps.match.params.projectId],
-    // project_id: state.entities.projects[ownProps.match.params.projectId.id],
     currentUser: state.entities.users[state.session.id],
     pathName: '/projects/:projectId'
   };
@@ -1556,12 +1501,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updateProject: function updateProject(project) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(project));
-    } // fetchUser: 
-
+    }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_update_project_form__WEBPACK_IMPORTED_MODULE_1__["default"])); // Come back for users name, category, pledged
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_update_project_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -1610,13 +1554,9 @@ var UpdateProjectForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, UpdateProjectForm);
 
-    _this = _super.call(this, props); // debugger
-
+    _this = _super.call(this, props);
     _this.state = props.project;
-    _this.handleTimeLeft = _this.handleTimeLeft.bind(_assertThisInitialized(_this)); // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleImage = this.handleImage.bind(this);
-    // this.handleFile = this.handleFile.bind(this);
-
+    _this.handleTimeLeft = _this.handleTimeLeft.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1636,8 +1576,6 @@ var UpdateProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // const project = this.props.project;
-      // let days_remaining = handleTimeLeft(this.props.project.close_date)
       if (!this.props.project) {
         return null;
       }
@@ -1776,7 +1714,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
-      this.props.login(user); // <Redirect push to='/signup'/>
+      this.props.login(user);
     }
   }, {
     key: "handleDemoLogin",
@@ -1847,7 +1785,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   return LoginForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (LoginForm); // onSubmit = { this.handleSubmit }
+/* harmony default export */ __webpack_exports__["default"] = (LoginForm);
 
 /***/ }),
 
@@ -1882,8 +1820,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
-    } // receiveErrors: (errors) => dispatch(receiveErrors(errors))
-
+    }
   };
 };
 
@@ -1951,8 +1888,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       clickedPassword: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleDemoLogin = _this.handleDemoLogin.bind(_assertThisInitialized(_this)); // this.toggleEmail = this.toggleEmail.bind(this);
-
+    _this.handleDemoLogin = _this.handleDemoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2160,10 +2096,6 @@ __webpack_require__.r(__webpack_exports__);
 var FirstProjectIndexItem = function FirstProjectIndexItem(_ref) {
   var project = _ref.project,
       user = _ref.user;
-  // const handleName = () => {
-  //     let creator = project.creator_id
-  //     return creator
-  // }
   var creator = project.creator_id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "first-proj-container"
@@ -2319,7 +2251,7 @@ var SplashForm = /*#__PURE__*/function (_React$Component) {
   _createClass(SplashForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchProjects(); // debugger
+      this.props.fetchProjects();
     }
   }, {
     key: "plusOne",
@@ -2513,14 +2445,13 @@ __webpack_require__.r(__webpack_exports__);
 var CategoriesReducer = function CategoriesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state); // let nextState = Object.assign({}, state);
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_CATEGORIES"]:
       return action.categories;
 
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORY"]:
-      // return merge({}, {[action.category.id]: action.category})
       return action.category.id = action.category;
 
     default:
@@ -2579,7 +2510,7 @@ var ProjectsReducer = function ProjectsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state); // debugger
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROJECTS"]:
@@ -2617,7 +2548,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import SessionReducer from './session_reducer';
 
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -2708,7 +2638,6 @@ var SessionReducer = function SessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-// receive_user, receive_current_user, receive_users
 
 
 
@@ -2967,13 +2896,7 @@ var fetchUser = function fetchUser() {
     url: "api/users/".concat(id),
     method: 'GET'
   });
-}; // export const signup = user => (
-//     $.ajax({
-//         url: '/api/users',
-//         method: 'POST',
-//         data: {user}
-//     })
-// )
+};
 
 /***/ }),
 

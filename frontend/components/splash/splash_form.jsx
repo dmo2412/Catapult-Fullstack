@@ -14,8 +14,7 @@ class SplashForm extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchProjects()
-        // debugger
+        this.props.fetchProjects();
     }
 
     plusOne(page) {

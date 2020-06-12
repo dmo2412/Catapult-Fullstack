@@ -6,9 +6,7 @@ import { Route, Redirect, NavLink } from 'react-router-dom';
 class FinishProjectForm extends React.Component {
     constructor(props) {
         super(props);
-        // debugger
         this.state = props.project;
-        // debugger
     }
 
     componentDidMount() {
@@ -16,13 +14,11 @@ class FinishProjectForm extends React.Component {
     }
 
     render() {
-        // debugger
         if (!this.props.project) {
             return null
         }
         return (
             <ul className='uls'>
-                {/* <li>{this.props.project.title}</li> */}
             </ul>
         )
     }

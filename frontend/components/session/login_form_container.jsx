@@ -10,8 +10,7 @@ const mapStateToProps = ({errors}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    login: (user) => dispatch(login(user)),
-    // receiveErrors: (errors) => dispatch(receiveErrors(errors))
+    login: (user) => dispatch(login(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
