@@ -21,5 +21,3 @@ category5 = Category.create([{name: 'Food & Craft'}])
 category6 = Category.create([{name: 'Games'}])
 category7 = Category.create([{name: 'Music'}])
 category8 = Category.create([{name: 'Publishing'}])
-
-backing1 = Backing.create([{backer_id: 3}, {amount_pledged: 50000}, {project_id: 2}])
