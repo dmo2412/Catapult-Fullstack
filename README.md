@@ -1,5 +1,26 @@
 # README
 
+# CATAPULT
+Catapult is a clone of the website Kickstarter.
+March 16, 2020 App Academy Cohort
+
+# Features
+* User Authentication
+* Create a new user
+* Sign in and sign out, as well as a demo login
+* Splash/Home page that shows a list of various projects with the ability to click to navigate different projects
+* Create a new project with an image using AWS
+* Category page that will show all different projects of that category
+
+
+
+
+
+
+
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
