@@ -49,25 +49,14 @@ class SplashForm extends React.Component {
         }
     }
 
-    reversing() {
-        const {projects} = this.props;
-        let first_four = arr.slice(4,8)
-        // let second_four = arr.reverse().slice(8,12)
-        // let third_four = arr.reverse().slice(12,16)
-        // let restArr = projects.reverse();
-
-    }
-    
 
 
     render() {
         const {projects} = this.props;
-        // const arr = projects.reverse()
-        const arr = projects.slice()
+        const arr = Object.assign([], projects).reverse();
         let first_four = arr.slice(4,8)
-        let second_four = arr.reverse().slice(8,12)
-        let third_four = arr.reverse().slice(12,16)
-        // let restArr = projects.reverse();
+        let second_four = arr.slice(8,12)
+        let third_four = arr.slice(12,16)
 
         
         return (
@@ -76,13 +65,13 @@ class SplashForm extends React.Component {
                     <div className='recent-project'>
                     <p className='break'></p>
                     <h2 className='most-recent-caption'>MOST RECENT PROJECT</h2>
-                        {projects.reverse().slice(0,1).map((project) => (
+                        {arr.slice(0,1).map((project) => (
                             <FirstProjectIndexItem project={project} key={project.id}/>
                             ))}
                     </div>
                     <div className='side3'>
                         <h2 className='recommended-projs'>RECOMMENDED PROJECTS</h2>
-                        {projects.slice(1,4).map((project) => (
+                        {arr.slice(1,4).map((project) => (
                             <ThreeIndexItems  project={project} key={project.id}/>
                             ))}
                     </div>

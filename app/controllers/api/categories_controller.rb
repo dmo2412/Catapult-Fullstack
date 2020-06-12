@@ -6,7 +6,7 @@ class Api::CategoriesController < ApplicationController
     end
 
     def show
-        @category = Category.find_by(id: params[:id])
+        @category = Category.find(params[:id])
         @projects = @category.projects 
         render '/api/projects/index.json.jbuilder'
     end

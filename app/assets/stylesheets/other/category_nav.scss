@@ -1,0 +1,30 @@
+.category-nav-names {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    // border-top: 1px solid grey;
+    border-top: 1px solid rgba(128, 128, 128, 0.283);
+    // width: 55%;
+}
+
+.nav-cats {
+    text-decoration: none;
+    color: black;
+}
+
+.category-names-nav {
+    margin-left: 55px;
+    text-decoration: none;
+    color: grey;
+}
+
+.category-names-nav:hover {
+    color: #009E74;
+    text-decoration: underline;
+}
+
+.nav-cats li {
+    margin-left: 500px;
+}

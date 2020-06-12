@@ -28,9 +28,16 @@
     text-decoration: none;
     color: black;
     position: relative;
-    padding-left: 2%;
+    padding-left: 1.4%;
     // margin-top: 100px;
     padding-bottom: 15px;
+    width: 100px;
+    border: none;
+    content: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
 }
 .nav-explore:hover {
     // background-color: red;
