@@ -576,8 +576,9 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           categories = _this$props.categories,
-          projects = _this$props.projects;
-      var cats = Object.assign([], categories);
+          projects = _this$props.projects; // let cats = Object.assign([], categories);
+      // let cats = projects.slice(0,-2)
+
       var projs = Object.assign([], projects);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "entire-form"
@@ -585,21 +586,21 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
         className: "projs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "cat-rec-proj"
-      }, "RECENT PROJECTS"), categories.map(function (project, idx) {
+      }, "RECENT PROJECTS"), categories.slice(0, -1).map(function (cats, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
-          to: "/projects/".concat(project.id)
+          to: "/projects/".concat(cats.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "cat-photo",
-          src: project.photo_url
+          src: cats.photo_url
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-title"
-        }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, cats.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-description"
-        }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, cats.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-funding"
-        }, "Funding Goal: ", project.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, "Funding Goal: ", cats.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-location"
-        }, "\uD83D\uDCCC", project.location));
+        }, "\uD83D\uDCCC", cats.location));
       })));
     }
   }]);

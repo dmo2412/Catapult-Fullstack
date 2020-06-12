@@ -22,20 +22,21 @@ class CategoryForm extends React.Component {
 
     render() {
         const {categories, projects} = this.props;
-        let cats = Object.assign([], categories);
+        // let cats = Object.assign([], categories);
+        // let cats = projects.slice(0,-2)
         let projs = Object.assign([], projects);
         return (
             <div className='entire-form'>
             <div className='projs'>
                 
                 <h1 className='cat-rec-proj'>RECENT PROJECTS</h1>
-                {categories.map((project, idx) => (
+                {categories.slice(0,-1).map((cats, idx) => (
                     <span>
-                        <Link to={`/projects/${project.id}`}><img className='cat-photo' src={project.photo_url} /></Link>
-                        <p className='cat-title' >{project.title}</p>
-                        <p className='cat-description'>{project.description}</p>
-                        <p className='cat-funding'>Funding Goal: {project.funding_goal}</p>
-                        <p className='cat-location'>📌{project.location}</p>
+                        <Link to={`/projects/${cats.id}`}><img className='cat-photo' src={cats.photo_url} /></Link>
+                        <p className='cat-title' >{cats.title}</p>
+                        <p className='cat-description'>{cats.description}</p>
+                        <p className='cat-funding'>Funding Goal: {cats.funding_goal}</p>
+                        <p className='cat-location'>📌{cats.location}</p>
                     </span>
                 ))}
             </div>
