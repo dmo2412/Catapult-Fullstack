@@ -17,7 +17,7 @@
 #
 class Project < ApplicationRecord
 
-    validates :title, :category_id, :creator_id, presence: true
+    validates :title, :category_id, :creator_id, :photo_url, presence: true
     validates :title, uniqueness: true
     #validates :ensure_photo
     has_one_attached :photo
