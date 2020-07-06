@@ -63,7 +63,7 @@ class CategoryForm extends React.Component {
     componentDidMount() {
         this.props.fetchProjects();
         this.props.fetchCategories();
-        // this.props.fetchCategory(this.props.match.params.id);
+        this.props.fetchCategory(this.props.match.params.id);
     }
 
     handleNum(num) {

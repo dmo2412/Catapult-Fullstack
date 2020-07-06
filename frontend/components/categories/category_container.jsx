@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    // fetchCategory: (id) => dispatch(fetchCategory(id)),
+    fetchCategory: (id) => dispatch(fetchCategory(id)),
     fetchProjects: () => dispatch(fetchProjects()),
     fetchCategories: () => dispatch(fetchCategories())
 })

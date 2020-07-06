@@ -13,12 +13,13 @@ class Api::ProjectsController < ApplicationController
     end
 
     def create 
-        debugger
+        
         @project = Project.new(project_params)
-        debugger
+        
         if @project.save
             render :show
         else
+            
             render json: @project.errors.full_messages, status: 412
         end
     end

@@ -493,7 +493,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    // fetchCategory: (id) => dispatch(fetchCategory(id)),
+    fetchCategory: function fetchCategory(id) {
+      return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategory"])(id));
+    },
     fetchProjects: function fetchProjects() {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
     },
@@ -602,7 +604,8 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProjects();
-      this.props.fetchCategories(); // this.props.fetchCategory(this.props.match.params.id);
+      this.props.fetchCategories();
+      this.props.fetchCategory(this.props.match.params.id);
     }
   }, {
     key: "handleNum",
@@ -1183,14 +1186,17 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       formData.append('project[funding_goal]', this.state.funding_goal);
       formData.append('project[description]', this.state.description);
       formData.append('project[pledged]', this.state.pledged);
-      formData.append('project[close_date]', this.state.close_date);
+      formData.append('project[close_date]', this.state.close_date); // debugger
+
+      formData.append('project[photo_url]', this.state.photo_url); // debugger
 
       if (this.state.photo_url) {
         formData.append('project[photo]', this.state.photoFile);
       }
 
       this.props.createProject(formData).then(function (project) {
-        return _this2.props.history.push("/projects/".concat(project / project.id));
+        // debugger
+        _this2.props.history.push("/projects/".concat(project.project.id));
       });
     }
   }, {
@@ -1199,13 +1205,15 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var pic = e.currentTarget.files[0];
-      var fileReader = new FileReader();
+      var fileReader = new FileReader(); // debugger
 
       fileReader.onloadend = function () {
+        // debugger
         _this3.setState({
           photoFile: pic,
           photo_url: fileReader.result
-        });
+        }); // debugger
+
       };
 
       if (pic) {
