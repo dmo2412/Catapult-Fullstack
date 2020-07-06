@@ -1353,36 +1353,36 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.category_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "47",
-        id: "47"
+        value: "1",
+        id: "1"
       }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "48",
-        id: "48"
+        value: "2",
+        id: "2"
       }, "Comics and Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "49",
-        id: "49"
+        value: "3",
+        id: "3"
       }, "Design and Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "50",
-        id: "50"
+        value: "4",
+        id: "4"
       }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "51",
-        id: "51"
+        value: "5",
+        id: "5"
       }, "Food and Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "52",
-        id: "52"
+        value: "6",
+        id: "6"
       }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "53",
-        id: "53"
+        value: "7",
+        id: "7"
       }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "54",
-        id: "54"
+        value: "8",
+        id: "8"
       }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "line"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
