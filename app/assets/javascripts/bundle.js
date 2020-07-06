@@ -1190,7 +1190,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       }
 
       this.props.createProject(formData).then(function (project) {
-        return _this2.props.history.push("/projects/".concat(project.id));
+        return _this2.props.history.push("/projects/".concat(project / project.id));
       });
     }
   }, {

@@ -49,7 +49,7 @@ class CreateProjectForm extends React.Component {
             
         }
         this.props.createProject(formData)
-        .then(project => this.props.history.push(`/projects/${project.id}`))
+        .then(project => this.props.history.push(`/projects/${project/project.id}`))
     }
     
     handleImage(e) {

@@ -13,7 +13,9 @@ class Api::ProjectsController < ApplicationController
     end
 
     def create 
+        debugger
         @project = Project.new(project_params)
+        debugger
         if @project.save
             render :show
         else
