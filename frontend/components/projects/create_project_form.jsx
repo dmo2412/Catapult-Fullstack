@@ -49,7 +49,7 @@ class CreateProjectForm extends React.Component {
             
         }
         this.props.createProject(formData)
-        .then(project => this.props.history.push(`/projects/${project.project.id}`))
+        .then(project => this.props.history.push(`/projects/${project.id}`))
     }
     
     handleImage(e) {
@@ -153,14 +153,14 @@ class CreateProjectForm extends React.Component {
                         onChange={this.update('category_id')} value={this.state.category_id}
                     >
                         <option>Select your category</option>
-                        <option onClick={this.handleCatClick} value='1' id='1' >Arts</option>
-                        <option onClick={this.handleCatClick} value='2' id='2' >Comics and Illustration</option>
-                        <option onClick={this.handleCatClick} value='3' id='3' >Design and Tech</option>
-                        <option onClick={this.handleCatClick} value='4' id='4'>Film</option>
-                        <option onClick={this.handleCatClick} value='5' id='5'>Food and Craft</option>
-                        <option onClick={this.handleCatClick} value='6' id='6'>Games</option>
-                        <option onClick={this.handleCatClick} value='7' id='7'>Music</option>
-                        <option onClick={this.handleCatClick} value='8' id='8'>Publishing</option>
+                        <option onClick={this.handleCatClick} value='47' id='47' >Arts</option>
+                        <option onClick={this.handleCatClick} value='48' id='48' >Comics and Illustration</option>
+                        <option onClick={this.handleCatClick} value='49' id='49' >Design and Tech</option>
+                        <option onClick={this.handleCatClick} value='50' id='50'>Film</option>
+                        <option onClick={this.handleCatClick} value='51' id='51'>Food and Craft</option>
+                        <option onClick={this.handleCatClick} value='52' id='52'>Games</option>
+                        <option onClick={this.handleCatClick} value='53' id='53'>Music</option>
+                        <option onClick={this.handleCatClick} value='54' id='54'>Publishing</option>
                     </select>
                     <p className='line'></p>
                     <button className='next-project-idea' type='submit' onClick={this.plusOne(this.state.val)} >Next: Project idea</button>

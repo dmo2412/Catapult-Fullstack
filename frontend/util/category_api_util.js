@@ -1,6 +1,6 @@
-export const fetchCategory= id => (
+export const fetchCategory = categoryId => (
     $.ajax({
-        url: `api/categories/${id}`
+        url: `api/categories/${categoryId}`
     })
 )
 

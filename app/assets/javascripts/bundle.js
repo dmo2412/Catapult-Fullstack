@@ -493,9 +493,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchCategory: function fetchCategory(id) {
-      return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategory"])(id));
-    },
+    // fetchCategory: (id) => dispatch(fetchCategory(id)),
     fetchProjects: function fetchProjects() {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
     },
@@ -545,6 +543,45 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// import {Link} from 'react-router-dom';
+// import React from 'react';
+// import category_container from './category_container';
+// import CategoryFormIndexItem from './category_navbar_container';
+// class CategoryForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//     }
+//     componentDidMount() {
+//         this.props.fetchProjects();
+//         this.props.fetchCategory(this.props.match.params.id);
+//         this.props.fetchCategories();
+//     }
+//     handleNum(num) {
+//     }
+//     render() {
+//         const {categories, projects} = this.props;
+//         // let cats = Object.assign([], categories);
+//         // let cats = projects.slice(0,-2)
+//         let projs = Object.assign([], projects);
+//         return (
+//             <div className='entire-form'>
+//             <div className='projs'>
+//                 <h1 className='cat-rec-proj'>RECENT PROJECTS</h1>
+//                 {categories.slice(0,-1).map((cats, idx) => (
+//                     <span>
+//                         <Link to={`/projects/${cats.id}`}><img className='cat-photo' src={cats.photo_url} /></Link>
+//                         <p className='cat-title' >{cats.title}</p>
+//                         <p className='cat-description'>{cats.description}</p>
+//                         <p className='cat-funding'>Funding Goal: {cats.funding_goal}</p>
+//                         <p className='cat-location'>📌{cats.location}</p>
+//                     </span>
+//                 ))}
+//             </div>
+//             </div>
+//             )
+//         }
+//     }
+//     export default CategoryForm;
 
 
 
@@ -565,8 +602,7 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProjects();
-      this.props.fetchCategories();
-      this.props.fetchCategory(this.props.match.params.id);
+      this.props.fetchCategories(); // this.props.fetchCategory(this.props.match.params.id);
     }
   }, {
     key: "handleNum",
@@ -576,31 +612,32 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           categories = _this$props.categories,
-          projects = _this$props.projects; // let cats = Object.assign([], categories);
-      // let cats = projects.slice(0,-2)
+          project = _this$props.project; // let cats = Object.assign([], categories);
+      // let projs = Object.assign([], project);
 
-      var projs = Object.assign([], projects);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "entire-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "projs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "cat-rec-proj"
-      }, "RECENT PROJECTS"), categories.slice(0, -1).map(function (cats, idx) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
-          to: "/projects/".concat(cats.id)
+      }, "RECENT PROJECTS"), categories.map(function (project, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
+          to: "/projects/".concat(project.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "cat-photo",
-          src: cats.photo_url
+          src: project.photo_url
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-title"
-        }, cats.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-description"
-        }, cats.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-funding"
-        }, "Funding Goal: ", cats.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        }, "Funding Goal: ", project.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "cat-location"
-        }, "\uD83D\uDCCC", cats.location));
+        }, "\uD83D\uDCCC", project.location));
       })));
     }
   }]);
@@ -866,6 +903,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _navbar_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar_form */ "./frontend/components/navbar/navbar_form.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/category_actions */ "./frontend/actions/category_actions.js");
+
 
 
 
@@ -884,6 +923,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
+    },
+    fetchCategories: function fetchCategories() {
+      return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCategories"])());
     }
   };
 };
@@ -941,6 +983,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -948,6 +991,11 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit() {
       this.props.logout();
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      this.props.fetchCategories();
     }
   }, {
     key: "render",
@@ -961,13 +1009,15 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           className: "nav-items"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/categories",
-          className: "nav-explore"
+          className: "nav-explore",
+          onClick: this.handleClick
         }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/projects/new/",
           className: "nav-projects"
         }, "Start a project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/",
-          className: "nav-home"
+          className: "nav-home",
+          onClick: this.handleClick
         }, "CATAPULT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/login",
           className: "nav-login"
@@ -979,13 +1029,15 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           className: "nav-items"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/categories",
-          className: "nav-explore"
+          className: "nav-explore",
+          onClick: this.handleClick
         }, "Explore"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/projects/new",
           className: "nav-projects"
         }, "Start a project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/",
-          className: "nav-home"
+          className: "nav-home",
+          onClick: this.handleClick
         }, "CATAPULT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/login",
           onClick: this.handleSubmit,
@@ -1138,7 +1190,7 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       }
 
       this.props.createProject(formData).then(function (project) {
-        return _this2.props.history.push("/projects/".concat(project.project.id));
+        return _this2.props.history.push("/projects/".concat(project.id));
       });
     }
   }, {
@@ -1301,36 +1353,36 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.category_id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Select your category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "1",
-        id: "1"
+        value: "47",
+        id: "47"
       }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "2",
-        id: "2"
+        value: "48",
+        id: "48"
       }, "Comics and Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "3",
-        id: "3"
+        value: "49",
+        id: "49"
       }, "Design and Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "4",
-        id: "4"
+        value: "50",
+        id: "50"
       }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "5",
-        id: "5"
+        value: "51",
+        id: "51"
       }, "Food and Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "6",
-        id: "6"
+        value: "52",
+        id: "52"
       }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "7",
-        id: "7"
+        value: "53",
+        id: "53"
       }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         onClick: this.handleCatClick,
-        value: "8",
-        id: "8"
+        value: "54",
+        id: "54"
       }, "Publishing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "line"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2708,9 +2760,9 @@ var configureStore = function configureStore() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategory", function() { return fetchCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
-var fetchCategory = function fetchCategory(id) {
+var fetchCategory = function fetchCategory(categoryId) {
   return $.ajax({
-    url: "api/categories/".concat(id)
+    url: "api/categories/".concat(categoryId)
   });
 };
 var fetchCategories = function fetchCategories() {
