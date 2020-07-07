@@ -58,3 +58,8 @@ export const deleteProject = projectId => {
     .then(() => dispatch(removeProject(projectId)),
     err => dispatch(receiveProjectErrors(err.responseJSON)))
 }
+
+// export const fetchProjectsCategory = category => dispatch => {
+//     return ProjectAPIUtil.fetchProjects()
+//     .then(projects => dispatch(receiveProjects(projects)))
+// }

@@ -8,7 +8,7 @@ class Api::CategoriesController < ApplicationController
     def show
         @category = Category.find(params[:id])
         @projects = @category.projects 
-        render '/api/projects/index.json.jbuilder'
+        render :show
     end
 
 end

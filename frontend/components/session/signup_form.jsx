@@ -25,6 +25,8 @@ class SignupForm extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             });
+        } else {
+            return 'email and password must match'
         }
     }
 
@@ -59,7 +61,7 @@ class SignupForm extends React.Component {
                     <form onSubmit={this.handleSubmit} className='submit-signup'>
                         <ul className='login-errors'>
                             {this.props.errors.map((error, idx) => {
-                                return <li key={idx}>{error}</li>
+                                return <li key={idx}>Password must match</li>
                             })}
                         </ul>
                     <div className='redirect-to-login'>

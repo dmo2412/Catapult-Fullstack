@@ -17,11 +17,14 @@ class CategoryNav extends React.Component {
 
     render() {
         const { categories } = this.props;
+        // debugger
         return (
             <nav className='category-nav-names'>
                 
-                {categories.map((category) => (
+                {categories.map((category, idx) => (
+                    <span key={idx}>
                     <CategoryIndexItems category={category} key={category.id} />
+                    </span>
                 ))}
             </nav>
         )

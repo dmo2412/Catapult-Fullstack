@@ -90,21 +90,29 @@
 /*!**********************************************!*\
   !*** ./frontend/actions/category_actions.js ***!
   \**********************************************/
-/*! exports provided: RECEIVE_ALL_CATEGORIES, RECEIVE_CATEGORY, receiveCategory, receiveCategories, fetchCategories, fetchCategory */
+/*! exports provided: RECEIVE_ALL_CATEGORIES, RECEIVE_CATEGORY, RECEIVE_CATEGORY_PROJECTS, receiveCategory, receiveCategories, receiveCategoryProjects, fetchCategories, fetchCategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_CATEGORIES", function() { return RECEIVE_ALL_CATEGORIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CATEGORY", function() { return RECEIVE_CATEGORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CATEGORY_PROJECTS", function() { return RECEIVE_CATEGORY_PROJECTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCategory", function() { return receiveCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCategories", function() { return receiveCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCategoryProjects", function() { return receiveCategoryProjects; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategory", function() { return fetchCategory; });
 /* harmony import */ var _util_category_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/category_api_util */ "./frontend/util/category_api_util.js");
+/* harmony import */ var _util_project_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/project_api_util */ "./frontend/util/project_api_util.js");
+/* harmony import */ var _project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project_actions */ "./frontend/actions/project_actions.js");
+
+ // import * as ProjectAPIUtil from '../util/project_api_util';
+
 
 var RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES';
 var RECEIVE_CATEGORY = 'RECEIVE_CATEGORY';
+var RECEIVE_CATEGORY_PROJECTS = 'RECEIVE_CATEGORY_PROJECTS';
 var receiveCategory = function receiveCategory(category) {
   return {
     type: RECEIVE_CATEGORY,
@@ -115,6 +123,12 @@ var receiveCategories = function receiveCategories(categories) {
   return {
     type: RECEIVE_ALL_CATEGORIES,
     categories: categories
+  };
+};
+var receiveCategoryProjects = function receiveCategoryProjects(projects) {
+  return {
+    type: RECEIVE_CATEGORY_PROJECTS,
+    projects: projects
   };
 };
 var fetchCategories = function fetchCategories() {
@@ -130,7 +144,10 @@ var fetchCategory = function fetchCategory(id) {
       return dispatch(receiveCategory(category));
     });
   };
-};
+}; // export const fetchCategoryProjects = categoryId => dispatch => {
+//     return ProjectAPIUtil.fetchCategory(categoryId)
+//     .then(category => dispatch(receiveProjects()))
+// }
 
 /***/ }),
 
@@ -230,7 +247,10 @@ var deleteProject = function deleteProject(projectId) {
   }, function (err) {
     return dispatch(receiveProjectErrors(err.responseJSON));
   });
-};
+}; // export const fetchProjectsCategory = category => dispatch => {
+//     return ProjectAPIUtil.fetchProjects()
+//     .then(projects => dispatch(receiveProjects(projects)))
+// }
 
 /***/ }),
 
@@ -278,9 +298,9 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }), function (err) {
+    }).fail(function (err) {
       return dispatch(receiveErrors(err.responseJSON));
-    };
+    });
   };
 };
 var login = function login(user) {
@@ -484,10 +504,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var projectsCategory = function projectsCategory(state, categoryId) {
+  return Object.values(state.entities.projects).filter(function (project) {
+    return project.category_id === categoryId;
+  });
+};
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    category: state.entities.categories[ownProps.match.params.id],
-    categories: Object.values(state.entities.categories)
+    // projects: state.entities.projects[ownProps.match.params.id],
+    // categories: Object.values(state.entities.categories),
+    category: state.entities.categories[ownProps.match.params.categoryId],
+    // projects: projectsCategory(state, ownProps.match.params.categoryId)
+    // projects: projectsCategory(state, ownProps.match.params.categoryId)
+    projects: Object.values(state.entities.projects)
   };
 };
 
@@ -496,12 +526,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchCategory: function fetchCategory(id) {
       return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategory"])(id));
     },
-    fetchProjects: function fetchProjects() {
-      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
-    },
     fetchCategories: function fetchCategories() {
       return dispatch(Object(_actions_category_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategories"])());
-    }
+    },
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
+    } // fetchProjectsCategory: (category) => dispatch(fetchProjectsCategory(category)),
+    // fetchProjectsCategory: (categoryId) => dispatch(fetchProjectsCategory(categoryId)),
+
   };
 };
 
@@ -545,45 +577,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// import {Link} from 'react-router-dom';
-// import React from 'react';
-// import category_container from './category_container';
-// import CategoryFormIndexItem from './category_navbar_container';
-// class CategoryForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     }
-//     componentDidMount() {
-//         this.props.fetchProjects();
-//         this.props.fetchCategory(this.props.match.params.id);
-//         this.props.fetchCategories();
-//     }
-//     handleNum(num) {
-//     }
-//     render() {
-//         const {categories, projects} = this.props;
-//         // let cats = Object.assign([], categories);
-//         // let cats = projects.slice(0,-2)
-//         let projs = Object.assign([], projects);
-//         return (
-//             <div className='entire-form'>
-//             <div className='projs'>
-//                 <h1 className='cat-rec-proj'>RECENT PROJECTS</h1>
-//                 {categories.slice(0,-1).map((cats, idx) => (
-//                     <span>
-//                         <Link to={`/projects/${cats.id}`}><img className='cat-photo' src={cats.photo_url} /></Link>
-//                         <p className='cat-title' >{cats.title}</p>
-//                         <p className='cat-description'>{cats.description}</p>
-//                         <p className='cat-funding'>Funding Goal: {cats.funding_goal}</p>
-//                         <p className='cat-location'>📌{cats.location}</p>
-//                     </span>
-//                 ))}
-//             </div>
-//             </div>
-//             )
-//         }
-//     }
-//     export default CategoryForm;
 
 
 
@@ -603,20 +596,27 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
   _createClass(CategoryForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchProjects();
-      this.props.fetchCategories();
-      this.props.fetchCategory(this.props.match.params.id);
-    }
-  }, {
-    key: "handleNum",
-    value: function handleNum(num) {}
+      this.props.fetchCategory(this.props.match.params.id).then(this.props.fetchCategories);
+      this.props.fetchProjects(); // this.props.fetchCategories();
+    } // UNSAFE_componentWillMount() {
+    // }
+
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          categories = _this$props.categories,
-          project = _this$props.project; // let cats = Object.assign([], categories);
-      // let projs = Object.assign([], project);
+          category = _this$props.category,
+          projects = _this$props.projects;
+      var projs;
+      var cat = Number(this.props.match.params.id);
+
+      if (Object.values(projects).length > 0) {
+        projs = Object.values(this.props.projects).filter(function (project) {
+          return project.category_id === cat;
+        });
+      } else {
+        projs = [];
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "entire-form"
@@ -624,7 +624,7 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
         className: "projs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "cat-rec-proj"
-      }, "RECENT PROJECTS"), categories.map(function (project, idx) {
+      }, "RECENT PROJECTS"), projs.map(function (project, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
@@ -632,16 +632,8 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           className: "cat-photo",
           src: project.photo_url
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "cat-title"
-        }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "cat-description"
-        }, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "cat-funding"
-        }, "Funding Goal: ", project.funding_goal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "cat-location"
-        }, "\uD83D\uDCCC", project.location));
-      })));
+        })));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null)));
     }
   }]);
 
@@ -672,6 +664,7 @@ var CategoryIndexItems = function CategoryIndexItems(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "nav-cats"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    key: category.id,
     className: "category-names-nav",
     to: "/categories/".concat(category.id)
   }, category.name));
@@ -744,14 +737,17 @@ var CategoryNav = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var categories = this.props.categories;
+      var categories = this.props.categories; // debugger
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "category-nav-names"
-      }, categories.map(function (category) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_index_items__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, categories.map(function (category, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_category_index_items__WEBPACK_IMPORTED_MODULE_2__["default"], {
           category: category,
           key: category.id
-        });
+        }));
       }));
     }
   }]);
@@ -1964,6 +1960,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
           email: this.state.email,
           password: this.state.password
         });
+      } else {
+        return 'email and password must match';
       }
     }
   }, {
@@ -2018,7 +2016,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }, this.props.errors.map(function (error, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: idx
-        }, error);
+        }, "Password must match");
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "redirect-to-login"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2498,8 +2496,11 @@ var ThreeIndexItems = function ThreeIndexItems(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/category_actions */ "./frontend/actions/category_actions.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+
+ // import {RECEIVE_ALL_PROJECTS} from '../actions/project_actions';
 
 
 
@@ -2507,13 +2508,23 @@ var CategoriesReducer = function CategoriesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_CATEGORIES"]:
       return action.categories;
 
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORY"]:
-      return action.category.id = action.category;
+      // debugger
+      nextState[action.category.id] = action.category; // return action.category.id = action.category;
+
+      return nextState[action.category.id];
+
+    case _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PROJECTS"]:
+      // nextState[action.categoryId] = action.category;
+      // return action.category.id = action.category;
+      // debugger
+      return nextState[action.projects.id];
 
     default:
       return state;
@@ -2679,6 +2690,9 @@ var SessionReducer = function SessionReducer() {
       nextState.id = null;
       return nextState;
 
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
+      return action.errors;
+
     default:
       return oldState;
   }
@@ -2761,13 +2775,14 @@ var configureStore = function configureStore() {
 /*!********************************************!*\
   !*** ./frontend/util/category_api_util.js ***!
   \********************************************/
-/*! exports provided: fetchCategory, fetchCategories */
+/*! exports provided: fetchCategory, fetchCategories, fetchCategoryProjects */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategory", function() { return fetchCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProjects", function() { return fetchCategoryProjects; });
 var fetchCategory = function fetchCategory(categoryId) {
   return $.ajax({
     url: "api/categories/".concat(categoryId)
@@ -2776,6 +2791,11 @@ var fetchCategory = function fetchCategory(categoryId) {
 var fetchCategories = function fetchCategories() {
   return $.ajax({
     url: 'api/categories'
+  });
+};
+var fetchCategoryProjects = function fetchCategoryProjects(categoryId) {
+  return $.ajax({
+    url: "/api/categories/".concat(categoryId)
   });
 };
 

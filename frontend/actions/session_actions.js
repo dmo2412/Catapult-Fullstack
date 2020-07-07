@@ -21,8 +21,8 @@ export const receiveErrors = errors => ({
 
 export const signup = user => dispatch => (
     SessionUtil.signup(user)
-    .then(user => dispatch(receiveCurrentUser(user))),
-    err => dispatch(receiveErrors(err.responseJSON))
+    .then(user => dispatch(receiveCurrentUser(user)))
+    .fail(err => dispatch(receiveErrors(err.responseJSON)))
 )
 
 export const login = user => dispatch => (
