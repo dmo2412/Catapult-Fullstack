@@ -104,11 +104,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategory", function() { return fetchCategory; });
 /* harmony import */ var _util_category_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/category_api_util */ "./frontend/util/category_api_util.js");
-/* harmony import */ var _util_project_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/project_api_util */ "./frontend/util/project_api_util.js");
-/* harmony import */ var _project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project_actions */ "./frontend/actions/project_actions.js");
-
- // import * as ProjectAPIUtil from '../util/project_api_util';
-
 
 var RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES';
 var RECEIVE_CATEGORY = 'RECEIVE_CATEGORY';
@@ -144,10 +139,7 @@ var fetchCategory = function fetchCategory(id) {
       return dispatch(receiveCategory(category));
     });
   };
-}; // export const fetchCategoryProjects = categoryId => dispatch => {
-//     return ProjectAPIUtil.fetchCategory(categoryId)
-//     .then(category => dispatch(receiveProjects()))
-// }
+};
 
 /***/ }),
 
@@ -504,19 +496,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var projectsCategory = function projectsCategory(state, categoryId) {
-  return Object.values(state.entities.projects).filter(function (project) {
-    return project.category_id === categoryId;
-  });
-};
-
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    // projects: state.entities.projects[ownProps.match.params.id],
-    // categories: Object.values(state.entities.categories),
     category: state.entities.categories[ownProps.match.params.categoryId],
-    // projects: projectsCategory(state, ownProps.match.params.categoryId)
-    // projects: projectsCategory(state, ownProps.match.params.categoryId)
     projects: Object.values(state.entities.projects)
   };
 };
@@ -531,9 +513,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchProjects: function fetchProjects() {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
-    } // fetchProjectsCategory: (category) => dispatch(fetchProjectsCategory(category)),
-    // fetchProjectsCategory: (categoryId) => dispatch(fetchProjectsCategory(categoryId)),
-
+    }
   };
 };
 
@@ -553,8 +533,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _category_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category_container */ "./frontend/components/categories/category_container.jsx");
-/* harmony import */ var _category_navbar_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./category_navbar_container */ "./frontend/components/categories/category_navbar_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -580,8 +558,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
 var CategoryForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CategoryForm, _React$Component);
 
@@ -597,10 +573,8 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchCategory(this.props.match.params.id).then(this.props.fetchCategories);
-      this.props.fetchProjects(); // this.props.fetchCategories();
-    } // UNSAFE_componentWillMount() {
-    // }
-
+      this.props.fetchProjects();
+    }
   }, {
     key: "render",
     value: function render() {
@@ -624,7 +598,7 @@ var CategoryForm = /*#__PURE__*/function (_React$Component) {
         className: "projs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
         className: "cat-rec-proj"
-      }, "RECENT PROJECTS"), projs.map(function (project, idx) {
+      }, "RECENT PROJECTS"), projs.reverse().map(function (project, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["Link"], {
@@ -737,8 +711,7 @@ var CategoryNav = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var categories = this.props.categories; // debugger
-
+      var categories = this.props.categories;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         className: "category-nav-names"
       }, categories.map(function (category, idx) {
@@ -2500,7 +2473,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
- // import {RECEIVE_ALL_PROJECTS} from '../actions/project_actions';
 
 
 
@@ -2515,15 +2487,10 @@ var CategoriesReducer = function CategoriesReducer() {
       return action.categories;
 
     case _actions_category_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORY"]:
-      // debugger
-      nextState[action.category.id] = action.category; // return action.category.id = action.category;
-
+      nextState[action.category.id] = action.category;
       return nextState[action.category.id];
 
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PROJECTS"]:
-      // nextState[action.categoryId] = action.category;
-      // return action.category.id = action.category;
-      // debugger
       return nextState[action.projects.id];
 
     default:
@@ -2775,14 +2742,13 @@ var configureStore = function configureStore() {
 /*!********************************************!*\
   !*** ./frontend/util/category_api_util.js ***!
   \********************************************/
-/*! exports provided: fetchCategory, fetchCategories, fetchCategoryProjects */
+/*! exports provided: fetchCategory, fetchCategories */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategory", function() { return fetchCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryProjects", function() { return fetchCategoryProjects; });
 var fetchCategory = function fetchCategory(categoryId) {
   return $.ajax({
     url: "api/categories/".concat(categoryId)
@@ -2791,11 +2757,6 @@ var fetchCategory = function fetchCategory(categoryId) {
 var fetchCategories = function fetchCategories() {
   return $.ajax({
     url: 'api/categories'
-  });
-};
-var fetchCategoryProjects = function fetchCategoryProjects(categoryId) {
-  return $.ajax({
-    url: "/api/categories/".concat(categoryId)
   });
 };
 

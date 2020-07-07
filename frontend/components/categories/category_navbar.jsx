@@ -17,7 +17,6 @@ class CategoryNav extends React.Component {
 
     render() {
         const { categories } = this.props;
-        // debugger
         return (
             <nav className='category-nav-names'>
                 

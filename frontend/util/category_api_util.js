@@ -9,9 +9,3 @@ export const fetchCategories = () => (
         url: 'api/categories'
     })
 )
-
-export const fetchCategoryProjects = (categoryId) => (
-    $.ajax({
-        url: `/api/categories/${categoryId}`
-    })
-)

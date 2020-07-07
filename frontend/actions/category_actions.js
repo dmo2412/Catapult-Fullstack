@@ -1,7 +1,4 @@
 import * as CategoryAPIUtil from '../util/category_api_util';
-import * as ProjectAPIUtil from '../util/project_api_util'
-// import * as ProjectAPIUtil from '../util/project_api_util';
-import { receiveProjects } from './project_actions';
 export const RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES'
 export const RECEIVE_CATEGORY = 'RECEIVE_CATEGORY'
 export const RECEIVE_CATEGORY_PROJECTS = 'RECEIVE_CATEGORY_PROJECTS'
@@ -31,8 +28,3 @@ export const fetchCategory = id => dispatch => {
     return CategoryAPIUtil.fetchCategory(id)
     .then(category => dispatch(receiveCategory(category)))
 }
-
-// export const fetchCategoryProjects = categoryId => dispatch => {
-//     return ProjectAPIUtil.fetchCategory(categoryId)
-//     .then(category => dispatch(receiveProjects()))
-// }
