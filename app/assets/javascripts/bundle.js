@@ -1927,14 +1927,19 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
 
-      if (this.props.email === this.props.reEnterEmail && this.props.password === this.props.reEnterPassword) {
+      if (this.state.email === this.state.reEnterEmail && this.state.password === this.state.reEnterPassword && this.state.password.length >= 0) {
+        debugger;
         this.props.signup({
           name: this.state.name,
           email: this.state.email,
           password: this.state.password
         });
+        console.log(this.props.receiveErrors(['nice try chief']));
+        debugger;
       } else {
-        return 'email and password must match';
+        debugger; // console.log(this.props.receiveErrors(['Email and passwords must match and password must be at least 6 characters']))
+
+        console.log(this.props.receiveErrors(errors));
       }
     }
   }, {
@@ -1977,6 +1982,11 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      // const errors = !this.props.errors ? null : 
+      //     <ul classname='signup-errors'>
+      //         {this.props.errors.map(error => <li>{errors}</li>)}
+      //     </ul>
+      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-background"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1984,13 +1994,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "submit-signup"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "login-errors"
-      }, this.props.errors.map(function (error, idx) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: idx
-        }, "Password must match");
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "redirect-to-login"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/login",
@@ -2088,10 +2092,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var errors = _ref.errors;
+var mapStateToProps = function mapStateToProps(state) {
+  // let errors;
+  // if (Array.isArray(state.errors.session)) {
+  //     errors = state.errors.session
+  // }
   return {
-    errors: errors
+    errors: state.errors
   };
 };
 
@@ -2102,6 +2109,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     login: function login(user) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["login"])(user));
+    },
+    receiveErrors: function receiveErrors(errors) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["receiveErrors"])(errors));
     }
   };
 };
@@ -2515,6 +2525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _projects_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projects_reducer */ "./frontend/reducers/projects_reducer.js");
 /* harmony import */ var _categories_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./categories_reducer */ "./frontend/reducers/categories_reducer.jsx");
+/* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+
 
 
 
@@ -2522,7 +2534,8 @@ __webpack_require__.r(__webpack_exports__);
 var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   projects: _projects_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  categories: _categories_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  categories: _categories_reducer__WEBPACK_IMPORTED_MODULE_3__["default"] // errors
+
 });
 /* harmony default export */ __webpack_exports__["default"] = (EntitiesReducer);
 
@@ -2607,6 +2620,9 @@ var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 var ErrorsReducer = function ErrorsReducer() {
@@ -2616,7 +2632,7 @@ var ErrorsReducer = function ErrorsReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return action.errors;
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, action.errors);
 
     default:
       return oldState;
@@ -2637,6 +2653,9 @@ var ErrorsReducer = function ErrorsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 var SessionReducer = function SessionReducer() {
@@ -2649,6 +2668,7 @@ var SessionReducer = function SessionReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
+      // debugger
       return {
         id: action.currentUser.id
       };
@@ -2658,7 +2678,9 @@ var SessionReducer = function SessionReducer() {
       return nextState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return action.errors;
+      debugger; // return action.errors
+
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])(nextState, action.errors);
 
     default:
       return oldState;
@@ -2680,6 +2702,9 @@ var SessionReducer = function SessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -2700,6 +2725,9 @@ var UsersReducer = function UsersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
       nextState[action.currentUser.id] = action.currentUser;
       return nextState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SESSION_ERRORS"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])(nextState, action.errors);
 
     default:
       return oldState;

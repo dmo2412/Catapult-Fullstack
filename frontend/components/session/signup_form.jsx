@@ -19,14 +19,19 @@ class SignupForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.props.email === this.props.reEnterEmail && this.props.password === this.props.reEnterPassword) {
+        if (this.state.email === this.state.reEnterEmail && this.state.password === this.state.reEnterPassword && this.state.password.length >= 0) {
+            debugger
             this.props.signup({
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password
             });
+            console.log(this.props.receiveErrors(['nice try chief']))
+            debugger
         } else {
-            return 'email and password must match'
+            debugger
+            // console.log(this.props.receiveErrors(['Email and passwords must match and password must be at least 6 characters']))
+            console.log(this.props.receiveErrors(errors))
         }
     }
 
@@ -53,17 +58,26 @@ class SignupForm extends React.Component {
     }
 
     render() {
+
+        // const errors = !this.props.errors ? null : 
+        
+        //     <ul classname='signup-errors'>
+        //         {this.props.errors.map(error => <li>{errors}</li>)}
+        //     </ul>
+            // debugger
         
         return (
             <div className='signup-background'>
 
                 <div className='signup-form'>
                     <form onSubmit={this.handleSubmit} className='submit-signup'>
-                        <ul className='login-errors'>
+                        {/* <ul className='login-errors'>
                             {this.props.errors.map((error, idx) => {
-                                return <li key={idx}>Password must match</li>
+                                return <li key={idx}>Password must</li>
                             })}
-                        </ul>
+                        </ul> */}
+                        {/* {this.props.errors} */}
+                        {/* <div>{this.props.errors}</div> */}
                     <div className='redirect-to-login'>
                     <p>Have an account? <Link to='/login' className='login-redirect-button'>Log in</Link></p>
                     </div>
