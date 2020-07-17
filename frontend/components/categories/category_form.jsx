@@ -44,6 +44,7 @@ class CategoryForm extends React.Component {
                     <div></div>
                     
                 </div>
+                    <p className='p-break'></p>
             </div>
         )
     }
