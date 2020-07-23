@@ -290,9 +290,9 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }).fail(function (err) {
+    }), function (err) {
       return dispatch(receiveErrors(err.responseJSON));
-    });
+    };
   };
 };
 var login = function login(user) {
@@ -853,12 +853,12 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         href: "https://www.linkedin.com/in/daniel-morgan-228739a7/",
         className: "linkedin-link"
       }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://appacademy.io",
+        href: "https://angel.co/u/daniel-morgan-23",
         className: "appacademy-link"
-      }, "App Academy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://youtube.com",
+      }, "Angel List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.danny-morgan.com",
         className: "youtube-link"
-      }, "Youtube")));
+      }, "Portfolio")));
     }
   }]);
 

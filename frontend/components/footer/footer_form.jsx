@@ -9,8 +9,8 @@ class Footer extends React.Component {
             <section className='footer-items'>
                     <a href="https://github.com/dmo2412/Catapult-Fullstack" className='github-link'>Github</a>
                     <a href="https://www.linkedin.com/in/daniel-morgan-228739a7/" className='linkedin-link'>LinkedIn</a>
-                    <a href="https://appacademy.io" className='appacademy-link'>App Academy</a>
-                    <a href="https://youtube.com" className='youtube-link'>Youtube</a>
+                    <a href="https://angel.co/u/daniel-morgan-23" className='appacademy-link'>Angel List</a>
+                    <a href="https://www.danny-morgan.com" className='youtube-link'>Portfolio</a>
             </section>
         </footer>
         
