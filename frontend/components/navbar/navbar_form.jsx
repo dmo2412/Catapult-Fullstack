@@ -25,14 +25,9 @@ class Navbar extends React.Component {
             return (
                 <nav className="navbar">
                     <section className='nav-items'>
-                        {/* <section className="left-nav"> */}
                         <Link to="/categories/1" className='nav-explore' onClick={this.handleClick}>Explore</Link>
                         <Link to="/projects/new/" className='nav-projects'>Start a project</Link>
-                        {/* </section> */}
-                        {/* <section className='middle-nav'> */}
                         <Link to="/" className='nav-home' onClick={this.handleClick}>CATAPULT</Link>
-                        {/* </section> */}
-                        {/* <section className='right-nav'> */}
                         <Link to="/login" className='nav-login'>Log in</Link>
                         {/* </section> */}
                     </section>
