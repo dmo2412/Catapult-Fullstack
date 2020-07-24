@@ -38,6 +38,7 @@ class CategoryForm extends React.Component {
                             <Link to={`/projects/${project.id}`}><img className='cat-photo' src={project.photo_url} /></Link>
                             <p className='project-title-cat'>{project.title}</p>
                             <p className='project-description-cat'>{project.description}</p>
+                            <p></p>
                             <p className='project-location-cat'>📌{project.location}</p>
                         </span>
                     ))}

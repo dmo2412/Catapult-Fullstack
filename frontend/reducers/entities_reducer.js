@@ -8,7 +8,7 @@ const EntitiesReducer = combineReducers({
     users,
     projects,
     categories,
-    // errors
+    errors
 })
 
 export default EntitiesReducer;

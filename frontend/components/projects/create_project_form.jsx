@@ -193,7 +193,7 @@ class CreateProjectForm extends React.Component {
                         <option onClick={this.handleLocationClick} value="Australia">Australia</option>
                     </select>
                     <ul className='checkboxes'>
-                            <li><input type="checkbox" className='first-checkbox' />I Would like to receive notifications</li>
+                            <li><input type="checkbox" className='first-checkbox' />This checkbox is just to match Kickstarter</li>
                             <li><input type="checkbox" className='second-checkbox' />I'm enjoying this project</li>
                             <li><input type="checkbox" className='third-checkbox' />Is this almost over</li>
                             <li><input type="checkbox" className='fourth-checkbox' />This website is phenomenal</li>
