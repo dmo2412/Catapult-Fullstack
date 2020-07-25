@@ -43,26 +43,25 @@ class CreateProjectForm extends React.Component {
         formData.append('project[description]' , this.state.description)
         formData.append('project[pledged]' , this.state.pledged)
         formData.append('project[close_date]' , this.state.close_date)
-        // debugger
+        
         formData.append('project[photo_url]', this.state.photo_url) 
-        // debugger
+        
         if (this.state.photo_url) {
             formData.append('project[photo]', this.state.photoFile)
         }
         this.props.createProject(formData)
         .then(project => {
-            // debugger
+            
             this.props.history.push(`/projects/${project.project.id}`)})
     }
     
     handleImage(e) {
         const pic = e.currentTarget.files[0];
         const fileReader = new FileReader();
-        // debugger
+       
         fileReader.onloadend = () => {
-            // debugger
+            
             this.setState({photoFile: pic, photo_url: fileReader.result})
-            // debugger
         };
         if (pic) {
             fileReader.readAsDataURL(pic);
