@@ -1163,16 +1163,14 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       formData.append('project[funding_goal]', this.state.funding_goal);
       formData.append('project[description]', this.state.description);
       formData.append('project[pledged]', this.state.pledged);
-      formData.append('project[close_date]', this.state.close_date); // debugger
-
-      formData.append('project[photo_url]', this.state.photo_url); // debugger
+      formData.append('project[close_date]', this.state.close_date);
+      formData.append('project[photo_url]', this.state.photo_url);
 
       if (this.state.photo_url) {
         formData.append('project[photo]', this.state.photoFile);
       }
 
       this.props.createProject(formData).then(function (project) {
-        // debugger
         _this2.props.history.push("/projects/".concat(project.project.id));
       });
     }
@@ -1182,15 +1180,13 @@ var CreateProjectForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var pic = e.currentTarget.files[0];
-      var fileReader = new FileReader(); // debugger
+      var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        // debugger
         _this3.setState({
           photoFile: pic,
           photo_url: fileReader.result
-        }); // debugger
-
+        });
       };
 
       if (pic) {
