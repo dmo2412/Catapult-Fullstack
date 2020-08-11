@@ -194,7 +194,7 @@ class CreateProjectForm extends React.Component {
                     <ul className='checkboxes'>
                             <li><input type="checkbox" className='first-checkbox' />This checkbox is just to match Kickstarter</li>
                             <li><input type="checkbox" className='second-checkbox' />I'm enjoying this project</li>
-                            <li><input type="checkbox" className='third-checkbox' />Is this almost over</li>
+                            <li><input type="checkbox" className='third-checkbox' />I just found 100k. I'm going to hire the guy who built this website</li>
                             <li><input type="checkbox" className='fourth-checkbox' />This website is phenomenal</li>
                     </ul>
                     <p className='line4'></p>
